@@ -68,7 +68,7 @@
 
       <!-- Google Reviews badge (top-right) -->
       <div class="reviews-badge" role="region" aria-label="Google reviews">
-        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" alt="Google" />
+        <i class="fa-brands fa-google"></i>
         <div class="rev-meta">
           <div style="display:flex;align-items:center;gap:8px">
             <div class="rating" aria-hidden="true">5.0</div>
@@ -105,19 +105,21 @@
               </div>
             </article>
 
-            <!-- Example second card -->
-            <article class="astro-card" data-astro='{"name":"Smt. Anjali Rao","price":1200,"durationMin":30,"experience":"11 years","qualification":"Jyotish Alankar","photo":"images/astrologer2.jpg","modes":["Call","In-person"]}'>
-              <img src="images/astrologer2.jpg" alt="Smt. Anjali Rao" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
-              <div class="astro-meta">
-                <h4>Smt. Anjali Rao</h4>
-                <p class="muted">Specialities: Health · Finance · Remedies</p>
-                <p class="muted" style="margin-top:6px"><strong>Experience:</strong> 11 years</p>
-                <p class="muted"><strong>Qualification:</strong> Jyotish Alankar</p>
-                <div style="margin-top:8px;display:flex;align-items:center;gap:12px">
-                  <div class="price">₹1200 / 30 min</div>
-                  <button class="btn btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
-                </div>
-              </div>
+            
+            <article id="panchangamWidget" class="card" aria-labelledby="panchTitle" >
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="small">Panchangam</div>
+              <div id="panchTitle" style="font-weight:700">Today's Panchangam</div>
+            </div>
+            <div class="muted" id="panchDate">—</div>
+          </div>
+
+          <div style="margin-top:12px">
+            <!-- external widget script (from panchang.click) -->
+            <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
+            <div id="panchangwidgetid" style="margin-top:8px"></div>
+          </div>
             </article>
 
           </div>
