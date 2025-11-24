@@ -1,71 +1,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Vedic Guidance — Muhurtha & Astrology</title>
-<meta name="description" content="Book Vedic astrologer consultations, muhurthas, panchangam and remedies." />
-<link rel="stylesheet" href="styles.css">
-<script src="include.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vedic Guidance</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="include.js" defer></script>
 </head>
+
 <body>
+
   <!-- HEADER -->
   <div include-html="header.html"></div>
 
+  <!-- PAGE CONTENT -->
+  <main class="wrap">
+    <h2>Welcome to Vedic Guidance</h2>
+    <p>Your one-stop portal for Vedic Astrology.</p>
 
-<main class="wrap">
-<!-- HERO + QUICK BOOKING (kept in index for simplicity) -->
-<section class="hero" aria-labelledby="hero-heading">
-<div class="hero-left">
-<h2 id="hero-heading">Find the right muhurtha. Book a trusted Vedic astrologer in minutes.</h2>
-<p class="lead">Secure consults for career, health, love, finance, remedies and sacred ceremonies — Namakarana, Annaprashana, Upanayana, GrihaPravesa, Kalyanam and more.</p>
-<div class="cta-row">
-<a class="btn btn-primary" href="#" id="openBooking">Book Now</a>
-<a class="btn btn-ghost" href="#muhurthas">Free 3-min Panchangam</a>
-</div>
-</div>
+    <!-- Embed split sections inside index -->
+    <div include-html="services.html"></div>
+    <div include-html="muhurthas.html"></div>
+    <div include-html="blogs.html"></div>
+  </main>
 
+  <!-- FOOTER -->
+  <div include-html="footer.html"></div>
 
-<aside class="card booking-card">
-<div class="card-head">
-<div>
-<div class="small">Quick Booking</div>
-<div class="h6">Book Consultation or Muhurtha</div>
-</div>
-<div class="muted small">Demo flow</div>
-</div>
-
-
-<form id="miniBooking" onsubmit="return false">
-<label for="service">Service</label>
-<select id="service" required>
-<option>Consultation</option>
-<option>Muhurtha — Namakarana</option>
-<option>Muhurtha — Annaprashana</option>
-<option>Muhurtha — GrihaPravesa</option>
-<option>Muhurtha — Kalyanam</option>
-</select>
-
-
-<label for="datePref">Preferred Date</label>
-<input id="datePref" type="date">
-
-
-<label for="name">Your full name</label>
-<input id="name" type="text" placeholder="e.g. Ramesh Kumar" required>
-
-
-<div class="row">
-<input id="email" type="email" placeholder="email@example.com">
-<input id="phone" type="text" placeholder="Phone / WhatsApp">
-</div>
-
-
-<label for="notes">Notes / birth details</label>
-<textarea id="notes" placeholder="Birth time, place, constraints (optional)"></textarea>
-
-
-<div class="row actions">
-<button class="btn btn-primary" id="miniProceed">Proceed</button>
-<button class="btn btn-ghost" id="miniReset">Reset</button>
+</body>
 </html>
