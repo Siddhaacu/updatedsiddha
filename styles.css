@@ -252,5 +252,33 @@ section{margin:36px 0}
   margin-left: auto;
   margin-right: auto;
 }
+/* ABOUT section styling */
+.about-card { padding: 16px; border-radius: 12px; }
+.about-photo img { width: 100%; height: 100%; max-width:120px; border-radius:8px; object-fit:cover; display:block; }
+
+/* Expand animation: hidden by default, reveal with max-height transition */
+.about-expand-wrapper { overflow: hidden; }
+.about-expand {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 400ms ease, opacity 300ms ease;
+  opacity: 0;
+  margin-top: 8px;
+}
+.about-expand[aria-hidden="false"] {
+  opacity: 1;
+  max-height: 1200px; /* large enough to contain content */
+}
+
+/* Button tweaks */
+#aboutToggle { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; }
+#aboutToggle[aria-expanded="true"] { transform: translateY(-1px); }
+
+/* Responsive */
+@media (max-width:720px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-photo { display:block; margin-bottom:12px; }
+  .about-photo img { max-width:88px; }
+}
 
 
