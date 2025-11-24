@@ -5,64 +5,67 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Siddha Saraswatha</title>
 
-  <!-- favicon -->
+  <!-- favicon (place images/12.png in your site folder) -->
   <link rel="shortcut icon" type="image/png" href="12.png">
 
-  <!-- Font Awesome (optional - icons) -->
+  <!-- Font Awesome (icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- site styles -->
+  <!-- site stylesheet -->
   <link rel="stylesheet" href="styles.css">
 
   <!-- include loader for header/footer fragments -->
   <script src="include.js" defer></script>
-  <!-- page script -->
+  <!-- page behavior -->
   <script src="main.js" defer></script>
 </head>
 
 <body>
 
-  <!-- HEADER (injected) -->
+  <!-- HEADER (injected by include.js) -->
   <div include-html="header.html"></div>
 
   <main class="wrap" id="main">
 
     <!-- HERO + REVIEWS -->
-    <div class="hero-header" role="region" aria-label="Site introduction and reviews">
+    <header class="hero-header" role="banner" aria-label="Site introduction">
       <div class="hero-left">
-        <h2>Siddha Saraswatha</h2>
+        <h1>Siddha Saraswatha</h1>
         <p class="muted">Your one-stop portal for Vedic Astrology.</p>
       </div>
 
       <div class="reviews-badge" role="region" aria-label="Google reviews">
         <i class="fa-brands fa-google" aria-hidden="true"></i>
         <div class="rev-meta">
-          <div class="rev-row">
-            <div class="rating" aria-hidden="true">5.0</div>
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <div class="rev-count">(47)</div>
+          <div class="rev-row" aria-hidden="true">
+            <div class="rating">5.0</div>
+            <div class="stars">★★★★★</div>
+            <div class="rev-count muted">(47)</div>
           </div>
           <a class="btn-ghost rev-cta" href="https://www.google.com/maps/place/?q=place_id:ChIJqc75zzaZyzsRzoj06JdWIU0" target="_blank" rel="noopener noreferrer">View Reviews</a>
         </div>
       </div>
-    </div>
+    </header>
 
     <!-- Featured + Panchangam -->
     <section id="astrologers-panchangam" aria-labelledby="astro-heading">
-      <h3 id="astro-heading">Featured Astrologers &amp; Panchangam</h3>
+      <h2 id="astro-heading">Featured Astrologers &amp; Panchangam</h2>
 
       <div class="two-col" role="region" aria-label="Astrologers and panchangam">
 
         <!-- LEFT: astrologers + about -->
         <div class="left-column">
           <div class="grid-2">
+
             <!-- Astrologer card -->
             <article class="astro-card" data-astro='{"name":"R.B.S. Goutham Sastri","price":1500}'>
+              <!-- put images in images/ directory -->
               <img src="24.png" alt="R.B.S. Goutham Sastri" />
               <div class="astro-meta">
-                <h4>R.B.S. Goutham Sastri</h4>
+                <h3>R.B.S. Goutham Sastri</h3>
                 <p class="muted">Specialities: Muhurtha · Career · Marriage</p>
                 <p class="muted"><strong>Experience:</strong> 12 years &nbsp; <strong>Qualification:</strong> PG Astrology</p>
+
                 <div class="astro-actions">
                   <div class="price">₹1500 / 30 min</div>
                   <button class="btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
@@ -70,33 +73,31 @@
               </div>
             </article>
 
-            <!-- ABOUT (short + read more) -->
-            <div class="about-card">
+            <!-- ABOUT (short + link to full page) -->
+            <aside class="about-card" aria-labelledby="about-heading">
               <div class="about-grid">
                 <div class="about-photo" aria-hidden="true">
-                  <img src="tata.png" alt="Siddha Saraswatha logo" />
+                  <img src="tata.png" alt="Guruji — Siddha Saraswatha" />
                 </div>
 
                 <div>
                   <h3 id="about-heading">About Siddha Saraswatha</h3>
-                  <h4 class="about-lead muted">Dr. D. Vijayanandanatha (Guruji)</h4>
+                  <h4 class="about-lead muted"> Dr. D. Vijayanandanatha (Guruji)</h4>
 
-                  <p class="about-short">Dr. D. Vijayanandanatha, also known as Guruji, is a distinguished scholar and spiritual guide, holding titles like Sahithya Vidya Vachaspati, Sahitya Vidyalankara, and Acharya. He is the founder of Ravindra Bharathi Gurukula Vidyalaya, established in the early 1990s. 
-                    Guruji is a devoted disciple of Srimad Paramahamsa Parivrajaka Acharya Avadhuta Sri Chandrasekharendra Saraswathi Swamy, the former Peetadhipathi of Sri Kanchi Peetam, Kanchipuram.</p>
-                </div>
+                  <p class="about-short"> Guruji is a distinguished scholar and spiritual guide — founder of Ravindra Bharathi Gurukula Vidyalaya. He is a devoted disciple of Srimad Paramahamsa Parivrajaka Acharya Avadhuta Sri Chandrasekharendra Saraswathi Swamy.</p>
 
                   <div class="readmore-row">
                     <a class="btn-primary" href="about.html">Full About Page</a>
                   </div>
                 </div>
               </div>
-            </div>
+            </aside>
 
           </div>
         </div>
 
-        <!-- RIGHT: Panchangam (sticky on desktop) -->
-        <aside class="right-column">
+        <!-- RIGHT: Panchangam -->
+        <aside class="right-column" aria-label="Panchangam widget">
           <div class="card" id="panchangamWidget" aria-labelledby="panchTitle">
             <div class="panch-header">
               <div>
@@ -107,9 +108,9 @@
             </div>
 
             <div class="panch-body">
-              <!-- external widget script (from panchang.click) -->
-              <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
-              <div id="panchangwidgetid"></div>
+              <!-- The external widget script injects its own UI into the page.
+                   To avoid blocking rendering, it's loaded here (deferred) -->
+              <div id="panch-placeholder" aria-hidden="true">Loading Panchangam…</div>
             </div>
 
             <div class="panch-actions">
@@ -122,7 +123,7 @@
       </div> <!-- end two-col -->
     </section>
 
-    <!-- other sections -->
+    <!-- other sections injected -->
     <div include-html="services.html"></div>
     <div include-html="muhurthas.html"></div>
     <div include-html="blogs.html"></div>
@@ -131,6 +132,27 @@
 
   <!-- FOOTER -->
   <div include-html="footer.html"></div>
+
+  <!-- Load panchang widget script non-blocking -->
+  <script>
+    (function loadPanchang(){
+      const s = document.createElement('script');
+      s.src = "https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5";
+      s.async = true;
+      s.onload = function(){
+        // widget script usually injects UI into a specific placeholder or div named by them;
+        // ensure there is a target for it — many external widgets append to body or a specific id.
+        // If the widget requires a div ID, create it:
+        if(!document.getElementById('panchangwidgetid')){
+          const d = document.createElement('div');
+          d.id = 'panchangwidgetid';
+          document.querySelector('#panchangamWidget .panch-body').appendChild(d);
+        }
+      };
+      s.onerror = function(){ document.getElementById('panch-placeholder').textContent = 'Panchangam widget failed to load.'; };
+      document.body.appendChild(s);
+    })();
+  </script>
 
 </body>
 </html>
