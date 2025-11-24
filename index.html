@@ -126,6 +126,42 @@
         </div>
 
         <!-- ABOUT SECTION --> 
+        <script>
+  (function(){
+    const btn = document.getElementById('aboutToggle');
+    const expand = document.getElementById('aboutExpand');
+
+    if(!btn || !expand) return;
+
+    // Initialize state
+    expand.setAttribute('aria-hidden', 'true');
+    btn.setAttribute('aria-expanded', 'false');
+
+    btn.addEventListener('click', function(){
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      if(isExpanded){
+        // collapse
+        expand.setAttribute('aria-hidden', 'true');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.querySelector('span[aria-hidden="true"]').textContent = '▾';
+        btn.firstChild.textContent = 'Read more';
+      } else {
+        // expand
+        expand.setAttribute('aria-hidden', 'false');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.querySelector('span[aria-hidden="true"]').textContent = '▴';
+        btn.firstChild.textContent = 'Show less';
+        // optional: smooth scroll to reveal part of content on small screens
+        setTimeout(()=> {
+          if(window.innerWidth < 720){
+            expand.scrollIntoView({behavior:'smooth', block:'center'});
+          }
+        }, 300);
+      }
+    });
+  })();
+</script>
+
         <aside 
 <section id="about" class="wrap" aria-labelledby="about-heading" style="margin-top:18px">
   <div class="about-card card">
