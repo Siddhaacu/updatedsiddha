@@ -19,6 +19,50 @@
     <p>Your one-stop portal for Vedic Astrology.</p>
 
     <!-- Embed split sections inside index -->
+    <!-- ===== Astrologers (replace previous astologers section) ===== -->
+<section id="astrologers" aria-labelledby="astro-heading" class="wrap">
+  <h3 id="astro-heading">Featured Astrologers</h3>
+
+  <div class="grid-2" style="margin-top:12px; gap:18px">
+    <!-- Astrologer card 1 -->
+    <article class="astro-card" data-astro='{"name":"Pandit R. Sharma","price":1500,"durationMin":30,"experience":"18 years","qualification":"Vedic Scholar, PhD (Jyotish)","photo":"images/astrologer1.jpg","modes":["Call","In-person"]}'>
+      <img src="images/astrologer1.jpg" alt="Pandit R. Sharma" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
+      <div class="astro-meta">
+        <h4> R.B.S. Goutham Sastri </h4>
+        <p class="muted">Specialities: Muhurtha · Career · Marriage</p>
+        <p class="muted" style="margin-top:6px"><strong>Experience:</strong> 12 years</p>
+        <p class="muted"><strong>Qualification:</strong> PG Astrology (Jyotish Sastri)</p>
+        <div style="margin-top:8px;display:flex;align-items:center;gap:12px">
+          <div class="price">₹1500 / 30 min</div>
+          <button class="btn btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
+        </div>
+      </div>
+  </div>
+
+  <!-- Optional expanded detail panel (prefilled when a user clicks Book) -->
+  <div id="astroDetail" class="card hidden" style="margin-top:16px">
+    <div style="display:flex;gap:12px;align-items:center">
+      <img id="detailPhoto" src="" alt="" style="width:96px;height:96px;border-radius:8px;object-fit:cover"/>
+      <div>
+        <h4 id="detailName"></h4>
+        <div class="muted" id="detailQual"></div>
+        <div class="muted" id="detailExp" style="margin-top:6px"></div>
+        <div style="margin-top:8px"><strong>Fee:</strong> <span id="detailPrice"></span> / <span id="detailDuration"></span> min</div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+      <label style="font-weight:700">Mode</label>
+      <select id="detailMode" style="padding:8px;border-radius:8px">
+        <!-- options injected by JS -->
+      </select>
+
+      <button class="btn btn-primary" id="detailBookBtn" style="margin-left:12px">Book — Proceed</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('astroDetail').classList.add('hidden')">Close</button>
+    </div>
+  </div>
+</section>
+
     <div include-html="services.html"></div>
     <div include-html="muhurthas.html"></div>
     <div include-html="blogs.html"></div>
