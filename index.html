@@ -19,91 +19,10 @@
     <p>Your one-stop portal for Vedic Astrology.</p>
 
     <!-- ===== Astrologers + Panchangam (2-column layout) ===== -->
-    <section id="astrologers-panchangam" class="wrap">
-      <h3 id="astro-heading">Featured Astrologers & Panchangam</h3>
+    <section id="astrologers-panchangam" class="wrap" aria-labelledby="astro-heading">
+      <h3 id="astro-heading">Featured Astrologers &amp; Panchangam</h3>
 
       <!-- 2-column layout: left = astrologers, right = panchangam -->
       <div class="two-col" style="display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:12px;align-items:start;">
 
-        <!-- Left column: astrologer cards -->
-        <div id="astroColumn">
-          <div class="grid-2" style="gap:18px">
-
-            <!-- Astrologer card 1 -->
-            <article class="astro-card" data-astro='{"name":"R.B.S. Goutham Sastri","price":1500,"durationMin":30,"experience":"12 years","qualification":"PG Astrology (Jyotish Sastri)","photo":"images/astrologer1.jpg","modes":["Call","In-person"]}'>
-              <img src="images/astrologer1.jpg" alt="R.B.S. Goutham Sastri" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
-              <div class="astro-meta">
-                <h4>R.B.S. Goutham Sastri</h4>
-                <p class="muted">Specialities: Muhurtha · Career · Marriage</p>
-                <p class="muted" style="margin-top:6px"><strong>Experience:</strong> 12 years</p>
-                <p class="muted"><strong>Qualification:</strong> PG Astrology (Jyotish Sastri)</p>
-                <div style="margin-top:8px;display:flex;align-items:center;gap:12px">
-                  <div class="price">₹1500 / 30 min</div>
-                  <button class="btn btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
-                </div>
-              </div>
-
-          </div>
-        </div>
-
-        <!-- Right column: Panchangam widget -->
-        <!-- === Google Reviews Badge === -->
-<div id="googleReviewsBox" class="card" 
-     style="padding:12px;margin-bottom:14px;border-radius:12px;background:#fff7e6;
-            border:1px solid rgba(192,107,0,0.20);box-shadow:0 6px 16px rgba(192,107,0,0.08)">
-
-  <div style="display:flex;align-items:center;gap:10px">
-    <img src="https://www.gstatic.com/images/branding/product/1x/google_g_48dp.png" 
-         alt="Google" width="28" height="28" 
-         style="border-radius:6px"/>
-    <div>
-      <div style="font-size:0.95rem;font-weight:700;">Google Reviews</div>
-      <div style="display:flex;align-items:center;gap:4px;margin-top:2px">
-        <span style="font-size:1rem;font-weight:700;color:#c06b00">4.9</span>
-        <div class="stars">
-          ★★★★★
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <a href=https://www.google.com/maps/place/?q=place_id:ChIJqc75zzaZyzsRzoj06JdWIU0> target="_blank"
-     class="btn btn-primary"
-     style="margin-top:10px;display:block;text-align:center;padding:8px;font-size:0.85rem">
-     View Reviews on Google
-  </a>
-</div>
-<!-- === End Google Reviews Badge === -->
-
-        <aside id="panchangamWidget" class="card" aria-labelledby="panchTitle" >
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div>
-              <div class="small">Panchangam</div>
-              <div id="panchTitle" style="font-weight:700">Today's Panchangam</div>
-            </div>
-            <div class="muted" id="panchDate">—</div>
-          </div>
-          <!-- External Panchang widget script + placeholder div.
-               Keep the script line you provided; it will append the widget into `#panchangwidgetid` as per their docs. -->
-          <div style="margin-top:12px">
-            <!-- external widget script (from panchang.click) -->
-            <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
-            <div id="panchangwidgetid" style="margin-top:8px"></div>
-          </div>
-        </aside>
-
-      </div> <!-- end two-col -->
-    </section>
-
-    <!-- include other split sections -->
-    <div include-html="services.html"></div>
-    <div include-html="muhurthas.html"></div>
-    <div include-html="blogs.html"></div>
-
-  </main>
-
-  <!-- FOOTER -->
-  <div include-html="footer.html"></div>
-
-</body>
-</html>
+        <!
