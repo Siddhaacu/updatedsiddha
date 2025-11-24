@@ -1,0 +1,33 @@
+/* Basic styles shared across fragments */
+:root{ --accent:#c06b00; --muted:#6b6b6b; --max-w:1100px }
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#fff,#fff9f5);color:#111}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:22px}
+.header-inner{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg, rgba(255,184,77,0.14), rgba(192,107,0,0.12));display:flex;align-items:center;justify-content:center}
+.site-title{margin:0;font-size:1.1rem}
+.site-sub{margin:0;font-size:.85rem;color:var(--muted)}
+.main-nav{display:flex;gap:12px;align-items:center}
+.main-nav a{color:inherit;text-decoration:none;padding:8px 10px;border-radius:8px}
+.btn{padding:10px 14px;border-radius:10px;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff;border:none}
+.btn-ghost{border:1px solid rgba(0,0,0,0.06);background:transparent}
+.hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+.h6{font-weight:700}
+.card{background:#fff;padding:16px;border-radius:14px;box-shadow:0 18px 40px rgba(2,6,23,0.06)}
+.small{font-size:.9rem;color:var(--muted)}
+.lead{color:var(--muted)}
+.booking-card .row{display:flex;gap:8px}
+.row.actions{display:flex;align-items:center}
+.muted{color:var(--muted)}
+.hidden{display:none}
+section{margin:36px 0}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card h4{margin:0 0 8px}
+.muhr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.site-footer{background:linear-gradient(180deg,#fff9f5,#fff);padding:18px 0;border-top:1px solid rgba(0,0,0,0.03)}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.muhr-grid{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid-3,.muhr-grid,.grid-2{grid-template-columns:1fr}.header-inner{flex-direction:column;align-items:flex-start;gap:12px}}
+```
