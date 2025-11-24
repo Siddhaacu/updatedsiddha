@@ -50,43 +50,7 @@
           <div class="small">Panchangam</div>
           <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
             <div id="panchangwidgetid"></div>
-          <div style="font-weight:700" id="panchTitle">Today's Panchangam</div>
-        </div>
-        <div class="muted" id="panchDate">—</div>
       </div>
-
-      <div style="margin-top:12px">
-        <label class="small" for="panchLocation">Location (city or lat,lng)</label>
-        <input id="panchLocation" type="text" placeholder="e.g. Hyderabad or 17.3850,78.4867" />
-
-        <div style="display:flex;gap:8px;margin-top:8px">
-          <button class="btn btn-primary" id="panchCompute">Compute Panchangam (demo)</button>
-          <button class="btn btn-ghost" id="panchClear" type="button">Clear</button>
-        </div>
-      </div>
-
-      <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
-
-      <div id="panchResults" style="min-height:160px">
-        <!-- dynamic results -->
-        <div class="muted">No panchangam computed yet. Click <strong>Compute Panchangam</strong> for a demo.</div>
-      </div>
-
-      <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-        <a href="#muhurthas" class="btn btn-ghost">Check Muhurtha</a>
-        <button class="btn btn-primary" id="bookFromPanch">Book Consultation</button>
-      </div>
-
-      <small class="muted" style="display:block;margin-top:8px">Note: this is a demo UI. Replace the compute function with Swiss Ephemeris / backend for accurate Panchangam data.</small>
-    </aside>
-
-  </div>
-</section>
-   
-      <button class="btn btn-primary" id="detailBookBtn" style="margin-left:12px">Book — Proceed</button>
-      <button class="btn btn-ghost" onclick="document.getElementById('astroDetail').classList.add('hidden')">Close</button>
-    </div>
-  </div>
 </section>
 
     <div include-html="services.html"></div>
