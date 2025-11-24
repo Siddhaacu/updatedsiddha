@@ -1,18 +1,24 @@
-<header class="site-header">
+<header class="site-header" role="banner">
   <div class="wrap header-inner">
     <div class="brand">
-      <div class="logo"><img src="12.png" alt="Siddha Saraswatha Logo" /></div>
-      <div>
+      <div class="logo" aria-hidden="false">
+        <!-- provide exact pixel size attributes for better layout & performance -->
+        <img src="images/12.png"
+             srcset="images/12@2x.png 2x, images/12.png 1x"
+             alt="Siddha Saraswatha Logo"
+             width="72" height="72" />
+      </div>
+
+      <div class="brand-meta">
         <h1 class="site-title">Siddha Saraswatha</h1>
         <p class="site-sub">Accurate Muhurthas · Verified Astrologers</p>
       </div>
     </div>
 
-    <nav class="main-nav">
+    <nav class="main-nav" role="navigation" aria-label="Main">
       <a href="services-page.html">Services</a>
       <a href="muhurthas-page.html">Muhurtha</a>
       <a href="blogs-page.html">Blogs</a>
-
       <button class="btn btn-primary" id="openBookingBtn">Book Consultation</button>
     </nav>
   </div>
