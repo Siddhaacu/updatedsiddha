@@ -31,3 +31,5 @@ section{margin:36px 0}
 @media(max-width:980px){.hero{grid-template-columns:1fr}.muhr-grid{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.grid-3,.muhr-grid,.grid-2{grid-template-columns:1fr}.header-inner{flex-direction:column;align-items:flex-start;gap:12px}}
 ```
+#astroDetail img{box-shadow:0 8px 30px rgba(2,6,23,0.06)}
+#astroDetail .btn{padding:8px 12px}
