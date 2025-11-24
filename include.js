@@ -153,4 +153,61 @@ document.getElementById('payNowBtn').addEventListener('click', (ev)=>{
   // PRODUCTION: send `bookingPayload` to your server endpoint (POST /api/bookings)
   // on server: create order, call Razorpay/Stripe, return checkout details to open client checkout.
 });
+// main.js — site-specific behavior
+
+document.addEventListener('DOMContentLoaded', function(){
+  // set panch date
+  const pDate = document.getElementById('panchDate');
+  if(pDate) pDate.textContent = new Date().toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+
+  // about read-more toggle
+  const aboutBtn = document.getElementById('aboutToggle');
+  const aboutExpand = document.getElementById('aboutExpand');
+  if(aboutBtn && aboutExpand){
+    aboutExpand.setAttribute('aria-hidden','true');
+    aboutBtn.setAttribute('aria-expanded','false');
+
+    aboutBtn.addEventListener('click', function(){
+      const expanded = aboutBtn.getAttribute('aria-expanded') === 'true';
+      if(expanded){
+        aboutExpand.classList.remove('open');
+        aboutExpand.setAttribute('aria-hidden','true');
+        aboutBtn.setAttribute('aria-expanded','false');
+        aboutBtn.querySelector('span').textContent = '▾';
+        aboutBtn.firstChild.textContent = 'Read more ';
+      } else {
+        aboutExpand.classList.add('open');
+        aboutExpand.setAttribute('aria-hidden','false');
+        aboutBtn.setAttribute('aria-expanded','true');
+        aboutBtn.querySelector('span').textContent = '▴';
+        aboutBtn.firstChild.textContent = 'Show less ';
+        if(window.innerWidth < 720){
+          setTimeout(()=> aboutExpand.scrollIntoView({behavior:'smooth', block:'center'}), 250);
+        }
+      }
+    });
+  }
+
+  // ensure images have fallback alt behavior
+  document.querySelectorAll('img').forEach(img=>{
+    img.addEventListener('error', ()=> { img.style.opacity = '0.85'; img.style.background = '#f3e8cc'; });
+  });
+});
+
+// fallback booking function (demo)
+window.openBookingModalForAstro = window.openBookingModalForAstro || function(card){
+  try{
+    const data = JSON.parse(card.getAttribute('data-astro')||'{}');
+    alert('Booking demo: ' + (data.name || 'Astrologer'));
+  }catch(e){
+    alert('Booking demo');
+  }
+};
+
+// open modal fallback (demo)
+function openModal(){
+  const booking = document.getElementById('bookingCard');
+  if(booking) booking.scrollIntoView({behavior:'smooth', block:'center'});
+  else alert('Booking modal not configured — demo only.');
+}
 
