@@ -2,166 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About — Siddha Saraswatha</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Siddha Saraswatha</title>
 
-  <link rel="shortcut icon" type="image/png" href="images/12.png">
+  <!-- favicon (place images/12.png in your site folder) -->
+  <link rel="shortcut icon" type="image/png" href="12.png">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- site stylesheet -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- font-awesome (icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- fragment include loader (keeps header/footer modular) -->
+  <!-- include loader for header/footer fragments -->
   <script src="include.js" defer></script>
-
-  <style>
-    /* small page-specific styles — move to styles.css if you prefer */
-    .page-wrap { max-width:1100px; margin:20px auto; padding:0 18px; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#111; }
-    .hero { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:18px; }
-    .hero h1 { margin:0; font-size:1.6rem; }
-    .hero p { margin:6px 0 0; color:#6b6b6b; }
-
-    .grid { display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
-    @media (max-width:980px){ .grid { grid-template-columns:1fr; } }
-
-    .card { background:#fff; border-radius:12px; padding:18px; box-shadow:0 10px 30px rgba(2,6,23,0.04); }
-    .about-grid { display:grid; grid-template-columns:160px 1fr; gap:16px; align-items:start; }
-    @media (max-width:720px){ .about-grid { grid-template-columns:1fr; } .about-photo{ margin-bottom:12px; } }
-
-    .about-photo img { width:100%; max-width:160px; border-radius:10px; object-fit:cover; display:block; }
-
-    .muted { color:#6b6b6b; }
-
-    .embed-wrap { position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; }
-    .embed-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
-
-    hr { border:none; height:1px; background:rgba(0,0,0,0.06); margin:20px 0; border-radius:2px; }
-    .btn { display:inline-block; padding:8px 12px; border-radius:8px; text-decoration:none; }
-    .btn-ghost { border:1px solid rgba(0,0,0,0.06); background:transparent; color:inherit; }
-    .btn-primary { background:#c06b00; color:#fff; }
-  </style>
+  <!-- page behavior -->
+  <script src="main.js" defer></script>
 </head>
+
 <body>
 
-  <!-- header injected by include.js -->
+  <!-- HEADER (injected by include.js) -->
   <div include-html="header.html"></div>
 
-  <main class="page-wrap" role="main">
-    <header class="hero" role="banner" aria-label="About introduction">
-      <div>
-        <h1>About Siddha Saraswatha</h1>
-        <p class="muted">Discover how Siddha Saraswatha combines ancient astrology with modern tools to offer personalized planetary insights and practical remedies.</p>
-      </div>
+  <main class="wrap" id="main">
+        <div class="text" >
+            <center><h1>About Siddha Saraswatha</h1>
+            <h4>Discover how Siddha Saraswatha combines ancient astrology with modern technology to offer personalized insights into your planetary influences.
+            </h4>
+            </center>
+            
+            
+              <div class="row">
+                <div class="column2">
+                  <br><br>
+                  <h1>Our Purpose and Journey</h1>
+                  <h4>At Siddha Saraswatha, we aim to empower individuals through personalized astrological insights. 
+                      Our journey began in 2020, driven by a passion for astrology and a commitment to making it accessible to everyone.</h4>
+                </div>
 
-      <div aria-hidden="true" style="display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:8px;background:#fff7e6;border:1px solid rgba(192,107,0,0.18);">
-        <i class="fa-brands fa-google" style="color:#db4437;font-size:20px"></i>
-        <div style="line-height:1">
-          <strong style="color:#c06b00">5.0</strong>
-          <span style="color:#ffb400;margin-left:6px">★★★★★</span>
-          <div class="muted" style="font-size:.9rem">(47 reviews)</div>
-        </div>
-      </div>
-    </header>
+                  </div>
+<hr> 
+                          <div align="center">
+                            <iframe width="400" height="250" src="https://www.youtube-nocookie.com/embed/EajfdtOi9I4?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center> <br> 
+                          </div>
+<hr>
+                          <div class="row">
+                        <div class="column2">
+                          <h2>Spiritual Contributions</h2>
+                          <h4>Guruji has established several temples, 
+                            including the renowned 
+                            Asta Dasha Bhuji Maha Lakshmi Temple in Hasthinapuram, 
+                            Hyderabad. Inspired by the Saptashati Chandi, 
+                            the temple honors Goddess Chandi Matha with 
+                            18 hands and 18 symbolic weapons, representing 
+                            the victory over negativity and the cultivation 
+                            of a positive aura for devotees.
+                          </h4>
+                          <br>
+                          <h2>Founder of Astro9s.com</h2>
+                          <h4>With divine blessings from Rajarajeshwari Peetham
+                             and profound knowledge in Indian astrology and 
+                             Siddha Saraswatha traditions, Guruji created 
+                             the online platform Astro9s.com to provide solutions 
+                             for life’s challenges. The platform extends 
+                             astrology-based guidance to help individuals 
+                             overcome difficulties and achieve harmony.
+                          </h4> 
+                        </div>
+                         <div class="column2">
+                           <h2>Rajarajeshwari Peetham</h2>
+                          <h4>Under the auspices of Rajarajeshwari Peetham,
+                             Guruji has served humanity for over a Many decades. 
+                             The Peetham offers free consultations addressing various 
+                             life issues, such as health concerns, family disputes, 
+                             and business challenges. Guruji provides divine remedies 
+                             and spiritual support, fostering hope and healing among 
+                             countless devotees.
+                          </h4>
+                           <br><h2>Mission and Vision</h2>
+                           <h4>Guruji’s work is driven by the mission to share the wisdom of 
+                            Indian astrology and spirituality for the benefit of humanity. 
+                            With the blessings of the Almighty Jagat-janani, the focus is 
+                            on meaningful and practical solutions that bring positive 
+                            transformation to people’s lives.
+                          </h4>   
+                        </div>
+                      </div>
+<hr>
 
-    <section class="grid" aria-labelledby="about-heading">
 
-      <!-- LEFT: About content -->
-      <article class="card" id="about" aria-labelledby="about-heading">
-        <h2 id="about-heading">Our Purpose & Journey</h2>
-
-        <p>At Siddha Saraswatha we empower individuals through personalized astrological insights. Our journey began in 2020, driven by a commitment to make Vedic astrology accurate, approachable and practical for modern life.</p>
-
-        <hr/>
-
-        <div class="about-grid">
-          <div class="about-photo" aria-hidden="true">
-            <img src="images/about-image.png" alt="Temple or Siddha Saraswatha" />
-          </div>
-
-          <div>
-            <h3>What we do</h3>
-            <p class="muted">We provide muhurtha selection, panchangam guidance, remedial suggestions (mantras, homas, gemstones) and detailed readings for career, health, relationships and spiritual growth. Consultations are available by phone, video and in-person.</p>
-          </div>
-        </div>
-
-        <hr/>
-
-        <section aria-labelledby="guru-heading" class="card" style="padding:0;">
-          <div style="padding:18px;">
-            <h3 id="guru-heading">Dr. D. Vijayanandanatha (Guruji)</h3>
-            <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start;">
-              <figure style="margin:0">
-                <img src="images/tata.png" alt="Dr. D. Vijayanandanatha (Guruji)" width="200" height="200" style="border-radius:10px;object-fit:cover;">
-                <figcaption class="muted" style="text-align:center;margin-top:8px">Dr. D. Vijayanandanatha</figcaption>
-              </figure>
-              <div>
-                <p class="muted">Dr. D. Vijayanandanatha is a distinguished scholar and spiritual guide — founder of Ravindra Bharathi Gurukula Vidyalaya. He is a disciple of Sri Chandrasekharendra Saraswathi Swamy and has established temples such as the Asta Dasha Bhuji Maha Lakshmi Temple in Hasthinapuram.</p>
-                <p class="muted">With blessings from Rajarajeshwari Peetham, Guruji also founded Astro9s.com to extend astrological guidance to a broader audience.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <hr/>
-
-        <div style="text-align:center">
-          <h3>Watch — Introduction</h3>
-          <div class="embed-wrap" aria-hidden="false">
-            <iframe src="https://www.youtube-nocookie.com/embed/EajfdtOi9I4?controls=0" title="Introduction — Siddha Saraswatha" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-        </div>
-      </article>
-
-      <!-- RIGHT: sidebar -->
-      <aside class="card" aria-label="Sidebar">
-        <h3>Quick Links</h3>
-        <p><a class="btn btn-ghost" href="muhurthas-page.html">Muhurthas</a></p>
-        <p><a class="btn btn-ghost" href="services-page.html">Services</a></p>
-        <p><a class="btn btn-ghost" href="contact.html">Contact</a></p>
-
-        <hr/>
-
-        <h3>Today's Panchangam</h3>
-        <div id="panchangamWidget" style="margin-top:10px;">
-          <div id="panch-placeholder" class="muted">Loading Panchangam…</div>
-        </div>
-
-        <div style="margin-top:12px;display:flex;gap:8px;">
-          <a class="btn btn-ghost" href="muhurthas-page.html">Check Muhurtha</a>
-          <a class="btn btn-primary" href="contact.html">Book Consultation</a>
-        </div>
-      </aside>
-
-    </section>
   </main>
 
-  <!-- footer fragment -->
+  <!-- FOOTER -->
   <div include-html="footer.html"></div>
 
-  <!-- async load panchang widget -->
-  <script>
-    (function loadPanchang(){
-      const s = document.createElement('script');
-      s.src = "https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5";
-      s.async = true;
-      s.onload = function(){
-        if(!document.getElementById('panchangwidgetid')){
-          const target = document.getElementById('panchangamWidget');
-          if(target){
-            const d = document.createElement('div');
-            d.id = 'panchangwidgetid';
-            target.appendChild(d);
-          }
-        }
-      };
-      s.onerror = function(){
-        const el = document.getElementById('panch-placeholder');
-        if(el) el.textContent = 'Panchangam widget failed to load.';
-      };
-      document.body.appendChild(s);
-    })();
-  </script>
+
 </body>
 </html>
+
+    
