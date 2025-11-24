@@ -110,12 +110,13 @@
             <div class="panch-body">
               <!-- The external widget script injects its own UI into the page.
                    To avoid blocking rendering, it's loaded here (deferred) -->
-              <div id="panch-placeholder" aria-hidden="true">Loading Panchangam…</div>
+              <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
+            <div id="panchangwidgetid"></div>
             </div>
 
             <div class="panch-actions">
-              <a class="btn-ghost" href="muhurthas-page.html">Check Muhurtha</a>
-              <button class="btn-primary" onclick="openModal()">Book Consultation</button>
+              <a class="btn-ghost" <a href="f-s.html"></a>
+              <a href="p%20s.html"></a>
             </div>
           </div>
         </aside>
@@ -133,26 +134,6 @@
   <!-- FOOTER -->
   <div include-html="footer.html"></div>
 
-  <!-- Load panchang widget script non-blocking -->
-  <script>
-    (function loadPanchang(){
-      const s = document.createElement('script');
-      s.src = "https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5";
-      s.async = true;
-      s.onload = function(){
-        // widget script usually injects UI into a specific placeholder or div named by them;
-        // ensure there is a target for it — many external widgets append to body or a specific id.
-        // If the widget requires a div ID, create it:
-        if(!document.getElementById('panchangwidgetid')){
-          const d = document.createElement('div');
-          d.id = 'panchangwidgetid';
-          document.querySelector('#panchangamWidget .panch-body').appendChild(d);
-        }
-      };
-      s.onerror = function(){ document.getElementById('panch-placeholder').textContent = 'Panchangam widget failed to load.'; };
-      document.body.appendChild(s);
-    })();
-  </script>
 
 </body>
 </html>
