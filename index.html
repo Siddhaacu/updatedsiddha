@@ -1,473 +1,70 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vedic Guidance — Muhurtha & Astrology</title>
-  <meta name="description" content="Book Vedic astrologer consultations, muhurthas, panchangam and remedies." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* ---------- RESET / BASE ---------- */
-    :root{
-      --bg:#fff9f5;
-      --accent:#c06b00;     /* amber-ish */
-      --accent-2:#ffb84d;
-      --muted:#6b6b6b;
-      --card:#ffffff;
-      --glass: rgba(255,255,255,0.8);
-      --max-w:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      background: linear-gradient(180deg,#fff 0%, #fff9f5 40%, #fff 100%);
-      color:#111827;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      padding-bottom:80px;
-    }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
-
-    /* ---------- LAYOUT ---------- */
-    .wrap{max-width:var(--max-w);margin:0 auto;padding:28px;}
-    header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{
-      width:56px;height:56px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;
-      background:linear-gradient(135deg, rgba(255,184,77,0.14), rgba(192,107,0,0.12));
-      box-shadow:0 6px 22px rgba(192,107,0,0.12);
-      transition:transform .35s ease, box-shadow .35s ease;
-      border:1px solid rgba(192,107,0,0.08);
-    }
-    .logo:hover{transform:rotate(-6deg) scale(1.04);box-shadow:0 10px 30px rgba(192,107,0,0.18)}
-    .brand h1{font-size:1.15rem;margin:0;font-weight:700}
-    .brand p{margin:0;font-size:.85rem;color:var(--muted)}
-
-    nav{display:flex;align-items:center;gap:10px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer}
-    .btn-primary{background:var(--accent);color:white;box-shadow:0 6px 18px rgba(192,107,0,0.12)}
-    .btn-ghost{border:1px solid rgba(17,24,39,0.06);background:transparent;color:#111}
-
-    /* ---------- HERO ---------- */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:24px 0}
-    .hero-left h2{font-size:2.2rem;margin:0 0 12px;line-height:1.05}
-    .hero-left p{color:var(--muted);margin:0 0 18px}
-    .features{display:flex;gap:10px;margin-top:18px}
-    .feature{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 16px rgba(15,23,42,0.04);flex:1}
-    .feature h4{margin:0;font-size:.95rem}
-    .feature p{margin:6px 0 0;color:var(--muted);font-size:.86rem}
-
-    /* ---------- BOOKING CARD ---------- */
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
-      border-radius:18px;padding:18px;box-shadow:0 20px 50px rgba(17,24,39,0.06);
-      border:1px solid rgba(17,24,39,0.03);
-    }
-    .small{font-size:.88rem;color:var(--muted)}
-
-    label{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
-    input[type="text"],input[type="email"],input[type="date"],select,textarea{
-      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);font-size:.95rem;
-      outline:none;background:linear-gradient(180deg,#fff,#fff);box-shadow:inset 0 -1px 0 rgba(15,23,42,0.02);
-    }
-    textarea{min-height:88px;resize:vertical}
-
-    .muted{color:var(--muted);font-size:.9rem}
-
-    /* ---------- SECTIONS ---------- */
-    section{margin:36px 0}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-    .astro-card{display:flex;gap:14px;align-items:center;padding:12px;border-radius:12px;background:var(--card);box-shadow:0 10px 30px rgba(2,6,23,0.04)}
-    .astro-card img{width:84px;height:84px;border-radius:10px;object-fit:cover;flex-shrink:0}
-    .astro-meta h4{margin:0 0 6px;font-size:1.03rem}
-    .astro-meta p{margin:0;color:var(--muted);font-size:.9rem}
-    .price{color:var(--accent);font-weight:700}
-
-    /* ---------- MUHURTHA CARDS ---------- */
-    .muhr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .muhr{padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff);border:1px solid rgba(17,24,39,0.03)}
-    .muhr h5{margin:0 0 6px;font-size:1rem}
-    .muhr p{margin:0;color:var(--muted);font-size:.9rem}
-
-    /* ---------- CTA BAR ---------- */
-    .cta-bar{position:fixed;left:12px;right:12px;bottom:12px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      color:white;padding:12px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 20px 60px rgba(192,107,0,0.18)}
-    .cta-bar .left{display:flex;gap:12px;align-items:center}
-    .cta-bar button{background:transparent;border:none;color:white}
-
-    /* ---------- FOOTER ---------- */
-    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:.95rem}
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width:980px){
-      .hero{grid-template-columns:1fr;gap:18px}
-      .muhr-grid{grid-template-columns:repeat(2,1fr)}
-      .grid-3{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:640px){
-      .wrap{padding:16px}
-      .grid-3, .muhr-grid, .grid-2{grid-template-columns:1fr}
-      header{flex-direction:column;align-items:flex-start;gap:10px}
-      .cta-bar{left:10px;right:10px;bottom:10px;padding:10px;flex-direction:column;align-items:stretch}
-    }
-
-    /* ---------- SMALL ANIM ---------- */
-    .pulse{animation:pulse 3s ease-in-out infinite}
-    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
-
-    /* ---------- Modal (booking) ---------- */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:flex;align-items:center;justify-content:center;z-index:1200;padding:18px}
-    .modal{max-width:720px;width:100%}
-    .hidden{display:none}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vedic Guidance — Muhurtha & Astrology</title>
+<meta name="description" content="Book Vedic astrologer consultations, muhurthas, panchangam and remedies." />
+<link href="styles.css" rel="stylesheet">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <!-- simple svg icon inside -->
-          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="9" r="5" fill="#fff2e8" stroke="#c06b00" stroke-opacity=".18"/>
-            <path d="M6 18c2.2-2 4.8-3 6-3s3.8 1 6 3" stroke="#c06b00" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div>
-          <h1>Vedic Guidance</h1>
-          <p>Accurate Muhurthas · Verified Astrologers</p>
-        </div>
-      </div>
+<!-- header will be injected here -->
+<div include-html="header.html"></div>
 
-      <nav>
-        <a class="btn btn-ghost" href="#services">Services</a>
-        <a class="btn btn-ghost" href="#muhurtha">Muhurtas</a>
-        <a class="btn btn-ghost" href="#astrologers">Astrologers</a>
-        <button class="btn btn-primary" id="openBookingBtn">Book Consultation</button>
-      </nav>
-    </header>
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="hero-left">
-        <h2 id="hero-heading">Find the right muhurtha. Book a trusted Vedic astrologer in minutes.</h2>
-        <p>Secure consults for career, health, love, finance, remedies and sacred ceremonies — Namakarana, Annaprashana, Upanayana, GrihaPravesa, Kalyanam and more.</p>
+<main class="wrap">
+<!-- HERO + QUICK BOOKING (kept in index for simplicity) -->
+<section class="hero" aria-labelledby="hero-heading">
+<div class="hero-left">
+<h2 id="hero-heading">Find the right muhurtha. Book a trusted Vedic astrologer in minutes.</h2>
+<p class="lead">Secure consults for career, health, love, finance, remedies and sacred ceremonies — Namakarana, Annaprashana, Upanayana, GrihaPravesa, Kalyanam and more.</p>
+<div class="cta-row">
+<a class="btn btn-primary" href="#" id="openBooking">Book Now</a>
+<a class="btn btn-ghost" href="#muhurthas">Free 3-min Panchangam</a>
+</div>
+</div>
 
-        <div style="margin-top:12px">
-          <a class="btn btn-primary" href="#booking" onclick="document.getElementById('openBookingBtn').click()">Book Now</a>
-          <a class="btn btn-ghost" href="#free" style="margin-left:10px">Free 3-min Panchangam</a>
-        </div>
 
-        <div class="features" aria-hidden="true">
-          <div class="feature">
-            <h4>Verified Astrologers</h4>
-            <p>Profiles, qualifications and video intros</p>
-          </div>
-          <div class="feature">
-            <h4>Real-time Panchangam</h4>
-            <p>Accurate muhurtha & downloadable PDF</p>
-          </div>
-          <div class="feature">
-            <h4>Secure Payments</h4>
-            <p>UPI, cards & wallets (Razorpay / Stripe)</p>
-          </div>
-        </div>
-      </div>
+<aside class="card booking-card">
+<div class="card-head">
+<div>
+<div class="small">Quick Booking</div>
+<div class="h6">Book Consultation or Muhurtha</div>
+</div>
+<div class="muted small">Demo flow</div>
+</div>
 
-      <!-- Booking / Quick widget -->
-      <aside class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <div>
-            <div class="small">Quick Booking</div>
-            <div style="font-weight:700">Book Consultation or Muhurtha</div>
-          </div>
-          <div class="muted" style="font-size:.85rem">Demo flow</div>
-        </div>
 
-        <form id="miniBookingForm" onsubmit="return false" aria-label="Quick booking form">
-          <label for="serviceSelect">Service</label>
-          <select id="serviceSelect" required aria-required="true">
-            <option>Consultation</option>
-            <option>Muhurtha — Namakarana</option>
-            <option>Muhurtha — Annaprashana</option>
-            <option>Muhurtha — GrihaPravesa</option>
-            <option>Muhurtha — Kalyanam</option>
-          </select>
+<form id="miniBooking" onsubmit="return false">
+<label for="service">Service</label>
+<select id="service" required>
+<option>Consultation</option>
+<option>Muhurtha — Namakarana</option>
+<option>Muhurtha — Annaprashana</option>
+<option>Muhurtha — GrihaPravesa</option>
+<option>Muhurtha — Kalyanam</option>
+</select>
 
-          <label for="datePref" style="margin-top:10px">Preferred Date</label>
-          <input id="datePref" type="date" />
 
-          <label for="name" style="margin-top:10px">Your full name</label>
-          <input id="name" type="text" placeholder="e.g. Ramesh Kumar" required />
+<label for="datePref">Preferred Date</label>
+<input id="datePref" type="date">
 
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <input id="email" type="email" placeholder="email@example.com" style="flex:1" />
-            <input id="phone" type="text" placeholder="Phone / WhatsApp" style="width:140px" />
-          </div>
 
-          <label for="notes" style="margin-top:10px">Notes / birth details</label>
-          <textarea id="notes" placeholder="Birth time, place, constraints (optional)"></textarea>
+<label for="name">Your full name</label>
+<input id="name" type="text" placeholder="e.g. Ramesh Kumar" required>
 
-          <div style="display:flex;gap:8px;margin-top:12px">
-            <button class="btn btn-primary" id="proceedBtn">Proceed to Pay</button>
-            <button class="btn btn-ghost" id="resetMini">Reset</button>
-          </div>
 
-          <div id="miniResult" class="muted" style="margin-top:10px;display:none"></div>
-        </form>
-      </aside>
-    </section>
+<div class="row">
+<input id="email" type="email" placeholder="email@example.com">
+<input id="phone" type="text" placeholder="Phone / WhatsApp">
+</div>
 
-    <!-- SERVICES -->
-    <section id="services" aria-labelledby="services-heading">
-      <h3 id="services-heading">Our Services</h3>
-      <div class="grid-3" style="margin-top:12px">
-        <div class="card">
-          <h4>Personal Consultations</h4>
-          <p class="muted">Career, relationships, health, finance and remedies. Phone, video or in-person sessions.</p>
-        </div>
-        <div class="card">
-          <h4>Muhurtha & Panchangam</h4>
-          <p class="muted">Precise muhurtha selection for naming, Annaprashana, Upanayana, GrihaPravesa, weddings and more.</p>
-        </div>
-        <div class="card">
-          <h4>Remedies & Pooja</h4>
-          <p class="muted">Suggested mantras, homas, gemstones and trusted priest/pooja partners.</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- MUHURTHA QUICK -->
-    <section id="muhurtha" aria-labelledby="muh-heading">
-      <h3 id="muh-heading">Quick Muhurtha Check</h3>
-      <p class="muted" style="margin-top:6px">Select an event to see demo suggestions. (For accurate timing, book a full consultation.)</p>
-      <div class="muhr-grid" style="margin-top:12px">
-        <div class="muhr">
-          <h5>Namakarana</h5>
-          <p class="muted">Naming ceremony muhurtha suggestions and rituals.</p>
-          <button class="btn btn-ghost" style="margin-top:10px" onclick="demoMuh('Namakarana')">Check</button>
-        </div>
-        <div class="muhr">
-          <h5>Annaprashana</h5>
-          <p class="muted">First rice-eating ceremony timings and checklist.</p>
-          <button class="btn btn-ghost" style="margin-top:10px" onclick="demoMuh('Annaprashana')">Check</button>
-        </div>
-        <div class="muhr">
-          <h5>GrihaPravesa</h5>
-          <p class="muted">House-warmings aligned to auspicious panchangam.</p>
-          <button class="btn btn-ghost" style="margin-top:10px" onclick="demoMuh('GrihaPravesa')">Check</button>
-        </div>
-      </div>
+<label for="notes">Notes / birth details</label>
+<textarea id="notes" placeholder="Birth time, place, constraints (optional)"></textarea>
 
-      <div id="muhResult" class="card hidden" style="margin-top:12px"></div>
-    </section>
 
-    <!-- ASTROLOGERS -->
-    <section id="astrologers" aria-labelledby="astro-heading">
-      <h3 id="astro-heading">Featured Astrologers</h3>
-      <div class="grid-2" style="margin-top:12px">
-        <div class="astro-card">
-          <img src="images/astrologer1.jpg" alt="Pandit R. Sharma" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
-          <div class="astro-meta">
-            <h4>Pandit R. Sharma</h4>
-            <p class="muted">Specialities: Muhurtha · Career · Marriage</p>
-            <div style="margin-top:8px;display:flex;align-items:center;gap:10px">
-              <div class="price">₹1500</div>
-              <button class="btn btn-primary" onclick="openBookingModal('Pandit R. Sharma',1500)">Book</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="astro-card">
-          <img src="images/astrologer2.jpg" alt="Smt. Anjali Rao" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
-          <div class="astro-meta">
-            <h4>Smt. Anjali Rao</h4>
-            <p class="muted">Specialities: Health · Finance · Remedies</p>
-            <div style="margin-top:8px;display:flex;align-items:center;gap:10px">
-              <div class="price">₹1200</div>
-              <button class="btn btn-primary" onclick="openBookingModal('Smt. Anjali Rao',1200)">Book</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT / TRUST -->
-    <section aria-labelledby="trust-heading">
-      <h3 id="trust-heading">Why choose us</h3>
-      <div class="grid-3" style="margin-top:12px">
-        <div class="card">
-          <h4>Verified Profiles</h4>
-          <p class="muted">Astrologers verified with credentials, sample videos and reviews.</p>
-        </div>
-        <div class="card">
-          <h4>Transparent Pricing</h4>
-          <p class="muted">Clear fees, receipts and refund policy for missed sessions.</p>
-        </div>
-        <div class="card">
-          <h4>Secure & Private</h4>
-          <p class="muted">Your birth data is handled with confidentiality and encrypted storage.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      © <span id="year"></span> Vedic Guidance · Privacy · Terms
-    </footer>
-  </div>
-
-  <!-- CTA BAR (sticky) -->
-  <div class="cta-bar" role="region" aria-label="Quick actions">
-    <div class="left">
-      <div style="font-weight:700">Need Help? Book a consult now</div>
-      <div class="muted" style="margin-left:10px">Trusted Vedic Astrologers</div>
-    </div>
-    <div style="display:flex;gap:10px">
-      <button class="btn" onclick="document.getElementById('openBookingBtn').click()" style="color:white;border:1px solid rgba(255,255,255,0.14)">Book</button>
-      <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="color:white">Top</button>
-    </div>
-  </div>
-
-  <!-- Modal / Booking (full) -->
-  <div id="modalBackdrop" class="modal-backdrop hidden" aria-hidden="true">
-    <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <div>
-          <div class="small">Book a Consultation</div>
-          <div id="modalTitle" style="font-weight:700">Confirm & Pay</div>
-        </div>
-        <button onclick="closeModal()" aria-label="Close" style="background:none;border:none;font-weight:700;font-size:20px;cursor:pointer">✕</button>
-      </div>
-
-      <form id="fullBookingForm" onsubmit="return false">
-        <label for="astroSelect">Select Astrologer</label>
-        <select id="astroSelect">
-          <option value='{"name":"Pandit R. Sharma","price":1500}'>Pandit R. Sharma — ₹1500</option>
-          <option value='{"name":"Smt. Anjali Rao","price":1200}'>Smt. Anjali Rao — ₹1200</option>
-        </select>
-
-        <label style="margin-top:10px">Service</label>
-        <select id="fullService">
-          <option>Consultation</option>
-          <option>Muhurtha — Namakarana</option>
-          <option>Muhurtha — Annaprashana</option>
-        </select>
-
-        <div style="display:flex;gap:8px;margin-top:10px">
-          <div style="flex:1">
-            <label>Date</label>
-            <input id="fullDate" type="date" />
-          </div>
-          <div style="width:120px">
-            <label>Time (optional)</label>
-            <input id="fullTime" type="text" placeholder="09:30" />
-          </div>
-        </div>
-
-        <label style="margin-top:10px">Name</label>
-        <input id="fullName" type="text" required />
-
-        <label style="margin-top:8px">Email</label>
-        <input id="fullEmail" type="email" />
-
-        <label style="margin-top:8px">Phone</label>
-        <input id="fullPhone" type="text" />
-
-        <label style="margin-top:8px">Notes</label>
-        <textarea id="fullNotes" placeholder="Birth details, constraints"></textarea>
-
-        <div style="display:flex;gap:8px;margin-top:12px;align-items:center">
-          <button class="btn btn-primary" id="payNowBtn">Pay & Book</button>
-          <div id="payNote" class="muted">You will receive a confirmation email & panchangam PDF (demo).</div>
-        </div>
-
-        <div id="bookSuccess" class="muted" style="margin-top:10px;display:none;color:green;font-weight:700"></div>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    // ---------- small client behavior (demo only) ----------
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mini booking actions
-    document.getElementById('proceedBtn').addEventListener('click', () => {
-      const name = document.getElementById('name').value.trim();
-      if (!name) return alert('Please enter your full name');
-      // Demo: show pseudo-confirmation and "payment"
-      const miniResult = document.getElementById('miniResult');
-      miniResult.style.display = 'block';
-      miniResult.textContent = 'Demo: booking recorded. Please complete payment in production.';
-      setTimeout(()=>miniResult.scrollIntoView({behavior:'smooth'}),200);
-    });
-    document.getElementById('resetMini').addEventListener('click', () => {
-      document.getElementById('miniBookingForm').reset();
-      document.getElementById('miniResult').style.display = 'none';
-    });
-
-    // Muhurtha demo
-    function demoMuh(name){
-      const res = document.getElementById('muhResult');
-      res.classList.remove('hidden');
-      const d1 = new Date();
-      const d2 = new Date(Date.now()+86400000);
-      res.innerHTML = `
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><strong>${name} — Demo Muhurtha suggestions</strong><div class="muted" style="margin-top:6px">These are placeholder times. For precise calculations we use ephemeris.</div></div>
-          <div><button class="btn btn-ghost" onclick="document.getElementById('muhResult').classList.add('hidden')">Close</button></div>
-        </div>
-        <ul style="margin-top:12px">
-          <li>${d1.toLocaleDateString()} — 09:30 to 10:15 (favorable)</li>
-          <li>${d2.toLocaleDateString()} — 06:45 to 07:20 (favorable)</li>
-        </ul>
-      `;
-      res.scrollIntoView({behavior:'smooth'});
-    }
-
-    // Modal logic (full booking)
-    const backdrop = document.getElementById('modalBackdrop');
-    document.getElementById('openBookingBtn').addEventListener('click', ()=>openModal());
-    function openModal(){
-      backdrop.classList.remove('hidden');
-      backdrop.setAttribute('aria-hidden','false');
-    }
-    function closeModal(){
-      backdrop.classList.add('hidden');
-      backdrop.setAttribute('aria-hidden','true');
-    }
-    // open modal from "Book" buttons passing prefill
-    function openBookingModal(name,price){
-      openModal();
-      // try to pre-select the astrologer if present in select
-      const sel = document.getElementById('astroSelect');
-      for(let i=0;i<sel.options.length;i++){
-        if(sel.options[i].text.includes(name)){ sel.selectedIndex = i; break; }
-      }
-    }
-
-    // Pay simulation
-    document.getElementById('payNowBtn').addEventListener('click', (ev)=>{
-      ev.preventDefault();
-      const sel = JSON.parse(document.getElementById('astroSelect').value);
-      const svc = document.getElementById('fullService').value;
-      const name = document.getElementById('fullName').value.trim();
-      if(!name) return alert('Please enter your name to continue.');
-      // Demo: in production, call backend to create order (Razorpay/Stripe) and open checkout.
-      const success = document.getElementById('bookSuccess');
-      success.style.display = 'block';
-      success.textContent = `Demo confirmed: ${sel.name} — ${svc} — ₹${sel.price}`;
-      // hide note
-      document.getElementById('payNote').style.display = 'none';
-      setTimeout(()=>closeModal(),2500);
-    });
-
-    // Close modal on backdrop click (but not on inner click)
-    backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
-  </script>
-</body>
+<div class="row actions">
+<button class="btn btn-primary" id="miniProceed">Proceed</button>
+<button class="btn btn-ghost" id="miniReset">Reset</button>
 </html>
