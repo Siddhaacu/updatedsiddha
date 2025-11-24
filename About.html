@@ -1,32 +1,31 @@
-<html>
-    <head>
-        <title>Siddha Saraswatha</title>
-        <link rel="shortcut icon" type="image/png" href="12.png">
-            <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale-1.0, shrink-to-fit">
-            <link rel="stylesheet" href="styles.css"/>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <script src="https://kit.fontawesome.com/4282616b2c.js" crossorigin="anonymous"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <head>
-                <script
-                    src="https://code.jquery.com/jquery-3.3.1.js"
-                    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-                    crossorigin="anonymous">
-                </script>
-                <script> 
-                $(function(){
-                  $("#header").load("header.html"); 
-                  $("#footer").load("footer.html"); 
-                });
-                </script> 
-                </head>
-                <body>
-                <div id="header"></div>
-    <div class="wrapper">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Siddha Saraswatha</title>
+
+  <!-- favicon (place images/12.png in your site folder) -->
+  <link rel="shortcut icon" type="image/png" href="12.png">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- site stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- include loader for header/footer fragments -->
+  <script src="include.js" defer></script>
+  <!-- page behavior -->
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+
+  <!-- HEADER (injected by include.js) -->
+  <div include-html="header.html"></div>
+
+  <main class="wrap" id="main">
         <div class="text" >
             <center><h1>About Siddha Saraswatha</h1>
             <h4>Discover how Siddha Saraswatha combines ancient astrology with modern technology to offer personalized insights into your planetary influences.
