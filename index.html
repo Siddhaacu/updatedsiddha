@@ -20,11 +20,17 @@
 
     <!-- Embed split sections inside index -->
     <!-- ===== Astrologers (replace previous astologers section) ===== -->
-<section id="astrologers" aria-labelledby="astro-heading" class="wrap">
-  <h3 id="astro-heading">Featured Astrologers</h3>
+<!-- ===== Astrologers + Panchangam (NEW layout) ===== -->
+<section id="astrologers-panchangam" class="wrap">
+  <h3 id="astro-heading">Featured Astrologers & Panchangam</h3>
 
-  <div class="grid-2" style="margin-top:12px; gap:18px">
-    <!-- Astrologer card 1 -->
+  <!-- 2-column layout: left = astrologers, right = panchangam -->
+  <div class="two-col" style="display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:12px;align-items:start;">
+
+    <!-- Left column: existing astrologer cards (use your astro-card HTML here) -->
+    <div id="astroColumn">
+      <div class="grid-2" style="gap:18px">
+       <!-- Astrologer card 1 -->
     <article class="astro-card" data-astro='{"name":"Pandit R. Sharma","price":1500,"durationMin":30,"experience":"18 years","qualification":"Vedic Scholar, PhD (Jyotish)","photo":"images/astrologer1.jpg","modes":["Call","In-person"]}'>
       <img src="images/astrologer1.jpg" alt="Pandit R. Sharma" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
       <div class="astro-meta">
@@ -36,27 +42,47 @@
           <div class="price">₹1500 / 30 min</div>
           <button class="btn btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
         </div>
+
+    <!-- Right column: Panchangam widget -->
+    <aside id="panchangamWidget" class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div class="small">Panchangam</div>
+          <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
+            <div id="panchangwidgetid"></div>
+          <div style="font-weight:700" id="panchTitle">Today's Panchangam</div>
+        </div>
+        <div class="muted" id="panchDate">—</div>
       </div>
+
+      <div style="margin-top:12px">
+        <label class="small" for="panchLocation">Location (city or lat,lng)</label>
+        <input id="panchLocation" type="text" placeholder="e.g. Hyderabad or 17.3850,78.4867" />
+
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <button class="btn btn-primary" id="panchCompute">Compute Panchangam (demo)</button>
+          <button class="btn btn-ghost" id="panchClear" type="button">Clear</button>
+        </div>
+      </div>
+
+      <hr style="margin:12px 0;border:none;border-top:1px solid rgba(0,0,0,0.06)">
+
+      <div id="panchResults" style="min-height:160px">
+        <!-- dynamic results -->
+        <div class="muted">No panchangam computed yet. Click <strong>Compute Panchangam</strong> for a demo.</div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+        <a href="#muhurthas" class="btn btn-ghost">Check Muhurtha</a>
+        <button class="btn btn-primary" id="bookFromPanch">Book Consultation</button>
+      </div>
+
+      <small class="muted" style="display:block;margin-top:8px">Note: this is a demo UI. Replace the compute function with Swiss Ephemeris / backend for accurate Panchangam data.</small>
+    </aside>
+
   </div>
-
-  <!-- Optional expanded detail panel (prefilled when a user clicks Book) -->
-  <div id="astroDetail" class="card hidden" style="margin-top:16px">
-    <div style="display:flex;gap:12px;align-items:center">
-      <img id="detailPhoto" src="" alt="" style="width:96px;height:96px;border-radius:8px;object-fit:cover"/>
-      <div>
-        <h4 id="detailName"></h4>
-        <div class="muted" id="detailQual"></div>
-        <div class="muted" id="detailExp" style="margin-top:6px"></div>
-        <div style="margin-top:8px"><strong>Fee:</strong> <span id="detailPrice"></span> / <span id="detailDuration"></span> min</div>
-      </div>
-    </div>
-
-    <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-      <label style="font-weight:700">Mode</label>
-      <select id="detailMode" style="padding:8px;border-radius:8px">
-        <!-- options injected by JS -->
-      </select>
-
+</section>
+   
       <button class="btn btn-primary" id="detailBookBtn" style="margin-left:12px">Book — Proceed</button>
       <button class="btn btn-ghost" onclick="document.getElementById('astroDetail').classList.add('hidden')">Close</button>
     </div>
