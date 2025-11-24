@@ -58,3 +58,107 @@
   <div include-html="header.html"></div>
 
   <main class="wrap">
+
+    <!-- top hero with reviews badge beside site title -->
+    <div class="hero-header" role="region" aria-label="Site introduction and reviews">
+      <div class="hero-left">
+        <h2>Siddha Saraswatha</h2>
+        <p>Your one-stop portal for Vedic Astrology.</p>
+      </div>
+
+      <!-- Google Reviews badge (top-right) -->
+      <div class="reviews-badge" role="region" aria-label="Google reviews">
+        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_74x24dp.png" alt="Google" />
+        <div class="rev-meta">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="rating" aria-hidden="true">5.0</div>
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <div style="color:var(--muted,#6b6b6b);font-size:.88rem">(47)</div>
+          </div>
+          <a class="btn btn-ghost rev-cta" href="https://www.google.com/maps/place/?q=place_id:ChIJqc75zzaZyzsRzoj06JdWIU0" target="_blank" rel="noopener noreferrer">View Reviews</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Astrologers + Panchangam (2-column layout) ===== -->
+    <section id="astrologers-panchangam" aria-labelledby="astro-heading">
+      <h3 id="astro-heading">Featured Astrologers &amp; Panchangam</h3>
+
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:12px;align-items:start;">
+
+        <!-- Left column: astrologer cards -->
+        <div id="astroColumn">
+          <div class="grid-2" style="gap:18px">
+
+            <!-- Astrologer card 1 -->
+            <article class="astro-card" data-astro='{"name":"R.B.S. Goutham Sastri","price":1500,"durationMin":30,"experience":"12 years","qualification":"PG Astrology (Jyotish Sastri)","photo":"images/24.png","modes":["Call","In-person"]}'>
+              <img src="images/24.png" alt="R.B.S. Goutham Sastri" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
+              <div class="astro-meta">
+                <h4>R.B.S. Goutham Sastri</h4>
+                <p class="muted">Specialities: Muhurtha · Career · Marriage</p>
+                <p class="muted" style="margin-top:6px"><strong>Experience:</strong> 12 years</p>
+                <p class="muted"><strong>Qualification:</strong> PG Astrology (Jyotish Sastri)</p>
+                <div style="margin-top:8px;display:flex;align-items:center;gap:12px">
+                  <div class="price">₹1500 / 30 min</div>
+                  <button class="btn btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- Example second card -->
+            <article class="astro-card" data-astro='{"name":"Smt. Anjali Rao","price":1200,"durationMin":30,"experience":"11 years","qualification":"Jyotish Alankar","photo":"images/astrologer2.jpg","modes":["Call","In-person"]}'>
+              <img src="images/astrologer2.jpg" alt="Smt. Anjali Rao" onerror="this.style.background='#f3e8cc';this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=200 height=200><rect width=200 height=200 fill=%23f3e8cc/></svg>'" />
+              <div class="astro-meta">
+                <h4>Smt. Anjali Rao</h4>
+                <p class="muted">Specialities: Health · Finance · Remedies</p>
+                <p class="muted" style="margin-top:6px"><strong>Experience:</strong> 11 years</p>
+                <p class="muted"><strong>Qualification:</strong> Jyotish Alankar</p>
+                <div style="margin-top:8px;display:flex;align-items:center;gap:12px">
+                  <div class="price">₹1200 / 30 min</div>
+                  <button class="btn btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Right column: Panchangam widget -->
+        <aside id="panchangamWidget" class="card" aria-labelledby="panchTitle" >
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="small">Panchangam</div>
+              <div id="panchTitle" style="font-weight:700">Today's Panchangam</div>
+            </div>
+            <div class="muted" id="panchDate">—</div>
+          </div>
+
+          <div style="margin-top:12px">
+            <!-- external widget script (from panchang.click) -->
+            <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
+            <div id="panchangwidgetid" style="margin-top:8px"></div>
+          </div>
+        </aside>
+
+      </div> <!-- end two-col -->
+    </section>
+
+    <!-- include other split sections -->
+    <div include-html="services.html"></div>
+    <div include-html="muhurthas.html"></div>
+    <div include-html="blogs.html"></div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <div include-html="footer.html"></div>
+
+  <!-- small script: set panch date -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      const pDate = document.getElementById('panchDate');
+      if(pDate) pDate.textContent = new Date().toLocaleDateString(undefined, { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+    });
+  </script>
+</body>
+</html>
