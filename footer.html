@@ -1,6 +1,9 @@
 <footer class="site-footer">
-<div class="wrap footer-inner">
-<div>© <span id="year">2025</span> Vedic Guidance</div>
-<div class="muted">Privacy · Terms · Contact</div>
-</div>
+  <div class="wrap footer-inner">
+    <div>© <span id="year"></span> Vedic Guidance</div>
+    <div class="muted">Privacy · Terms · Contact</div>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </footer>
