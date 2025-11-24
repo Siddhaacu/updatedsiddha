@@ -1,23 +1,41 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <div>© <span id="year"></span> Siddha Saraswatha</div>
 
-    <nav class="footer-links">
-      <a href="privacy.html">Privacy </a>
-      <a href="terms.html">Terms </a>
-      <a href="disclaimer.html">Disclaimer </a>
+    <!-- Left: Copyright -->
+    <div class="footer-copy">
+      © <span id="year"></span> Siddha Saraswatha
+    </div>
+
+    <!-- Center: Page links -->
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="disclaimer.html">Disclaimer</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <nav>
-      <a href=https://www.youtube.com/@ss269369/ target="_blank"><i class="fa fa-youtube"></i></a>
-      <a href=https://www.facebook.com/Siddhasaraswatha/ target="_blank"><i class="fa fa-facebook-f"></i></a>
-      <a href=https://www.instagram.com/siddhasaraswatha/ target="_blank"><i class="fa fa-instagram"></i></a>
-      <a href = "https://g.page/astro9s?share"><i class="fa fa-map-marker"></i></a>
-      <a href = "mailto: goutham@astro9s.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
-        
+
+    <!-- Right: Social icons -->
+    <nav class="footer-social" aria-label="Social media links">
+      <a href="https://www.youtube.com/@ss269369" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-youtube"></i>
+      </a>
+      <a href="https://www.facebook.com/Siddhasaraswatha/" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/siddhasaraswatha/" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-instagram"></i>
+      </a>
+      <a href="https://g.page/astro9s?share" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-map-marker"></i>
+      </a>
+      <a href="mailto:goutham@astro9s.com" target="_blank" rel="noopener noreferrer">
+        <i class="fa fa-envelope"></i>
+      </a>
     </nav>
+
   </div>
 
+  <!-- dynamic year -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
