@@ -1,32 +1,17 @@
 <section id="muhurthas" class="wrap">
-<h3>Muhurtha Quick Check</h3>
-<p class="muted">Select an event to see demo suggestions. For accurate muhurtha timings, book a consultation.</p>
-<div class="muhr-grid" style="margin-top:12px">
-<div class="card">
-<h5>Namakarana</h5>
-<p class="muted">Naming ceremony muhurtha suggestions and rituals.</p>
-<button class="btn btn-ghost" onclick="demoMuh('Namakarana')">Check</button>
-</div>
-<div class="card">
-<h5>Annaprashana</h5>
-<p class="muted">First rice-eating ceremony timings and checklist.</p>
-<button class="btn btn-ghost" onclick="demoMuh('Annaprashana')">Check</button>
-</div>
-<div class="card">
-<h5>GrihaPravesa</h5>
-<p class="muted">House-warmings aligned to auspicious panchangam.</p>
-<button class="btn btn-ghost" onclick="demoMuh('GrihaPravesa')">Check</button>
-</div>
-</div>
-<div id="muhrResult" class="card hidden" style="margin-top:12px"></div>
-<script>
-function demoMuh(name){
-const out = document.getElementById('muhrResult');
-out.classList.remove('hidden');
-const d1 = new Date();
-const d2 = new Date(Date.now()+86400000);
-out.innerHTML = `<strong>${name} — Demo Muhurtha suggestions</strong><ul><li>${d1.toLocaleDateString()} — 09:30 to 10:15</li><li>${d2.toLocaleDateString()} — 06:45 to 07:20</li></ul>`;
-out.scrollIntoView({behavior:'smooth'});
-}
-</script>
+  <h3>Muhurtha Selection</h3>
+  <div class="muhr-grid">
+    <div class="card">
+      <h4>Namakarana</h4>
+      <p class="muted">Naming ceremony muhurthas.</p>
+    </div>
+    <div class="card">
+      <h4>Annaprashana</h4>
+      <p class="muted">First feeding ceremony timings.</p>
+    </div>
+    <div class="card">
+      <h4>GrihaPravesa</h4>
+      <p class="muted">Auspicious house-warming dates.</p>
+    </div>
+  </div>
 </section>
