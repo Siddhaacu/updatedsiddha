@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Siddha Saraswatha</title>
 
-  <!-- favicon (place images/12.png in your site folder) -->
+  <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="12.png">
 
   <!-- Font Awesome (icons) -->
@@ -32,21 +32,23 @@
       <div class="hero-left">
         <h1>Siddha Saraswatha</h1>
         <p class="muted">Your one-stop portal for Vedic Astrology.</p>
+
+        <div class="hero-actions">
+          <a href="#astrologers-panchangam" class="btn-primary">Book a Consultation</a>
+          <a href="#services" class="btn-ghost">View Services</a>
+        </div>
       </div>
 
       <div class="reviews-badge" role="region" aria-label="Google reviews">
         <div class="rev-meta">
-          <div class="rev-row" aria-hidden="true">
-  <iframe 
-    src="https://widgets.sociablekit.com/google-reviews/iframe/149447" 
-    frameborder="0" 
-    width="100%" 
-    height="200" 
-    style="border:0; overflow:hidden;" 
-    allowfullscreen>
-  </iframe>
-</div>
-
+          <div class="rev-row">
+            <iframe
+              src="https://widgets.sociablekit.com/google-reviews/iframe/149447"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -56,22 +58,26 @@
 
       <div class="two-col" role="region" aria-label="Astrologers and panchangam">
 
-        <!-- LEFT: astrologers + about -->
+        <!-- LEFT: astrologer + about -->
         <div class="left-column">
           <div class="grid-2">
 
             <!-- Astrologer card -->
             <article class="astro-card" data-astro='{"name":"R.B.S. Goutham Sastri","price":1500}'>
-              <!-- put images in images/ directory -->
               <img src="24.png" alt="R.B.S. Goutham Sastri" />
               <div class="astro-meta">
                 <h3>R.B.S. Goutham Sastri</h3>
                 <p class="muted">Specialities: Muhurtha · Career · Marriage</p>
-                <p class="muted"><strong>Experience:</strong> 12 years &nbsp; <strong>Qualification:</strong> PG Astrology</p>
+                <p class="muted">
+                  <strong>Experience:</strong> 12 years &nbsp;
+                  <strong>Qualification:</strong> PG Astrology
+                </p>
 
                 <div class="astro-actions">
                   <div class="price">₹1500 / 30 min</div>
-                  <button class="btn-primary" onclick="openBookingModalForAstro(this.closest('.astro-card'))">Book</button>
+                  <button class="btn-primary" type="button" onclick="openBookingModalForAstro(this.closest('.astro-card'))">
+                    Book
+                  </button>
                 </div>
               </div>
             </article>
@@ -85,13 +91,16 @@
 
                 <div>
                   <h3 id="about-heading">About Siddha Saraswatha</h3>
-                  <h4 class="about-lead muted"> Dr. D. Vijayanandanatha (Guruji)</h4>
+                  <h4 class="about-lead muted">Dr. D. Vijayanandanatha (Guruji)</h4>
 
-                  <p class="about-short"> Guruji is a distinguished scholar and spiritual guide — founder of Ravindra Bharathi Gurukula Vidyalaya. He is a devoted disciple of Srimad Paramahamsa Parivrajaka Acharya Avadhuta Sri Chandrasekharendra Saraswathi Swamy.</p>
+                  <p class="about-short">
+                    Guruji is a distinguished scholar and spiritual guide — founder of Ravindra Bharathi Gurukula Vidyalaya.
+                    He is a devoted disciple of Srimad Paramahamsa Parivrajaka Acharya Avadhuta Sri Chandrasekharendra Saraswathi Swamy.
+                  </p>
 
                   <div class="readmore-row">
-                    <a class="btn-primary" href="about.html">More About </a>
-                   <a class="btn-primary" href="Temple.html"> About Temple</a>
+                    <a class="btn-primary" href="about.html">More About</a>
+                    <a class="btn-ghost" href="Temple.html">About Temple</a>
                   </div>
                 </div>
               </div>
@@ -104,19 +113,17 @@
         <aside class="right-column" aria-label="Panchangam widget">
           <div class="card" id="panchangamWidget" aria-labelledby="panchTitle">
             <div class="panch-header">
-              <div>
+              <h3 id="panchTitle">Daily Panchangam</h3>
             </div>
 
             <div class="panch-body">
-              <!-- The external widget script injects its own UI into the page.
-                   To avoid blocking rendering, it's loaded here (deferred) -->
               <script type="text/javascript" src="https://panchang.click/panchangwidgetjs?rid=3d3af0df96f688f8ca6d315d5f23e5e5"></script>
-            <div id="panchangwidgetid"></div>
+              <div id="panchangwidgetid"></div>
             </div>
 
             <div class="panch-actions">
-              <a class="btn-ghost" <a href="f-s.html"></a>
-              <a href="p%20s.html"></a>
+              <a class="btn-ghost" href="f-s.html">Festivals &amp; Special Days</a>
+              <a class="btn-ghost" href="p%20s.html">Puja &amp; Sankalpa</a>
             </div>
           </div>
         </aside>
@@ -125,7 +132,7 @@
     </section>
 
     <!-- other sections injected -->
-    <div include-html="services.html"></div>
+    <div id="services" include-html="services.html"></div>
     <div include-html="muhurthas.html"></div>
     <div include-html="blogs.html"></div>
 
@@ -133,7 +140,6 @@
 
   <!-- FOOTER -->
   <div include-html="footer.html"></div>
-
 
 </body>
 </html>
