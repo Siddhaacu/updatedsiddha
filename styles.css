@@ -204,33 +204,62 @@ section {
   font-weight: 600;
 }
 
-/* Mobile nav toggle (checkbox hack) */
-.nav-toggle {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
+/* ===== Mobile Toggle Button ===== */
 
 .nav-toggle-btn {
-  display: none; /* shown only on mobile */
+  display: none;
+  width: 34px;
+  height: 28px;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  width: 32px;
-  height: 26px;
   flex-shrink: 0;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  flex-direction: column;
+  position: relative;
 }
 
 .nav-toggle-btn span {
-  display: block;
+  position: absolute;
+  left: 0;
   width: 100%;
   height: 3px;
-  border-radius: 999px;
+  border-radius: 3px;
   background: #333;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform .28s ease, opacity .28s ease;
 }
+
+.nav-toggle-btn span:nth-child(1) {
+  top: 4px;
+}
+
+.nav-toggle-btn span:nth-child(2) {
+  top: 12px;
+}
+
+.nav-toggle-btn span:nth-child(3) {
+  top: 20px;
+}
+
+/* transform into X when open */
+.nav-toggle-btn.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle-btn.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* show toggle on mobile only */
+@media (max-width: 720px) {
+  .nav-toggle-btn {
+    display: inline-flex;
+  }
+}
+
 
 /* ===========================
    HERO + GOOGLE REVIEWS
