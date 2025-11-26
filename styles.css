@@ -1,52 +1,106 @@
-/* Basic styles shared across fragments */
-:root{ --accent:#c06b00; --muted:#6b6b6b; --max-w:1100px }
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#fff,#fff9f5);color:#111}
-.wrap{max-width:var(--max-w);margin:0 auto;padding:22px}
-.header-inner{display:flex;justify-content:space-between;align-items:center}
-.brand{display:flex;gap:14px;align-items:center}
-.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg, rgba(255,184,77,0.14), rgba(192,107,0,0.12));display:flex;align-items:center;justify-content:center}
-.site-title{margin:0;font-size:1.1rem}
-.site-sub{margin:0;font-size:.85rem;color:var(--muted)}
-.main-nav{display:flex;gap:12px;align-items:center}
-.main-nav a{color:inherit;text-decoration:none;padding:8px 10px;border-radius:8px}
-.btn{padding:10px 14px;border-radius:10px;cursor:pointer}
-.btn-primary{background:var(--accent);color:#fff;border:none}
-.btn-ghost{border:1px solid rgba(0,0,0,0.06);background:transparent}
-.hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
-.h6{font-weight:700}
-.card{background:#fff;padding:16px;border-radius:14px;box-shadow:0 18px 40px rgba(2,6,23,0.06)}
-.small{font-size:.9rem;color:var(--muted)}
-.lead{color:var(--muted)}
-.booking-card .row{display:flex;gap:8px}
-.row.actions{display:flex;align-items:center}
-.muted{color:var(--muted)}
-.hidden{display:none}
-section{margin:36px 0}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.card h4{margin:0 0 8px}
-.muhr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.site-footer{background:linear-gradient(180deg,#fff9f5,#fff);padding:18px 0;border-top:1px solid rgba(0,0,0,0.03)}
-@media(max-width:980px){.hero{grid-template-columns:1fr}.muhr-grid{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.grid-3,.muhr-grid,.grid-2{grid-template-columns:1fr}.header-inner{flex-direction:column;align-items:flex-start;gap:12px}}
-```
-#astroDetail img{box-shadow:0 8px 30px rgba(2,6,23,0.06)}
-#astroDetail .btn{padding:8px 12px}
-/* Panchangam widget extras */
-.two-col .astro-card img{width:88px;height:88px;object-fit:cover;border-radius:10px}
-#panchangamWidget input[type="text"]{padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);width:100%}
-#panchResults .p-item{padding:8px 0;border-bottom:1px dashed rgba(0,0,0,0.04)}
-@media(max-width:980px){
-  .two-col{grid-template-columns:1fr!important}
+/* ===========================
+   DESIGN TOKENS & GLOBAL BASE
+   =========================== */
+
+:root {
+  --accent: #c06b00;
+  --muted: #6b6b6b;
+  --max-w: 1100px;
+  --card: #ffffff;
+  --bg: #fbfaf8;
 }
-#googleReviewsBox .stars {
-  font-size: 1rem;
-  letter-spacing: 1px;
-  color: #ffb400;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+* {
+  box-sizing: border-box;
 }
-/* Header / brand */
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(180deg, #fff, #fff9f5);
+  color: #111;
+}
+
+/* main page wrapper */
+.wrap {
+  max-width: var(--max-w);
+  margin: 18px auto;
+  padding: 0 18px;
+}
+
+section {
+  margin: 36px 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.hidden {
+  display: none;
+}
+
+/* generic buttons */
+.btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #a75c00;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: rgba(0, 0, 0, 0.06);
+  color: inherit;
+}
+
+.btn-ghost:hover {
+  background: #fff7e6;
+}
+
+/* generic card */
+.card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.06);
+}
+
+.small {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.lead {
+  color: var(--muted);
+}
+
+/* ===========================
+   HEADER & NAV
+   =========================== */
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -55,14 +109,12 @@ section{margin:36px 0}
   padding: 8px 0;
 }
 
-/* Brand group */
 .brand {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-/* Logo container */
 .logo {
   width: 72px;
   height: 72px;
@@ -71,193 +123,219 @@ section{margin:36px 0}
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(255,184,77,0.06), rgba(192,107,0,0.04));
-  box-shadow: 0 6px 18px rgba(192,107,0,0.06);
-  border: 1px solid rgba(192,107,0,0.06);
+  background: linear-gradient(135deg, rgba(255, 184, 77, 0.06), rgba(192, 107, 0, 0.04));
+  box-shadow: 0 6px 18px rgba(192, 107, 0, 0.06);
+  border: 1px solid rgba(192, 107, 0, 0.06);
   flex-shrink: 0;
 }
 
-/* Logo image fills the box while preserving aspect */
 .logo img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* use 'cover' if you want it to fill & crop */
+  object-fit: contain;
   display: block;
 }
 
-/* Fallback style shown when image fails to load */
+/* fallback logo (if image fails) */
 .logo.logo--fallback {
   background: #fff4e0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight:700;
+  font-weight: 700;
   color: #c06b00;
   font-size: 0.9rem;
 }
 
-/* provide a simple svg placeholder inside fallback (optional) */
 .logo.logo--fallback::after {
   content: "SS";
   display: inline-block;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
 }
 
-/* Brand text */
-.brand-meta { display:flex; flex-direction:column; line-height:1; }
-.site-title { margin:0; font-size:1.05rem; font-weight:700; }
-.site-sub { margin:2px 0 0 0; font-size:.86rem; color:var(--muted,#6b6b6b); }
-
-/* Nav */
-.main-nav { display:flex; align-items:center; gap:12px; }
-
-/* Responsive */
-@media (max-width:720px) {
-  .header-inner { flex-direction:column; align-items:flex-start; gap:10px; }
-  .logo { width:56px; height:56px; }
-  .site-title { font-size:1rem; }
-}
-/* ---------- Footer: Dark variant with gold accents ---------- */
-.site-footer {
-  background: linear-gradient(180deg, #13121a, #0f0e14); /* dark base */
-  color: #e9e6df;
-  padding: 22px 0;
-  border-top: 1px solid rgba(255,215,140,0.06);
-  margin-top: 40px;
+.brand-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
 }
 
-.site-footer .wrap {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  flex-wrap:wrap;
+.site-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-/* copyright */
-.site-footer .footer-copy { color: #ddd; }
-
-/* links */
-.site-footer .footer-links a {
-  color: #e9e6df;
-  opacity: 0.88;
-  text-decoration:none;
-  padding:6px 8px;
-  border-radius:6px;
-}
-.site-footer .footer-links a:hover {
-  color:#221403;
-  background: linear-gradient(90deg,#ffd37b,#ffb84d);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(203,125,20,0.14);
+.site-sub {
+  margin: 2px 0 0 0;
+  font-size: 0.86rem;
+  color: var(--muted);
 }
 
-/* social icons (circle + animated on hover) */
-.site-footer .footer-social a{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:40px;height:40px;
-  border-radius:10px;
-  background:rgba(255,255,255,0.03);
-  color:#ffd37b;
-  font-size:1.05rem;
-  transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease, background .28s ease;
-  text-decoration:none;
-}
-.site-footer .footer-social a:hover{
-  transform: translateY(-6px) rotate(-6deg) scale(1.06);
-  background: linear-gradient(180deg, rgba(255, 211, 123,0.12), rgba(255,184,77,0.10));
-  box-shadow: 0 10px 30px rgba(255,168,40,0.14);
-  color:#ffecce;
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-/* animated star/shine (optional pseudo) */
-.site-footer .footer-social a::after{
-  content: "";
-  position:absolute;
-  width:60px;height:60px;border-radius:12px;
-  top:-10px;left:-10px;
-  opacity:0;transform:scale(.8);
-  background: radial-gradient(circle at 30% 20%, rgba(255,240,200,0.08), transparent 30%);
-  transition:opacity .35s ease, transform .35s ease;
-}
-.site-footer .footer-social a:hover::after{ opacity:1; transform:scale(1) }
-
-/* mobile responsive footer layout */
-@media (max-width:700px){
-  .site-footer .wrap { flex-direction:column; text-align:center; gap:12px; }
+.main-nav a {
+  color: inherit;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
 }
 
-/* ---------- Floating WhatsApp button ---------- */
-.whatsapp-fab {
-  position: fixed;
-  right: 18px;
-  bottom: 92px; /* sits above sticky bar if present */
-  z-index: 1400;
-  width:58px;height:58px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  background: linear-gradient(180deg,#25D366,#128C7E);
-  color:white;font-size:22px;border:none;cursor:pointer;
-  box-shadow: 0 16px 40px rgba(18,140,126,0.24);
-  transition:transform .18s ease, box-shadow .18s ease;
-}
-.whatsapp-fab:hover{ transform:translateY(-6px) scale(1.03); box-shadow:0 20px 50px rgba(18,140,126,0.3) }
+/* ===========================
+   HERO + GOOGLE REVIEWS
+   =========================== */
 
-/* small badge text */
-.whatsapp-fab .label{
-  display:none;
-  margin-left:8px;
-  font-weight:700;
-  font-size:0.95rem;
+.hero-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
 }
 
-/* ---------- Sticky mobile bottom action bar ---------- */
-.mobile-action-bar {
-  position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  z-index: 1350;
-  display: none; /* visible on small screens only */
-  gap:10px;align-items:center;
-  background: linear-gradient(90deg,#221103,#ffd37b);
-  padding: 10px;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.28);
-  color: #221403;
+.hero-left {
+  flex: 1 1 260px;
+  min-width: 240px;
 }
 
-/* buttons inside */
-.mobile-action-bar .action {
-  flex:1;
-  background: rgba(255,255,255,0.95);
-  border-radius:10px;padding:10px;font-weight:700;text-align:center;color:#221403;text-decoration:none;
-  box-shadow: 0 6px 18px rgba(34,20,3,0.06);
+.hero-left h1 {
+  margin-bottom: 8px;
 }
 
-/* show bar on small devices */
-@media (max-width:640px){
-  .mobile-action-bar { display:flex; }
-  /* move whatsapp fab up so it doesn't overlap */
-  .whatsapp-fab{ bottom: 86px; right: 16px }
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
 }
 
-.footer-disclaimer {
-  margin-top: 16px;
-  font-size: 0.75rem;  /* approx 6pt */
-  line-height: 1.4;
-  text-align: center;
-  opacity: 0.75;
-  color: #e9e6df;      /* matches dark footer */
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+/* reviews widget */
+.reviews-badge {
+  flex: 1 1 260px;
+  max-width: 420px;
+  min-width: 260px;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff7e6;
+  border: 1px solid rgba(192, 107, 0, 0.18);
+  box-shadow: 0 8px 20px rgba(192, 107, 0, 0.06);
 }
-/* ABOUT section styling */
-.about-card { padding: 16px; border-radius: 12px; }
-.about-photo img { width: 100%; height: 100%; max-width:120px; border-radius:8px; object-fit:cover; display:block; }
 
-/* Expand animation: hidden by default, reveal with max-height transition */
-.about-expand-wrapper { overflow: hidden; }
+.reviews-badge .rev-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reviews-badge iframe {
+  border: 0;
+  width: 100%;
+  height: 220px;
+}
+
+/* extra style if using star icons somewhere */
+#googleReviewsBox .stars,
+.reviews-badge .stars {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #ffb400;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================
+   FEATURED ASTROLOGER + PANCHANGAM
+   =========================== */
+
+.two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.left-column .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+/* astro card */
+.astro-card {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.04);
+}
+
+.astro-card img {
+  width: 88px;
+  height: 88px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.astro-meta h3,
+.astro-meta h4 {
+  margin: 0 0 6px;
+}
+
+.astro-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.price {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* about card */
+.about-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.04);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  max-width: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+
+.about-lead {
+  margin: 6px 0 10px;
+}
+
+.readmore-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* optional "expand" behaviour if used */
+.about-expand-wrapper {
+  overflow: hidden;
+}
+
 .about-expand {
   max-height: 0;
   overflow: hidden;
@@ -265,82 +343,326 @@ section{margin:36px 0}
   opacity: 0;
   margin-top: 8px;
 }
-.about-expand[aria-hidden="false"] {
+
+.about-expand[aria-hidden="false"],
+.about-expand.open {
   opacity: 1;
-  max-height: 1200px; /* large enough to contain content */
+  max-height: 1200px;
 }
 
-/* Button tweaks */
-#aboutToggle { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; }
-#aboutToggle[aria-expanded="true"] { transform: translateY(-1px); }
-
-/* Responsive */
-@media (max-width:720px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-photo { display:block; margin-bottom:12px; }
-  .about-photo img { max-width:88px; }
+/* Panchangam widget card */
+#panchangamWidget {
+  background: var(--card);
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.04);
 }
 
-:root{
-  --accent:#c06b00;
-  --muted:#6b6b6b;
-  --card:#fff;
-  --bg:#fbfaf8;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+.panch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
-/* Page container */
-.wrap{ max-width:1100px; margin:18px auto; padding:0 18px; }
+.panch-title {
+  font-weight: 700;
+}
 
-/* Hero + reviews */
-.hero-header { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:16px; flex-wrap:wrap; }
-.hero-left h2 { margin:0; font-size:1.6rem; }
-.muted{ color:var(--muted); }
+.panch-body {
+  margin-top: 4px;
+}
 
-/* Reviews badge */
-.reviews-badge { min-width:220px; border-radius:10px; padding:10px; background:#fff7e6; border:1px solid rgba(192,107,0,0.18); box-shadow:0 8px 20px rgba(192,107,0,0.06); display:flex; gap:10px; align-items:center; }
-.reviews-badge .fa-google{ color:#db4437; font-size:26px; }
-.reviews-badge .rev-row{ display:flex; align-items:center; gap:8px; }
-.reviews-badge .rating{ font-weight:700; color:var(--accent); }
-.reviews-badge .stars{ color:#ffb400; font-size:0.95rem; }
-.reviews-badge .rev-count{ color:var(--muted); font-size:.88rem; }
-.reviews-badge .rev-cta{ margin-top:8px; display:block; text-align:left; font-size:.9rem; text-decoration:none; color:inherit; }
+.panch-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
 
-/* two column layout */
-.two-col{ display:grid; grid-template-columns:1fr 360px; gap:20px; align-items:start; }
-@media(max-width:980px){ .two-col{ grid-template-columns:1fr; } .reviews-badge{ width:100%; } }
+/* text input in Panchangam search if used */
+#panchangamWidget input[type="text"] {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  width: 100%;
+}
 
-/* left column */
-.left-column .grid-2{ display:grid; grid-template-columns:1fr; gap:18px; margin-top:12px; }
+#panchResults .p-item {
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.04);
+}
 
-/* astro card */
-.astro-card{ display:flex; gap:14px; align-items:center; padding:12px; border-radius:12px; background:var(--card); box-shadow:0 8px 24px rgba(2,6,23,0.04); }
-.astro-card img{ width:84px; height:84px; border-radius:10px; object-fit:cover; }
-.astro-meta h4{ margin:0 0 6px; }
-.astro-actions{ margin-top:10px; display:flex; gap:10px; align-items:center; }
-.price{ color:var(--accent); font-weight:700; }
+/* astroDetail extra styles (other page) */
+#astroDetail img {
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.06);
+}
 
-/* about card */
-.about-card{ padding:16px; border-radius:12px; background:var(--card); box-shadow:0 10px 30px rgba(2,6,23,0.04); }
-.about-grid{ display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:start; }
-.about-photo img{ width:100%; height:100%; max-width:120px; border-radius:8px; object-fit:cover; display:block; }
-.about-lead{ margin:6px 0 10px; }
+#astroDetail .btn {
+  padding: 8px 12px;
+}
 
-/* readmore */
-.about-expand{ max-height:0; overflow:hidden; transition:max-height .45s ease, opacity .35s ease; opacity:0; }
-.about-expand.open{ opacity:1; max-height:1000px; }
-.readmore-row{ display:flex; gap:10px; align-items:center; margin-top:10px; }
+/* ===========================
+   GRID HELPERS (used on other pages)
+   =========================== */
 
-/* panchangam card */
-.card{ background:var(--card); padding:14px; border-radius:12px; box-shadow:0 10px 30px rgba(2,6,23,0.04); }
-.panch-header{ display:flex; justify-content:space-between; align-items:center; }
-.panch-title{ font-weight:700; }
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 
-/* buttons */
-.btn-ghost{ background:transparent; border:1px solid rgba(0,0,0,0.06); padding:8px 12px; border-radius:8px; cursor:pointer; text-decoration:none; color:inherit; display:inline-flex; align-items:center; gap:8px; }
-.btn-primary{ background:var(--accent); color:white; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px; }
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
 
-/* misc helpers */
-.card .muted{ color:var(--muted); }
-@media(max-width:600px){ .hero-left h2{ font-size:1.3rem; } .about-grid{ grid-template-columns:1fr; } .about-photo{ margin-bottom:12px; } }
+.card h4 {
+  margin: 0 0 8px;
+}
 
+.muhr-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* ===========================
+   FOOTER (DARK VARIANT)
+   =========================== */
+
+.site-footer {
+  background: linear-gradient(180deg, #13121a, #0f0e14);
+  color: #e9e6df;
+  padding: 22px 0;
+  border-top: 1px solid rgba(255, 215, 140, 0.06);
+  margin-top: 40px;
+}
+
+.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.site-footer .footer-copy {
+  color: #ddd;
+}
+
+.site-footer .footer-links a {
+  color: #e9e6df;
+  opacity: 0.88;
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+.site-footer .footer-links a:hover {
+  color: #221403;
+  background: linear-gradient(90deg, #ffd37b, #ffb84d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(203, 125, 20, 0.14);
+}
+
+.site-footer .footer-social a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #ffd37b;
+  font-size: 1.05rem;
+  transition: transform 0.28s cubic-bezier(.2, .9, .3, 1), box-shadow 0.28s ease, background 0.28s ease;
+  text-decoration: none;
+}
+
+.site-footer .footer-social a:hover {
+  transform: translateY(-6px) rotate(-6deg) scale(1.06);
+  background: linear-gradient(180deg, rgba(255, 211, 123, 0.12), rgba(255, 184, 77, 0.10));
+  box-shadow: 0 10px 30px rgba(255, 168, 40, 0.14);
+  color: #ffecce;
+}
+
+.site-footer .footer-social a::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  top: -10px;
+  left: -10px;
+  opacity: 0;
+  transform: scale(.8);
+  background: radial-gradient(circle at 30% 20%, rgba(255, 240, 200, 0.08), transparent 30%);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.site-footer .footer-social a:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.footer-disclaimer {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+  opacity: 0.75;
+  color: #e9e6df;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===========================
+   FLOATING WHATSAPP & MOBILE ACTION BAR
+   =========================== */
+
+.whatsapp-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 92px;
+  z-index: 1400;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #25D366, #128C7E);
+  color: white;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(18, 140, 126, 0.24);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.whatsapp-fab:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(18, 140, 126, 0.3);
+}
+
+.whatsapp-fab .label {
+  display: none;
+  margin-left: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* sticky mobile bar */
+.mobile-action-bar {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1350;
+  display: none;
+  gap: 10px;
+  align-items: center;
+  background: linear-gradient(90deg, #221103, #ffd37b);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+  color: #221403;
+}
+
+.mobile-action-bar .action {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 700;
+  text-align: center;
+  color: #221403;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(34, 20, 3, 0.06);
+}
+
+/* ===========================
+   RESPONSIVE BREAKPOINTS
+   =========================== */
+
+@media (max-width: 980px) {
+  .hero-header {
+    flex-direction: column;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+  }
+
+  .muhr-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviews-badge {
+    width: 100%;
+  }
+}
+
+@media (max-width: 720px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .site-title {
+    font-size: 1rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-photo {
+    margin-bottom: 12px;
+  }
+
+  .about-photo img {
+    max-width: 88px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-3,
+  .muhr-grid,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-left h1 {
+    font-size: 1.3rem;
+  }
+
+  .site-footer .wrap {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .mobile-action-bar {
+    display: flex;
+  }
+
+  .whatsapp-fab {
+    bottom: 86px;
+    right: 16px;
+  }
+}
