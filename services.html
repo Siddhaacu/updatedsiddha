@@ -1,54 +1,102 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Services — Siddha Saraswatha</title>
+
+  <link rel="shortcut icon" type="image/png" href="12.png">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Header/footer include loader -->
   <script src="include.js" defer></script>
 </head>
+
 <body>
 
-<div include-html="header.html"></div>
+  <!-- HEADER -->
+  <div include-html="header.html"></div>
 
-<!-- include same section -->
-<div include-html="services.html"></div>
-         <center>
-                <h1>Services available</h1></center>
-        <div class="row">
-        <div class="column2">
-                                <h1 align="center">Premium kundali</h1>
-                                <h3 align="center">
-                                    <Li>Premium Birth Chart &nbsp ₹2700 </Li>
-                                    <Li>Relationship Prediction&nbsp ₹1500  </Li>
-                                    <Li>Career Prediction&nbsp ₹1500 </Li>
-                                    <Li>Financial Prediction&nbsp ₹1500 </Li>
-                                    <Li>Health Prediction&nbsp ₹3600 </Li>  </h3> 
-        </div>
-        <div class="column2">      
-                            <th><h1 align="center">Muhurtham</h1>
-                                <h3 align="center">
-                                <Li>Annapraasana muhurtham &nbsp ₹999 </Li>
-                                <Li>Aksharaabhyasam muhurtham&nbsp ₹999  </Li>
-                                <Li> Upanayana muhurtham&nbsp ₹2700  </Li>
-                                <Li>Gruhapravesham muhurtham&nbsp ₹2700 </Li>
-                                <Li>Vivaha muhurtham&nbsp ₹3600 </Li>  </h3> 
-                 
-        </div>         
-        <style>
-            div.book{
-                 overflow: auto;
-                 width:100%;
-                 height:100%;
-             }
-         </style>
-        <br>
-        <br>
-        <div Class="book">
-        <center>
-<div>
-    <a href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279" class="ptbkbtn" style="float:none;"><img border="none" src="https://www.picktime.com/img/widgetButtons/BookingPage/picktime-book-online-gray.png" alt="Book an appointment with Siddha Saraswatha"/></a>                          ​
-        </body>
-        </div>
+  <main class="wrap" role="main">
+    <!-- Page heading -->
+    <header class="page-header">
+      <h1>Services</h1>
+      <p class="muted">
+        Explore our Vedic astrology services, premium Kundali readings, and auspicious Muhurtham selections.
+      </p>
+    </header>
 
-<div include-html="footer.html"></div>
+    <!-- Reuse home-page services section if you want the same block -->
+    <section aria-label="Featured services">
+      <div include-html="services.html"></div>
+    </section>
+
+    <!-- Detailed services & pricing -->
+    <section class="services-list" aria-label="Detailed service pricing">
+      <h2>Consultation &amp; Muhurtham Packages</h2>
+
+      <div class="grid-2">
+        <!-- Premium Kundali -->
+        <article class="card">
+          <h3>Premium Kundali</h3>
+          <p class="muted small">
+            In-depth birth chart analysis and focused life-area readings.
+          </p>
+          <ul class="small">
+            <li>Premium Birth Chart — <strong>₹2700</strong></li>
+            <li>Relationship Prediction — <strong>₹1500</strong></li>
+            <li>Career Prediction — <strong>₹1500</strong></li>
+            <li>Financial Prediction — <strong>₹1500</strong></li>
+            <li>Health Prediction — <strong>₹3600</strong></li>
+          </ul>
+        </article>
+
+        <!-- Muhurtham -->
+        <article class="card">
+          <h3>Muhurtham</h3>
+          <p class="muted small">
+            Selection of auspicious timings based on traditional Vedic principles.
+          </p>
+          <ul class="small">
+            <li>Annapraasana Muhurtham — <strong>₹999</strong></li>
+            <li>Aksharaabhyasam Muhurtham — <strong>₹999</strong></li>
+            <li>Upanayana Muhurtham — <strong>₹2700</strong></li>
+            <li>Gruhapravesham Muhurtham — <strong>₹2700</strong></li>
+            <li>Vivaha Muhurtham — <strong>₹3600</strong></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Booking CTA -->
+    <section aria-label="Book an appointment">
+      <div class="card" style="text-align:center; margin-top:24px;">
+        <h2>Book an Appointment</h2>
+        <p class="muted small">
+          Choose your service and schedule a convenient time for a consultation.
+        </p>
+        <a
+          href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279"
+          class="btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book Online via Picktime
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <div include-html="footer.html"></div>
 
 </body>
 </html>
