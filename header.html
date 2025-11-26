@@ -1,14 +1,12 @@
- <header class="site-header" role="banner">
-<link rel="shortcut icon" type="image/png" href="12.png">
+<header class="site-header" role="banner">
   <div class="wrap header-inner">
 
     <!-- Brand (Logo + Title) -->
     <div class="brand">
-
       <!-- Clickable logo linking to homepage -->
-      <a href="index.html" class="logo-link">
+      <a href="index.html" class="logo-link" aria-label="Go to homepage">
         <div class="logo">
-          <img src="12.png" alt=" Logo" width="100" height="100">
+          <img src="12.png" alt="Siddha Saraswatha Logo" width="100" height="100">
         </div>
       </a>
 
@@ -17,18 +15,29 @@
         <h1 class="site-title">Siddha Saraswatha</h1>
         <p class="site-sub">Accurate Muhurthas · Verified Astrologers</p>
       </div>
-
     </div> <!-- end brand -->
+
+    <!-- Mobile nav toggle (checkbox hack, no JS needed) -->
+    <input type="checkbox" id="navToggle" class="nav-toggle" aria-label="Toggle navigation menu">
+    <label for="navToggle" class="nav-toggle-btn" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
 
     <!-- Navigation -->
     <nav class="main-nav" role="navigation" aria-label="Main">
       <a href="services-page.html">Services</a>
       <a href="muhurthas-page.html">Muhurtha</a>
       <a href="blogs-page.html">Blogs</a>
-      <i><a href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279" class="ptbkbtn" target="_blank" style="float:none;"><img border="none" src="https://www.picktime.com/img/widgetButtons/BookingPage/picktime-book-online-gray.png" alt="Book an appointment with Siddha Saraswatha"/></a></i>
-                       
+
+      <a href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279"
+         class="ptbkbtn btn-primary"
+         target="_blank"
+         rel="noopener noreferrer">
+        Book Online
+      </a>
     </nav>
 
   </div> <!-- end header-inner -->
-
 </header>
