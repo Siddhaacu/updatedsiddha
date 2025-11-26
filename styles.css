@@ -107,12 +107,20 @@ section {
   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
+/* header is vertical stack: top row + nav */
 .header-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 0 10px;
+}
+
+/* top row: brand left, book+toggle right */
+.header-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  padding: 8px 0;
+  gap: 16px;
 }
 
 /* Brand group */
@@ -180,11 +188,24 @@ section {
   color: var(--muted);
 }
 
+/* right side: Book + toggle */
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.book-btn {
+  white-space: nowrap;
+}
+
 /* Desktop nav base */
 .main-nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 12px;
+  margin-top: 6px;
 }
 
 .main-nav a {
@@ -199,15 +220,22 @@ section {
   background: rgba(0, 0, 0, 0.04);
 }
 
-/* picktime button inherits primary style */
+/* picktime button inherits primary style when inside nav (desktop) */
 .main-nav .ptbkbtn {
   font-weight: 600;
+}
+
+/* hide checkbox visually */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ===== Improved Mobile Toggle Icon ===== */
 
 .nav-toggle-btn {
-  display: none;
+  display: none;           /* enabled in media query */
   width: 32px;
   height: 24px;
   background: none;
@@ -228,49 +256,29 @@ section {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 2.6px;               /* thinner & cleaner */
+  height: 2.6px;
   border-radius: 3px;
-  background: #222;            /* darker, more premium */
+  background: #222;
   transition:
     transform .32s cubic-bezier(.4, 0, .2, 1),
     opacity .25s ease;
 }
 
 /* bar positions */
-.nav-toggle-btn span:nth-child(1) {
-  top: 3px;
-}
-.nav-toggle-btn span:nth-child(2) {
-  top: 10px;
-}
-.nav-toggle-btn span:nth-child(3) {
-  top: 17px;
-}
+.nav-toggle-btn span:nth-child(1) { top: 3px; }
+.nav-toggle-btn span:nth-child(2) { top: 10px; }
+.nav-toggle-btn span:nth-child(3) { top: 17px; }
 
-/* ===== transform into X ===== */
-
-.nav-toggle-btn.open span:nth-child(1) {
+/* transform into X when checkbox checked */
+.nav-toggle:checked + .nav-toggle-btn span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-
-.nav-toggle-btn.open span:nth-child(2) {
+.nav-toggle:checked + .nav-toggle-btn span:nth-child(2) {
   opacity: 0;
 }
-
-.nav-toggle-btn.open span:nth-child(3) {
+.nav-toggle:checked + .nav-toggle-btn span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
-
-/* ===== Mobile visibility ===== */
-@media (max-width: 720px) {
-  .nav-toggle-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-
 
 /* ===========================
    HERO + GOOGLE REVIEWS
@@ -747,8 +755,26 @@ section {
 }
 
 @media (max-width: 720px) {
+  /* header layout */
   .header-inner {
-    align-items: center;
+    gap: 8px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* second line: book + toggle full width */
+  .top-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .book-btn {
+    font-size: 0.9rem;
+    padding: 8px 14px;
   }
 
   .logo {
@@ -763,15 +789,17 @@ section {
   /* show hamburger */
   .nav-toggle-btn {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* collapse nav into dropdown */
+  /* dropdown nav under header */
   .main-nav {
     position: absolute;
     top: 100%;
-    right: 0;
     left: 0;
-    margin-top: 8px;
+    right: 0;
+    margin-top: 4px;
     padding: 10px 18px 14px;
     background: #ffffff;
     box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
@@ -779,24 +807,13 @@ section {
     display: none;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
     z-index: 1200;
   }
 
-  /* when checkbox checked → show nav */
-  .nav-toggle:checked ~ .main-nav {
+  /* show nav when toggle checked */
+  .site-header:has(#navToggle:checked) .main-nav {
     display: flex;
-  }
-
-  /* animate burger to X */
-  .nav-toggle:checked + .nav-toggle-btn span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .nav-toggle:checked + .nav-toggle-btn span:nth-child(2) {
-    opacity: 0;
-  }
-  .nav-toggle:checked + .nav-toggle-btn span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
   }
 
   .about-grid {
