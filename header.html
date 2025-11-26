@@ -15,34 +15,33 @@
       </div>
     </div>
 
- <!-- Mobile nav toggle -->
-<button
-  class="nav-toggle-btn"
-  aria-label="Toggle menu"
-  aria-expanded="false"
-  onclick="this.classList.toggle('open'); document.getElementById('navToggle').checked = !document.getElementById('navToggle').checked;">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-
-<input type="checkbox" id="navToggle" class="nav-toggle" hidden>
+    <!-- Mobile nav toggle -->
+    <input
+      type="checkbox"
+      id="navToggle"
+      class="nav-toggle"
+      aria-label="Toggle menu"
+    >
+    <label for="navToggle" class="nav-toggle-btn">
+      <span></span><span></span><span></span>
     </label>
 
-    <!-- Primary navigation -->
+    <!-- Primary navigation (only internal links) -->
     <nav class="main-nav" role="navigation" aria-label="Main navigation">
       <a href="services-page.html">Services</a>
       <a href="muhurthas-page.html">Muhurtha</a>
       <a href="blogs-page.html">Blogs</a>
-      <a
-        href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279"
-        class="ptbkbtn btn-primary"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Book Online
-      </a>
     </nav>
+
+    <!-- Book Online stays separate -->
+    <a
+      href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279"
+      class="book-btn btn-primary"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Book Online
+    </a>
 
   </div>
 </header>
