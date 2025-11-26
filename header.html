@@ -15,17 +15,18 @@
       </div>
     </div>
 
-    <!-- Mobile nav toggle -->
-    <input
-      type="checkbox"
-      id="navToggle"
-      class="nav-toggle"
-      aria-label="Toggle navigation menu"
-    >
-    <label for="navToggle" class="nav-toggle-btn">
-      <span></span>
-      <span></span>
-      <span></span>
+ <!-- Mobile nav toggle -->
+<button
+  class="nav-toggle-btn"
+  aria-label="Toggle menu"
+  aria-expanded="false"
+  onclick="this.classList.toggle('open'); document.getElementById('navToggle').checked = !document.getElementById('navToggle').checked;">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<input type="checkbox" id="navToggle" class="nav-toggle" hidden>
     </label>
 
     <!-- Primary navigation -->
