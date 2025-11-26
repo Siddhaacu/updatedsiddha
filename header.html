@@ -1,47 +1,53 @@
 <header class="site-header" role="banner">
   <div class="wrap header-inner">
 
-    <!-- Brand (logo + title) -->
-    <div class="brand">
-      <a href="index.html" class="logo-link" aria-label="Go to homepage">
-        <div class="logo">
-          <img src="12.png" alt="Siddha Saraswatha logo" width="100" height="100">
-        </div>
-      </a>
+    <!-- TOP ROW: brand -->
+    <div class="header-top">
+      <!-- Brand (logo + title) -->
+      <div class="brand">
+        <a href="index.html" class="logo-link" aria-label="Go to homepage">
+          <div class="logo">
+            <img src="12.png" alt="Siddha Saraswatha logo" width="100" height="100">
+          </div>
+        </a>
 
-      <div class="brand-meta">
-        <span class="site-title">Siddha Saraswatha</span>
-        <span class="site-sub">Accurate Muhurthas · Verified Astrologers</span>
+        <div class="brand-meta">
+          <span class="site-title">Siddha Saraswatha</span>
+          <span class="site-sub">Accurate Muhurthas · Verified Astrologers</span>
+        </div>
+      </div>
+
+      <!-- SECOND LINE (on mobile): Book + toggle -->
+      <div class="top-right">
+        <a
+          href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279"
+          class="book-btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book Online
+        </a>
+
+        <!-- Mobile nav toggle (checkbox + label) -->
+        <input
+          type="checkbox"
+          id="navToggle"
+          class="nav-toggle"
+        >
+        <label for="navToggle" class="nav-toggle-btn" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
       </div>
     </div>
 
-    <!-- Mobile nav toggle -->
-    <input
-      type="checkbox"
-      id="navToggle"
-      class="nav-toggle"
-      aria-label="Toggle menu"
-    >
-    <label for="navToggle" class="nav-toggle-btn">
-      <span></span><span></span><span></span>
-    </label>
-
-    <!-- Primary navigation (only internal links) -->
+    <!-- Primary navigation -->
     <nav class="main-nav" role="navigation" aria-label="Main navigation">
       <a href="services-page.html">Services</a>
       <a href="muhurthas-page.html">Muhurtha</a>
       <a href="blogs-page.html">Blogs</a>
     </nav>
-
-    <!-- Book Online stays separate -->
-    <a
-      href="https://www.picktime.com/7875ab6f-c90f-4420-88a6-bb2181e99279"
-      class="book-btn btn-primary"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Book Online
-    </a>
 
   </div>
 </header>
