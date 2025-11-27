@@ -2,50 +2,222 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About — Siddha Saraswatha</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zodiac Signs — Siddha Saraswatha</title>
 
-  <!-- favicon -->
   <link rel="shortcut icon" type="image/png" href="12.png">
 
-  <!-- main stylesheet (external) -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- small per-page image tweak (optional, safe) -->
+  <style>
+    /* keep images square and responsive */
+    .z-card-figure img {
+      width: 100%;
+      height: auto;
+      max-width: 220px;
+      border-radius: 12px;
+      display: block;
+      margin: 0 auto 10px;
+      object-fit: cover;
+    }
+    /* center heading in the wrap */
+    .page-header { text-align: center; margin-bottom: 18px; }
+    /* description under title */
+    .page-sub { color: var(--muted); margin-top:6px; font-size:0.95rem; }
+  </style>
 
   <!-- fragment loader for header/footer -->
   <script src="include.js" defer></script>
-
-  <!-- page behaviour (optional) -->
-  <script src="main.js" defer></script>
 </head>
 <body>
 
-  <!-- header fragment -->
+  <!-- HEADER -->
   <div include-html="header.html"></div>
 
-  <main class="wrap" id="main" role="main">
-        <h1 align="center">ZODIAC SIGN</h1>
-        <div class="row">      
-            <div class="column2">
-                <div><center><h3><a href="zs1.html"><img class="one" src="Nakshatras/12/1.jpg"><br>Aries / Mesh Rashi</a></h3> </center></div>
-                <div><center><h3><a href="zs2.html"><img class="one" src="Nakshatras/12/2.jpg"><br>Taurus / Vrisha Rashi</a></h3></center></div>
-                <div><center><h3><a href="zs3.html"><img class="one" src="Nakshatras/12/3.jpg"><br>Gemini / Mithun Rashi</a></h3></center></div>
-                <div> <center><h3><a href="zs4.html"><img class="one" src="Nakshatras/12/4.jpg"><br>Cancer / Karka Rashi</a></h3></center></div>
-                <div> <center><h3><a href="zs5.html"><img class="one" src="Nakshatras/12/5.jpg"><br>Leo / Simha Rashi</a></h3></center></div>
-                <div> <center><h3><a href="zs6.html"><img class="one" src="Nakshatras/12/6.jpg"><br>Virgo / Kanya Rashi</a></h3></center></div>
-                <div><center><h3><a href="zs7.html"><img class="one" src="Nakshatras/12/7.jpg"><br>Aries / Mesh Rashi</a></h3> </center></div>        
-            </div>      
-            <div class="column2">
-               <div><center><h3><a href="zs8.html"><img class="one" src="Nakshatras/12/8.jpg"><br>Taurus / Vrisha Rashi</a></h3></center></div>
-                <div> <center><h3><a href="zs9.html"><img class="one" src="Nakshatras/12/9.jpg"><br>Sagittarius / Dhanu Rashi</a></h3></center></div>   
-                <div> <center><h3><a href="zs10.html"><img class="one" src="Nakshatras/12/10.jpg"><br>Capricorn / Makara Rashi</a></h3></center></div>
-                <div> <center><h3><a href="zs11.html"><img class="one" src="Nakshatras/12/11.jpg"><br>Aquarius / Kumbha Rashi</a></h3></center></div>
-                <div> <center><h3><a href="zs12.html"><img class="one" src="Nakshatras/12/12.jpg"><br>Pisces / Meena Rashi</a></h3></center></div>
-                <div><center><h3><a href="zs13.html"><img class="one"  src="123.png"><br>Nakshatra & Rashi</a></h3></center></div>
-                <div><center><h3><a href="zs14.html"><img class="one"  src="shanti.jpg"><br>Shanthi Nakshatra</a></h3></center> </div>
-                <div> <center><h3><a href="zs15.html"><img class="one"  src="yoga.jpg"><br>Yoga in Astrology</a></h3></center> </div>
-            </div>
+  <main class="wrap" role="main">
+    <header class="page-header">
+      <h1>Zodiac Signs (Rasis)</h1>
+      <p class="page-sub">Click a sign to learn its traits, strengths, and muhurtha notes.</p>
+    </header>
+
+    <!-- grid of zodiac cards -->
+    <section aria-label="Zodiac signs" class="grid-3" style="gap:18px;">
+      <!-- Aries -->
+      <article class="card" role="article" aria-labelledby="r-aries">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/1.jpg" alt="Aries symbol">
+        </figure>
+        <div>
+          <h4 id="r-aries"><a href="zs1.html">Aries — Mesha Rashi</a></h4>
+          <p class="muted small">Energetic, courageous, and initiatory — natural leaders.</p>
         </div>
-</div></div>
+      </article>
+
+      <!-- Taurus -->
+      <article class="card" role="article" aria-labelledby="r-taurus">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/2.jpg" alt="Taurus symbol">
+        </figure>
+        <div>
+          <h4 id="r-taurus"><a href="zs2.html">Taurus — Vrishabha Rashi</a></h4>
+          <p class="muted small">Steady, sensual, and practical — values comfort and security.</p>
+        </div>
+      </article>
+
+      <!-- Gemini -->
+      <article class="card" role="article" aria-labelledby="r-gemini">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/3.jpg" alt="Gemini symbol">
+        </figure>
+        <div>
+          <h4 id="r-gemini"><a href="zs3.html">Gemini — Mithuna Rashi</a></h4>
+          <p class="muted small">Curious, communicative, adaptable — quick thinkers.</p>
+        </div>
+      </article>
+
+      <!-- Cancer -->
+      <article class="card" role="article" aria-labelledby="r-cancer">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/4.jpg" alt="Cancer symbol">
+        </figure>
+        <div>
+          <h4 id="r-cancer"><a href="zs4.html">Cancer — Karka Rashi</a></h4>
+          <p class="muted small">Nurturing, sensitive, and protective — family oriented.</p>
+        </div>
+      </article>
+
+      <!-- Leo -->
+      <article class="card" role="article" aria-labelledby="r-leo">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/5.jpg" alt="Leo symbol">
+        </figure>
+        <div>
+          <h4 id="r-leo"><a href="zs5.html">Leo — Simha Rashi</a></h4>
+          <p class="muted small">Confident, generous, and dramatic — shines on stage of life.</p>
+        </div>
+      </article>
+
+      <!-- Virgo -->
+      <article class="card" role="article" aria-labelledby="r-virgo">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/6.jpg" alt="Virgo symbol">
+        </figure>
+        <div>
+          <h4 id="r-virgo"><a href="zs6.html">Virgo — Kanya Rashi</a></h4>
+          <p class="muted small">Analytical, service-oriented, precise — practical helpers.</p>
+        </div>
+      </article>
+
+      <!-- Libra -->
+      <article class="card" role="article" aria-labelledby="r-libra">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/7.jpg" alt="Libra symbol">
+        </figure>
+        <div>
+          <h4 id="r-libra"><a href="zs7.html">Libra — Tula Rashi</a></h4>
+          <p class="muted small">Balanced, relationship-focused, and aesthetic — seeks harmony.</p>
+        </div>
+      </article>
+
+      <!-- Scorpio -->
+      <article class="card" role="article" aria-labelledby="r-scorpio">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/8.jpg" alt="Scorpio symbol">
+        </figure>
+        <div>
+          <h4 id="r-scorpio"><a href="zs8.html">Scorpio — Vrishchika Rashi</a></h4>
+          <p class="muted small">Intense, transformative, and deep — masters of inner work.</p>
+        </div>
+      </article>
+
+      <!-- Sagittarius -->
+      <article class="card" role="article" aria-labelledby="r-sagittarius">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/9.jpg" alt="Sagittarius symbol">
+        </figure>
+        <div>
+          <h4 id="r-sagittarius"><a href="zs9.html">Sagittarius — Dhanu Rashi</a></h4>
+          <p class="muted small">Philosophical, adventurous, and freedom-loving.</p>
+        </div>
+      </article>
+
+      <!-- Capricorn -->
+      <article class="card" role="article" aria-labelledby="r-capricorn">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/10.jpg" alt="Capricorn symbol">
+        </figure>
+        <div>
+          <h4 id="r-capricorn"><a href="zs10.html">Capricorn — Makara Rashi</a></h4>
+          <p class="muted small">Ambitious, disciplined, and responsible — long-term builders.</p>
+        </div>
+      </article>
+
+      <!-- Aquarius -->
+      <article class="card" role="article" aria-labelledby="r-aquarius">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/11.jpg" alt="Aquarius symbol">
+        </figure>
+        <div>
+          <h4 id="r-aquarius"><a href="zs11.html">Aquarius — Kumbha Rashi</a></h4>
+          <p class="muted small">Innovative, humanitarian, and future-focused.</p>
+        </div>
+      </article>
+
+      <!-- Pisces -->
+      <article class="card" role="article" aria-labelledby="r-pisces">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="Nakshatras/12/12.jpg" alt="Pisces symbol">
+        </figure>
+        <div>
+          <h4 id="r-pisces"><a href="zs12.html">Pisces — Meena Rashi</a></h4>
+          <p class="muted small">Compassionate, imaginative, and spiritual — the dreamers.</p>
+        </div>
+      </article>
+
+      <!-- Extras: combined pages -->
+      <article class="card" role="article" aria-labelledby="r-nakshatra">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="123.png" alt="Nakshatra & Rashi">
+        </figure>
+        <div>
+          <h4 id="r-nakshatra"><a href="zs13.html">Nakshatra & Rashi</a></h4>
+          <p class="muted small">Combined guide to birth stars and rasi interactions.</p>
+        </div>
+      </article>
+
+      <article class="card" role="article" aria-labelledby="r-shanthi">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="shanti.jpg" alt="Shanthi Nakshatra">
+        </figure>
+        <div>
+          <h4 id="r-shanthi"><a href="zs14.html">Shanthi Nakshatra</a></h4>
+          <p class="muted small">Remedies and observances for peaceful results.</p>
+        </div>
+      </article>
+
+      <article class="card" role="article" aria-labelledby="r-yoga">
+        <figure class="z-card-figure" aria-hidden="true">
+          <img loading="lazy" src="yoga.jpg" alt="Yoga in Astrology">
+        </figure>
+        <div>
+          <h4 id="r-yoga"><a href="zs15.html">Yoga in Astrology</a></h4>
+          <p class="muted small">Important yogas and their practical meanings in charts.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- CTA -->
+    <section style="text-align:center; margin:26px 0;">
+      <a href="learn.html" class="btn-ghost" style="margin-right:10px;">Learn Planets</a>
+      <a href="blogs-page.html" class="btn-primary">Read Our Articles</a>
+    </section>
   </main>
 
   <!-- FOOTER -->
