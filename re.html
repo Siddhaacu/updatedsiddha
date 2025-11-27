@@ -270,6 +270,337 @@
         }
       });
     }
+<!-- ===== Muhurtha Calculator with timezone-aware fallback + auto-run on load ===== -->
+<section id="muhurtha-calculator" class="wrap" aria-labelledby="muhurtha-heading" style="margin-top:22px;">
+  <h2 id="muhurtha-heading" style="text-align:center">Muhurtha Calculator — Rāhu Kāla · Yāma Gaṇḍā · Durmuhurta · Varjya</h2>
+
+  <div class="card" style="max-width:980px;margin:12px auto;padding:14px;">
+    <p class="muted small">
+      Auto-detects sunrise & sunset for your location (permission requested). If permission is refused, the page falls back to an IP-based timezone/coords service and continues automatically.
+    </p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:end;justify-content:center;margin-top:10px;">
+      <label style="display:flex;flex-direction:column;gap:6px;">
+        Date
+        <input id="calcDate" type="date" value="">
+      </label>
+
+      <label style="display:flex;flex-direction:column;gap:6px;">
+        Sunrise (HH:MM)
+        <input id="sunrise" type="time" value="">
+      </label>
+
+      <label style="display:flex;flex-direction:column;gap:6px;">
+        Sunset (HH:MM)
+        <input id="sunset" type="time" value="">
+      </label>
+
+      <label style="display:flex;flex-direction:column;gap:6px;">
+        Region preset
+        <select id="regionPreset" aria-label="Choose regional rules">
+          <option value="default">Auto / Default (Common)</option>
+          <option value="telugu">Telugu</option>
+          <option value="tamil">Tamil</option>
+          <option value="kannada">Kannada</option>
+          <option value="malayalam">Malayalam</option>
+          <option value="hindi">Hindi / North India</option>
+          <option value="custom">Custom (advanced)</option>
+        </select>
+      </label>
+
+      <button id="geoBtn" class="btn-ghost" title="Attempt geolocation to fetch sunrise/sunset">Auto detect</button>
+      <button id="calcBtn" class="btn-primary" style="height:40px;">Calculate</button>
+      <button id="resetBtn" class="btn-ghost" style="height:40px;">Reset</button>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;align-items:center;justify-content:center">
+      <small class="muted">If auto-detect fails, enter sunrise/sunset manually and click Calculate.</small>
+    </div>
+
+    <hr style="margin:12px 0">
+
+    <!-- Optional custom overrides -->
+    <div id="customOverrides" style="display:none;margin-bottom:10px;">
+      <details>
+        <summary class="small">Custom mapping (advanced)</summary>
+        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <label class="small">Rāhu slots (Sun→Sat): <input id="customRahu" type="text" value="8,2,7,5,6,4,3" style="min-width:220px"/></label>
+          <label class="small">Yāma slots (Sun→Sat): <input id="customYama" type="text" value="7,5,6,4,3,2,1" style="min-width:220px"/></label>
+          <label class="small">Dur indices (e.g. -1,0,1): <input id="customDur" type="text" value="-1,0,1" style="min-width:140px"/></label>
+        </div>
+        <p class="muted small">Slots are 1..8 mapping the 8 equal daytime parts. Dur indices are muhurta offsets relative to sunrise muhurta.</p>
+      </details>
+    </div>
+
+    <div id="calcResults" aria-live="polite" style="margin-top:12px;">
+      <div class="small muted" style="text-align:center;">Loading... attempting auto-detect.</div>
+    </div>
+
+    <details style="margin-top:12px;">
+      <summary>Method notes</summary>
+      <div class="small" style="margin-top:8px;">
+        <p>Daytime is split into 8 equal parts. Rāhu Kāla and Yāma Gaṇḍā occupy whole 1/8th slots. Durmuhurta uses 48-minute muhurta windows; Varjya is shown as half-muhurta near sunrise/sunset. Regional presets alter mappings; use Custom to override exactly.</p>
+        <p>Sunrise/sunset data source: <code>https://api.sunrise-sunset.org</code> (formatted=0). Fallback lookup uses <code>https://ipapi.co/json/</code> when geolocation is denied.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script>
+/* ===================== Utility helpers ===================== */
+function parseTimeToMinutes(t) {
+  if (!t) return null;
+  const [hh, mm] = t.split(':').map(Number);
+  return hh*60 + mm;
+}
+function minutesToHHMM(m) {
+  m = Math.round(m);
+  m = (m + 24*60) % (24*60);
+  const hh = String(Math.floor(m/60)).padStart(2,'0');
+  const mm = String(m%60).padStart(2,'0');
+  return hh + ':' + mm;
+}
+function toLocalHHMMFromISO(isoStr) {
+  const d = new Date(isoStr);
+  const parts = d.toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit', hour12:false}).split(':');
+  return parts[0].padStart(2,'0') + ':' + parts[1].padStart(2,'0');
+}
+
+/* ===================== Presets & constants ===================== */
+const MUHURTA = 48;
+const HALF_MUHURTA = 24;
+
+const presetMappings = {
+  default: { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
+  telugu:  { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
+  tamil:   { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
+  kannada: { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
+  malayalam:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
+  hindi:   { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-2,-1,0] }
+};
+
+function computeSlotTimes(sunriseMin, sunsetMin, slotIndex) {
+  const dayDuration = sunsetMin - sunriseMin;
+  const slot = dayDuration / 8;
+  const start = sunriseMin + slot * (slotIndex - 1);
+  const end = start + slot;
+  return { start, end };
+}
+
+/* ===================== DOM refs ===================== */
+const geoBtn = document.getElementById('geoBtn');
+const calcBtn = document.getElementById('calcBtn');
+const resetBtn = document.getElementById('resetBtn');
+const dateInput = document.getElementById('calcDate');
+const sunriseInput = document.getElementById('sunrise');
+const sunsetInput = document.getElementById('sunset');
+const regionSel = document.getElementById('regionPreset');
+const customBlock = document.getElementById('customOverrides');
+const customRahu = document.getElementById('customRahu');
+const customYama = document.getElementById('customYama');
+const customDur = document.getElementById('customDur');
+const resultsEl = document.getElementById('calcResults');
+
+/* Initialize date */
+dateInput.value = new Date().toISOString().slice(0,10);
+
+/* Show/hide custom overrides */
+regionSel.addEventListener('change', () => {
+  customBlock.style.display = regionSel.value === 'custom' ? 'block' : 'none';
+});
+
+/* ====== Geolocation + fallback via ipapi.co ====== */
+async function fetchSunriseSunsetByCoords(lat, lng, date) {
+  try {
+    const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=${date}&formatted=0`;
+    const r = await fetch(url);
+    const j = await r.json();
+    if (j.status !== 'OK') throw new Error('sunrise-sunset API error');
+    const sr = toLocalHHMMFromISO(j.results.sunrise);
+    const ss = toLocalHHMMFromISO(j.results.sunset);
+    return { sunrise: sr, sunset: ss };
+  } catch (err) {
+    console.error('Sunrise API failed:', err);
+    return null;
+  }
+}
+
+async function tryAutoDetectAndFill(autoRun=true) {
+  resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Attempting to auto-detect location & sunrise/sunset…</div>';
+  const date = dateInput.value || new Date().toISOString().slice(0,10);
+
+  // 1) Try browser geolocation first (preferred)
+  if (navigator.geolocation) {
+    try {
+      const pos = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
+      });
+      const lat = pos.coords.latitude;
+      const lon = pos.coords.longitude;
+      const got = await fetchSunriseSunsetByCoords(lat, lon, date);
+      if (got) {
+        sunriseInput.value = got.sunrise;
+        sunsetInput.value  = got.sunset;
+        resultsEl.innerHTML = `<div class="small muted" style="text-align:center">Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (from your device location).</div>`;
+        if (autoRun) computeAndRender();
+        return;
+      }
+    } catch (err) {
+      // geolocation failed / permission denied — fall through to IP fallback
+      console.warn('Geolocation failed or denied:', err);
+    }
+  }
+
+  // 2) IP-based fallback (approximate location) using ipapi.co
+  try {
+    resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Geolocation denied — using IP-based fallback (approximate).</div>';
+    const resp = await fetch('https://ipapi.co/json/');
+    const data = await resp.json();
+    if (!data || !data.latitude || !data.longitude) throw new Error('ipapi did not return coords');
+    const got = await fetchSunriseSunsetByCoords(data.latitude, data.longitude, date);
+    if (got) {
+      sunriseInput.value = got.sunrise;
+      sunsetInput.value  = got.sunset;
+      resultsEl.innerHTML = `<div class="small muted" style="text-align:center">Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (from IP-based location: ${data.city || data.region || data.country_name}).</div>`;
+      if (autoRun) computeAndRender();
+      return;
+    } else {
+      resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Failed to fetch sunrise/sunset via IP fallback — please enter times manually.</div>';
+    }
+  } catch (err) {
+    console.warn('IP fallback failed:', err);
+    resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Auto-detect failed — please enter sunrise & sunset manually and click Calculate.</div>';
+  }
+}
+
+/* Hook auto-detect button */
+geoBtn.addEventListener('click', () => tryAutoDetectAndFill(true));
+
+/* Reset */
+resetBtn.addEventListener('click', () => {
+  dateInput.value = new Date().toISOString().slice(0,10);
+  sunriseInput.value = '';
+  sunsetInput.value = '';
+  regionSel.value = 'default';
+  customBlock.style.display = 'none';
+  resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Reset. Use Auto detect or enter times manually then click Calculate.</div>';
+});
+
+/* Main computing & render routine */
+function computeAndRender() {
+  resultsEl.innerHTML = '';
+  const sunriseVal = sunriseInput.value;
+  const sunsetVal = sunsetInput.value;
+  const dateVal = dateInput.value || new Date().toISOString().slice(0,10);
+
+  if (!sunriseVal || !sunsetVal) {
+    resultsEl.innerHTML = '<div class="small muted">Please provide sunrise and sunset times (or use Auto detect) and click Calculate.</div>';
+    return;
+  }
+
+  const sunriseMin = parseTimeToMinutes(sunriseVal);
+  const sunsetMin = parseTimeToMinutes(sunsetVal);
+  if (sunsetMin <= sunriseMin) {
+    resultsEl.innerHTML = '<div class="small muted">Sunset must be later than sunrise. Adjust times.</div>';
+    return;
+  }
+
+  // mapping selection (with custom override support)
+  let mapping = presetMappings[regionSel.value] || presetMappings.default;
+  if (regionSel.value === 'custom') {
+    const rahuArr = customRahu.value.split(',').map(s => Number(s.trim()));
+    const yamaArr = customYama.value.split(',').map(s => Number(s.trim()));
+    const durArr  = customDur.value.split(',').map(s => Number(s.trim()));
+    if (rahuArr.length === 7 && yamaArr.length === 7) {
+      mapping = { rahu: rahuArr, yama: yamaArr, durIndices: durArr.length?durArr:[-1,0,1] };
+    } else {
+      mapping = presetMappings.default;
+      alert('Custom arrays must contain 7 numbers (Sun→Sat). Using defaults.');
+    }
+  }
+
+  // weekday for selected date
+  const wd = new Date(dateVal + 'T00:00').getDay();
+
+  const rahuSlot = mapping.rahu[wd];
+  const yamaSlot = mapping.yama[wd];
+
+  const rSlot = computeSlotTimes(sunriseMin, sunsetMin, rahuSlot);
+  const ySlot = computeSlotTimes(sunriseMin, sunsetMin, yamaSlot);
+
+  // prepare muhurta windows around sunrise (48 min blocks)
+  const baseStart = sunriseMin - 8 * MUHURTA;
+  const muList = [];
+  for (let i=0;i<40;i++){
+    const s = baseStart + i*MUHURTA;
+    muList.push({ idx: i-8, start: s, end: s + MUHURTA });
+  }
+  const durBlocks = muList.filter(w => mapping.durIndices.includes(w.idx)).map(w => ({start:w.start, end:w.end}));
+
+  const varBefore = { start: sunriseMin - HALF_MUHURTA, end: sunriseMin };
+  const varAfter  = { start: sunsetMin, end: sunsetMin + HALF_MUHURTA };
+
+  // render
+  const weekdayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const out = document.createElement('div');
+  out.innerHTML = `
+    <h3 style="margin-top:6px">Results — ${dateVal} — ${weekdayNames[wd]}</h3>
+    <table style="width:100%;border-collapse:collapse;margin-top:8px">
+      <tr><td style="width:170px"><strong>Sunrise</strong></td><td>${sunriseVal}</td></tr>
+      <tr><td><strong>Sunset</strong></td><td>${sunsetVal}</td></tr>
+      <tr><td><strong>Daytime (mins)</strong></td><td>${sunsetMin - sunriseMin} minutes</td></tr>
+      <tr><td><strong>One 1/8th slot</strong></td><td>${((sunsetMin - sunriseMin)/8).toFixed(1)} minutes</td></tr>
+    </table>
+
+    <hr style="margin:12px 0">
+
+    <h4>Rāhu Kāla</h4>
+    <p class="small">Slot #${rahuSlot} (1/8th): <strong>${minutesToHHMM(rSlot.start)} — ${minutesToHHMM(rSlot.end)}</strong></p>
+
+    <h4>Yāma Gaṇḍā</h4>
+    <p class="small">Slot #${yamaSlot} (1/8th): <strong>${minutesToHHMM(ySlot.start)} — ${minutesToHHMM(ySlot.end)}</strong></p>
+
+    <h4>Durmuhurta — example caution windows (48 min)</h4>
+    <p class="small">Displayed muhurta windows are shown around sunrise (preset: ${regionSel.value}). Validate with a local panchānga for ritual precision:</p>
+    <ul class="small">${durBlocks.map(b => `<li>${minutesToHHMM(b.start)} — ${minutesToHHMM(b.end)}</li>`).join('')}</ul>
+
+    <h4>Varjyam (examples)</h4>
+    <ul class="small">
+      <li>Before sunrise: ${minutesToHHMM(varBefore.start)} — ${minutesToHHMM(varBefore.end)}</li>
+      <li>After sunset: ${minutesToHHMM(varAfter.start)} — ${minutesToHHMM(varAfter.end)}</li>
+    </ul>
+
+    <p class="small muted">Preset: <strong>${regionSel.value}</strong>. Use Custom to override mappings.</p>
+
+    <p style="margin-top:8px;">
+      <button id="copyResults" class="btn-ghost">Copy results</button>
+      <a class="btn-primary" href="services-page.html" style="margin-left:8px">Book Muhurtha</a>
+    </p>
+  `;
+  resultsEl.appendChild(out);
+
+  document.getElementById('copyResults').addEventListener('click', () => {
+    const txt = `Date: ${dateVal}
+Sunrise: ${sunriseVal}
+Sunset: ${sunsetVal}
+Rahu Kala (slot ${rahuSlot}): ${minutesToHHMM(rSlot.start)} - ${minutesToHHMM(rSlot.end)}
+Yama Ganda (slot ${yamaSlot}): ${minutesToHHMM(ySlot.start)} - ${minutesToHHMM(ySlot.end)}
+Durmuhurta examples: ${durBlocks.map(b => minutesToHHMM(b.start)+'-'+minutesToHHMM(b.end)).join(', ')}
+Varjyam examples: ${minutesToHHMM(varBefore.start)}-${minutesToHHMM(varBefore.end)}, ${minutesToHHMM(varAfter.start)}-${minutesToHHMM(varAfter.end)}
+(Preset: ${regionSel.value})`;
+    navigator.clipboard?.writeText(txt).then(()=> alert('Copied results')).catch(()=> prompt('Copy results', txt));
+  });
+}
+
+/* Hook Calculate button */
+calcBtn.addEventListener('click', computeAndRender);
+
+/* Auto-run on load: try geolocation → IP fallback → else show UI */
+window.addEventListener('load', () => {
+  // try auto-detect; if successful this auto-runs compute; otherwise user can enter manually
+  tryAutoDetectAndFill(true);
+});
+</script>
 
     // Hook activity buttons
     document.querySelectorAll('.controls .activity-btn').forEach(btn => {
