@@ -3,199 +3,319 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Panchanga — Vara, Tithi, Masa, Samvatsara | Siddha Saraswatha</title>
+  <title>Panchanga — Interactive Tithi Guide | Siddha Saraswatha</title>
 
   <link rel="shortcut icon" type="image/png" href="12.png">
-
-  <!-- site CSS -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- small page-specific styles -->
   <style>
-    /* page layout tweaks */
-    .wrap { max-width:1100px; margin:18px auto; padding:0 18px; }
-    .page-header { text-align:center; margin-bottom:12px; }
-    .page-sub { color:var(--muted); margin-top:6px; font-size:0.95rem; }
+    /* small page tweaks & table visuals */
+    .wrap{max-width:1100px;margin:18px auto;padding:0 18px}
+    .page-header{text-align:center;margin-bottom:12px}
+    .muted{color:var(--muted)}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+    .activity-btn{padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;background:#fff}
+    .activity-btn.active{box-shadow:0 6px 18px rgba(192,107,0,0.12);background:linear-gradient(90deg,#ffd37b,#ffb84d);color:#221403;border-color:transparent}
+    .legend{display:flex;gap:10px;justify-content:center;margin-top:8px}
+    .legend .item{display:flex;gap:6px;align-items:center;font-size:.95rem}
+    .badge{width:12px;height:12px;border-radius:3px;display:inline-block}
+    .rec{background:#DFF5E0;border:1px solid #B6E6B4} /* recommended */
+    .caut{background:#FFF3D9;border:1px solid #FFD59A} /* caution */
+    .avoid{background:#FDE7E7;border:1px solid #F5B5B5} /* avoid */
 
-    /* two column content on wider screens */
-    .two-col { display:grid; grid-template-columns:1fr 380px; gap:24px; align-items:start; }
-    @media(max-width:980px){ .two-col{ grid-template-columns:1fr; } }
+    /* table */
+    .tithi-table{width:100%;border-collapse:collapse;margin-top:12px}
+    .tithi-table th,.tithi-table td{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,0.04);text-align:left}
+    .tithi-table tr.highlight-recommended{background:rgba(35,177,85,0.06)}
+    .tithi-table tr.highlight-caution{background:rgba(255,184,77,0.06)}
+    .tithi-table tr.highlight-avoid{background:rgba(220,60,60,0.04)}
+    .tithi-table a.anchor-link{font-weight:700;color:var(--accent);text-decoration:none}
 
-    /* compact text block */
-    .text-block { background:var(--card); padding:16px; border-radius:12px; box-shadow:0 8px 30px rgba(2,6,23,0.04); line-height:1.6; color:#222; }
+    /* responsive */
+    @media(max-width:720px){
+      .controls{flex-direction:column;align-items:center}
+      .tithi-table th:nth-child(2), .tithi-table td:nth-child(2) { display:none } /* hide long desc on tiny screens */
+    }
 
-    /* details summary style */
-    details { margin:12px 0; border-left:3px solid rgba(192,107,0,0.12); padding:8px 12px; border-radius:6px; background:rgba(255,248,236,0.6); }
-    summary { cursor:pointer; font-weight:700; outline:none; }
-    details[open] { background: #fff; }
-
-    /* grid for small icon links (re-usable) */
-    .nav-grid { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
-    .nav-grid a { text-decoration:none; padding:8px 12px; border-radius:10px; border:1px solid rgba(0,0,0,0.04); background:var(--card); color:inherit; }
-
-    /* small helpers */
-    .small { font-size:.95rem; color:var(--muted); }
-    .muted { color:var(--muted); }
+    /* when deep-linking to a section, give a short highlight */
+    .deep-target { box-shadow:0 6px 28px rgba(192,107,0,0.14); border-radius:8px; padding:8px; }
   </style>
-
-  <!-- include loader for header/footer fragments -->
-  <script src="include.js" defer></script>
 </head>
 <body>
 
-  <!-- HEADER (fragment) -->
+  <!-- header fragment -->
   <div include-html="header.html"></div>
 
   <main class="wrap" id="main" role="main">
-
     <header class="page-header">
-      <h1>Panchanga — Vara, Tithi, Masa, Samvatsara</h1>
-      <p class="page-sub">Quick reference for weekdays (Vara), lunar tithis, months (Masa), and the 60-year cycle used in traditional Hindu calendars.</p>
+      <h1>Panchānga — Interactive Tithi Guide</h1>
+      <p class="muted">Click an activity to highlight recommended / caution / avoid tithis. Use anchor links to deep-link specific tithis or sections.</p>
     </header>
 
-    <!-- small quick-nav -->
-    <section style="text-align:center; margin-bottom:14px;">
-      <div class="nav-grid">
-        <a href="learn.html">Planets / Graha</a>
-        <a href="zs.html">Zodiac / Rasi</a>
-        <a href="bs.html">Nakshatra</a>
-        <a href="re.html">Smaya</a>
-        <a href="tb.html">Tarabalam</a>
-        <a href="re-1.html">Remedies</a>
-      </div>
+    <!-- quick anchors -->
+    <nav style="text-align:center;margin-bottom:12px" aria-label="Quick links">
+      <a class="activity-btn" href="#vara">Vara</a>
+      <a class="activity-btn" href="#tithis">Tithis</a>
+      <a class="activity-btn" href="#months">Months</a>
+      <a class="activity-btn" href="#sixty">60-year cycle</a>
+    </nav>
+
+    <!-- activity controls -->
+    <div class="controls" role="toolbar" aria-label="Choose activity">
+      <button class="activity-btn" data-activity="all" aria-pressed="true">Show All</button>
+      <button class="activity-btn" data-activity="wedding">Wedding</button>
+      <button class="activity-btn" data-activity="housewarming">Housewarming</button>
+      <button class="activity-btn" data-activity="travel">Travel</button>
+    </div>
+
+    <div class="legend" aria-hidden="false">
+      <div class="item"><span class="badge rec"></span> Recommended</div>
+      <div class="item"><span class="badge caut"></span> Caution</div>
+      <div class="item"><span class="badge avoid"></span> Avoid</div>
+    </div>
+
+    <!-- Tithis section (anchor) -->
+    <section id="tithis" style="margin-top:18px;">
+      <h2>Tithis — quick interactive table</h2>
+      <p class="muted">Click an activity above to highlight which tithis are recommended, cautionary or to be avoided for that activity.</p>
+
+      <table class="tithi-table" role="table" aria-label="Tithi recommendations">
+        <thead>
+          <tr>
+            <th style="width:160px">Tithi</th>
+            <th class="muted">Short description</th>
+            <th style="width:120px">Wedding</th>
+            <th style="width:160px">Housewarming</th>
+            <th style="width:120px">Travel</th>
+          </tr>
+        </thead>
+        <tbody id="tithiBody">
+          <!-- Note: status values = rec / caut / avoid -->
+          <tr id="tithi-pratipada" data-tithi="pratipada">
+            <td><a class="anchor-link" href="#tithi-pratipada">Pratipada</a></td>
+            <td class="muted">Auspicious for beginnings and ceremonies.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="rec">Recommended</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-dwitiya" data-tithi="dwitiya">
+            <td><a class="anchor-link" href="#tithi-dwitiya">Dwitiya</a></td>
+            <td class="muted">Good for laying foundations and starting work.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="rec">Recommended</td>
+            <td data-travel="caut">Caution</td>
+          </tr>
+
+          <tr id="tithi-tritiya" data-tithi="tritiya">
+            <td><a class="anchor-link" href="#tithi-tritiya">Tritiya</a></td>
+            <td class="muted">Victory & auspicious starts.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="caut">Caution</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-chaturthi" data-tithi="chaturthi">
+            <td><a class="anchor-link" href="#tithi-chaturthi">Chaturthi</a></td>
+            <td class="muted">Often Rikta — avoid major new beginnings.</td>
+            <td data-wedding="avoid">Avoid</td>
+            <td data-housewarming="avoid">Avoid</td>
+            <td data-travel="caut">Caution</td>
+          </tr>
+
+          <tr id="tithi-panchami" data-tithi="panchami">
+            <td><a class="anchor-link" href="#tithi-panchami">Panchami</a></td>
+            <td class="muted">Favourable for healing; completing tasks.</td>
+            <td data-wedding="caut">Caution</td>
+            <td data-housewarming="rec">Recommended</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-shasthi" data-tithi="shasthi">
+            <td><a class="anchor-link" href="#tithi-shasthi">Shasthi</a></td>
+            <td class="muted">Good for construction, coronation; not ideal for marriage.</td>
+            <td data-wedding="avoid">Avoid</td>
+            <td data-housewarming="rec">Recommended</td>
+            <td data-travel="caut">Caution</td>
+          </tr>
+
+          <tr id="tithi-saptami" data-tithi="saptami">
+            <td><a class="anchor-link" href="#tithi-saptami">Saptami</a></td>
+            <td class="muted">Good for journeys and beginnings of transport-related activities.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="caut">Caution</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-ashtami" data-tithi="ashtami">
+            <td><a class="anchor-link" href="#tithi-ashtami">Ashtami</a></td>
+            <td class="muted">Often good for competitive/martial activities and sports.</td>
+            <td data-wedding="caut">Caution</td>
+            <td data-housewarming="avoid">Avoid</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-navami" data-tithi="navami">
+            <td><a class="anchor-link" href="#tithi-navami">Navami</a></td>
+            <td class="muted">Rikta; generally not for auspicious starts.</td>
+            <td data-wedding="avoid">Avoid</td>
+            <td data-housewarming="avoid">Avoid</td>
+            <td data-travel="caut">Caution</td>
+          </tr>
+
+          <tr id="tithi-dasami" data-tithi="dasami">
+            <td><a class="anchor-link" href="#tithi-dasami">Dasami</a></td>
+            <td class="muted">Good for completion and virtuous acts.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="rec">Recommended</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-ekadasi" data-tithi="ekadasi">
+            <td><a class="anchor-link" href="#tithi-ekadasi">Ekadasi</a></td>
+            <td class="muted">Fasting, worship, vows — spiritual focus.</td>
+            <td data-wedding="caut">Caution</td>
+            <td data-housewarming="caut">Caution</td>
+            <td data-travel="avoid">Avoid</td>
+          </tr>
+
+          <tr id="tithi-dwadasi" data-tithi="dwadasi">
+            <td><a class="anchor-link" href="#tithi-dwadasi">Dwadasi</a></td>
+            <td class="muted">Auspicious for certain rituals and duties.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="rec">Recommended</td>
+            <td data-travel="caut">Caution</td>
+          </tr>
+
+          <tr id="tithi-trayodasi" data-tithi="trayodasi">
+            <td><a class="anchor-link" href="#tithi-trayodasi">Trayodasi</a></td>
+            <td class="muted">Pradosha — auspicious for Shiva worship and many ceremonies.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="caut">Caution</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-chaturdasi" data-tithi="chaturdasi">
+            <td><a class="anchor-link" href="#tithi-chaturdasi">Chaturdasi</a></td>
+            <td class="muted">Rikta — not ideal for major beginnings.</td>
+            <td data-wedding="avoid">Avoid</td>
+            <td data-housewarming="avoid">Avoid</td>
+            <td data-travel="caut">Caution</td>
+          </tr>
+
+          <tr id="tithi-purnima" data-tithi="purnima">
+            <td><a class="anchor-link" href="#tithi-purnima">Purnima (Full Moon)</a></td>
+            <td class="muted">Usually auspicious for many ceremonies and completions.</td>
+            <td data-wedding="rec">Recommended</td>
+            <td data-housewarming="rec">Recommended</td>
+            <td data-travel="rec">Recommended</td>
+          </tr>
+
+          <tr id="tithi-amavasya" data-tithi="amavasya">
+            <td><a class="anchor-link" href="#tithi-amavasya">Amavasya (New Moon)</a></td>
+            <td class="muted">Often reserved for ancestral rites; certain ceremonies may be held; treat case-by-case.</td>
+            <td data-wedding="avoid">Avoid</td>
+            <td data-housewarming="caut">Caution</td>
+            <td data-travel="caut">Caution</td>
+          </tr>
+
+        </tbody>
+      </table>
     </section>
 
-    <div class="two-col">
-
-      <!-- left: main content -->
-      <section class="text-block" aria-labelledby="vara-heading">
-        <h2 id="vara-heading">Vara (Weekdays)</h2>
-
-        <p class="small">
-          In the Hindu Panchanga a day runs from sunrise to the next sunrise (not midnight to midnight). Below are short notes on each vara and traditional guidance on activities.
-        </p>
-
-        <details>
-          <summary>Sunday — Adivaram (Sun / Aditya)</summary>
-          <p>Ruled by Surya. Day of vitality, leadership, integrity. Good for activities connected to nature, fire, coronation, gold, and public life. Avoid arrogance and impatience.</p>
-        </details>
-
-        <details>
-          <summary>Monday — Somavaram (Moon / Chandra)</summary>
-          <p>Ruled by Chandra. Day of intuition, creativity, and mother-related matters. Good for weddings, buying clothes, and nurturing tasks. Avoid rigidity and cosmetic procedures.</p>
-        </details>
-
-        <details>
-          <summary>Tuesday — Mangalavaram (Mars / Mangal)</summary>
-          <p>Ruled by Mangal. Practical day for material work, metallurgy, medicine, and physical tasks. Avoid starting delicate ventures or unnecessary travel; be cautious of injuries.</p>
-        </details>
-
-        <details>
-          <summary>Wednesday — Budhavaram (Mercury / Budha)</summary>
-          <p>Ruled by Budha. Great for communication, trade, learning, media, publishing and starting refined projects. Avoid deceit and gambling on this day.</p>
-        </details>
-
-        <details>
-          <summary>Thursday — Guruvaram (Jupiter / Brihaspati)</summary>
-          <p>Ruled by Brihaspati. Very auspicious for learning, charity, marriage, financial decisions, and spiritual practice. Meet teachers and elders on this day where possible.</p>
-        </details>
-
-        <details>
-          <summary>Friday — Shukravaram (Venus / Shukra)</summary>
-          <p>Ruled by Shukra. Suited for love, arts, beauty, luxury purchases, and social gatherings. Avoid solitary or secretive transactions.</p>
-        </details>
-
-        <details>
-          <summary>Saturday — Shanivaram (Saturn / Shani)</summary>
-          <p>Ruled by Shani. A day for rest, discipline, charity and long-term planning. Avoid starting risky ventures; focus on recovery and practical work.</p>
-        </details>
-
-        <!-- Tithis -->
-        <h2 style="margin-top:18px;">Tithis (Lunar Days)</h2>
-        <p class="small">There are 15 tithis in each waxing and waning phase (total 30 distinct tithi names). Each tithi has traditional qualities and suitability for particular activities.</p>
-
-        <details>
-          <summary>Short Tithi guide (Pratipada → Purnima / Amavasya)</summary>
-          <div style="margin-top:8px;">
-            <p><strong>1. Pratipada</strong> — auspicious for beginnings and ceremonies.</p>
-            <p><strong>2. Dwitiya</strong> — good for starting tasks and laying foundations.</p>
-            <p><strong>3. Tritiya</strong> — victory, suitable for important starts and rituals.</p>
-            <p><strong>4. Chaturthi</strong> — traditionally Rikta; suitable for removal of obstacles, not for major starts.</p>
-            <p><strong>5. Panchami</strong> — healing, completing tasks, auspicious works.</p>
-            <p><strong>6. Shasthi</strong> — favorable for coronation, construction, jewelry work.</p>
-            <p><strong>7. Saptami</strong> — good for journeys, events, and decoration.</p>
-            <p><strong>8. Ashtami</strong> — martial/competitive activities and important undertakings.</p>
-            <p><strong>9. Navami</strong> — Rikta; used historically for competitive or forceful tasks.</p>
-            <p><strong>10. Dashami</strong> — completion and virtuous acts; good for ceremonies and journeys.</p>
-            <p><strong>11. Ekadasi</strong> — fasting, worship, festivals and vows.</p>
-            <p><strong>12. Dvadasi</strong> — auspicious for rituals and duty; avoid some journeys and baths in certain traditions.</p>
-            <p><strong>13. Trayodasi</strong> — auspicious for Shiva worship (Pradosha) and many ceremonies.</p>
-            <p><strong>14. Chaturdasi</strong> — Rikta; generally used for routine works and avoiding new ventures.</p>
-            <p><strong>15. Purnima / Amavasya</strong> — Full / New Moon days: Purnima is auspicious for beginnings & completion; Amavasya is often reserved for rites, ancestral ceremonies and introspective work.</p>
-          </div>
-        </details>
-
-        <!-- Months -->
-        <h2 style="margin-top:18px;">Masa (Months) & Seasons</h2>
-        <p class="small">Two month-count systems are used in India: <strong>Amanta</strong> (month begins after new moon — common in the south) and <strong>Purnimanta</strong> (month begins after full moon — common in the north). Festivals align across systems.</p>
-
-        <details>
-          <summary>Seasons & month examples</summary>
-          <p style="margin-top:8px;">Six seasons (Rtu) and twelve months such as: Chaitra (Vasanta), Vaisakha (Vasanta), Jyeshta (Grishma), Ashadha (Grishma), Shravan (Varsha), Bhadrapada (Varsha), Ashwija/Kartika (Sharada), Margashira/Pushya (Hemanta), Magha/Phalguna (Shishira), etc.</p>
-        </details>
-
-        <!-- Adhika / Kshaya -->
-        <details>
-          <summary>Adhika Masam (Extra month) & Kshaya Masam (Lost month)</summary>
-          <div style="margin-top:8px;">
-            <p><strong>Adhika Masam:</strong> An extra lunar month added occasionally (7 times in 19 years) to sync lunar months with the solar year.</p>
-            <p><strong>Kshaya Masam:</strong> Rare; occurs when the sun transits two rashis inside a single lunar month — the month is labeled by both transits (a 'lost' month).</p>
-          </div>
-        </details>
-
-        <!-- Sixty-year cycle -->
-        <h2 style="margin-top:18px;">Sixty-year Cycle (Samvatsara)</h2>
-        <details>
-          <summary>Names of the 60 years (short)</summary>
-          <div style="margin-top:8px;">
-            <p class="small">The sixty names are used in traditional calendars (e.g., Prabhava, Vibhava, Shukla, Pramodyuta, … Akshaya). These cycle every 60 years and are used to reference years in many regional calendars (Ugadi, etc.).</p>
-            <p>If you want the full 60-name list in the language of your choice (English/Telugu), let me know and I’ll add a printable table.</p>
-          </div>
-        </details>
-
-      </section>
-
-      <!-- right: supplementary / quick reference -->
-      <aside>
-        <section class="card text-block" aria-label="quick tips">
-          <h3>Quick Tips</h3>
-          <ul class="small">
-            <li><strong>Vara selection</strong> — prefer days that match the nature of the activity (e.g., Guruvaram for learning, Shukravaram for arts).</li>
-            <li><strong>Tithi caution</strong> — avoid Rikta tithis for starting major, long-term projects.</li>
-            <li><strong>Adhika months</strong> — acts during adhika masa are performed with traditional adjustments; consult a priest or astrologer for rituals.</li>
-          </ul>
-          <hr style="margin:12px 0;">
-          <h4>Want a printable cheat-sheet?</h4>
-          <p class="small">I can generate a printable PDF of Vara/Tithi quick rules you can save or share.</p>
-          <p style="text-align:center; margin-top:8px;">
-            <a class="btn-ghost" href="blogs-page.html">Read articles</a>
-            <a class="btn-primary" href="services-page.html" style="margin-left:8px">Book Consultation</a>
-          </p>
-        </section>
-      </aside>
-    </div> <!-- .two-col -->
-
-    <!-- bottom CTA -->
-    <section style="text-align:center; margin:22px 0;">
-      <a href="learn.html" class="btn-ghost" style="margin-right:10px">Learn Planets</a>
-      <a href="zs.html" class="btn-ghost" style="margin-right:10px">Rasi & Nakshatra</a>
-      <a href="services-page.html" class="btn-primary">Book a Muhurtha Consultation</a>
+    <!-- small note + anchor examples -->
+    <section id="anchors" style="margin-top:18px;">
+      <p class="muted">You can deep-link to any Tithi by its id; for example:</p>
+      <p>
+        <code>panchanga.html#tithi-pratipada</code> — scrolls to Pratipada.  
+        <code>panchanga.html#tithi-purnima</code> — jumps to Full Moon entry.
+      </p>
     </section>
 
+    <!-- CTA -->
+    <section style="text-align:center;margin:20px 0;">
+      <a class="activity-btn" href="services-page.html">Book a Muhurtha Consultation</a>
+      <a class="activity-btn" href="learn.html" style="margin-left:8px">Learn Planets & Nakshatra</a>
+    </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- footer fragment -->
   <div include-html="footer.html"></div>
 
+  <script>
+    // Mapping class names for highlight
+    const statusClass = { rec: 'highlight-recommended', caut: 'highlight-caution', avoid: 'highlight-avoid' };
+
+    // Helper: set active button style
+    function setActiveButton(btn) {
+      document.querySelectorAll('.activity-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+
+    // Highlight rows based on activity (wedding / housewarming / travel)
+    function highlightFor(activity) {
+      // remove all highlight classes first
+      document.querySelectorAll('#tithiBody tr').forEach(tr => {
+        tr.classList.remove(...Object.values(statusClass));
+      });
+
+      if (!activity || activity === 'all') return; // nothing to highlight
+
+      document.querySelectorAll('#tithiBody tr').forEach(tr => {
+        const cell = tr.querySelector('[data-' + activity + ']');
+        if (!cell) return;
+        const stat = cell.getAttribute('data-' + activity);
+        if (stat && statusClass[stat]) {
+          tr.classList.add(statusClass[stat]);
+        }
+      });
+    }
+
+    // Hook activity buttons
+    document.querySelectorAll('.controls .activity-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const activity = btn.dataset.activity || 'all';
+        // UI active
+        setActiveButton(btn);
+        // Highlight
+        highlightFor(activity);
+        // set aria-pressed
+        document.querySelectorAll('.controls .activity-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+
+    // On page load: apply deep-link behavior & open <details> if target is a tithi
+    function openAndScrollToHash() {
+      const id = location.hash && location.hash.slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (el) {
+        // if inside a details element, open it
+        const detailsParent = el.closest('details');
+        if (detailsParent) detailsParent.open = true;
+        // add temporary highlight
+        el.classList.add('deep-target');
+        // scroll into view with offset
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 80);
+        // remove highlight after 2.6s
+        setTimeout(() => el.classList.remove('deep-target'), 2600);
+      }
+    }
+
+    // If page loaded with hash — scroll to it
+    window.addEventListener('load', () => {
+      // default active = 'all'
+      const defaultBtn = document.querySelector('.controls .activity-btn[data-activity="all"]');
+      setActiveButton(defaultBtn);
+      // apply deep link if present
+      openAndScrollToHash();
+    });
+
+    // also handle hashchange during session
+    window.addEventListener('hashchange', openAndScrollToHash);
+  </script>
 </body>
 </html>
