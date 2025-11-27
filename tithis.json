@@ -1,0 +1,130 @@
+[
+  {
+    "id": "tithi-pratipada",
+    "name": "Pratipada",
+    "desc": "Auspicious for beginnings and ceremonies.",
+    "wedding": "rec",
+    "housewarming": "rec",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-dwitiya",
+    "name": "Dwitiya",
+    "desc": "Good for laying foundations and starting work.",
+    "wedding": "rec",
+    "housewarming": "rec",
+    "travel": "caut"
+  },
+  {
+    "id": "tithi-tritiya",
+    "name": "Tritiya",
+    "desc": "Victory & auspicious starts.",
+    "wedding": "rec",
+    "housewarming": "caut",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-chaturthi",
+    "name": "Chaturthi",
+    "desc": "Often Rikta — avoid major new beginnings.",
+    "wedding": "avoid",
+    "housewarming": "avoid",
+    "travel": "caut"
+  },
+  {
+    "id": "tithi-panchami",
+    "name": "Panchami",
+    "desc": "Favourable for healing; completing tasks.",
+    "wedding": "caut",
+    "housewarming": "rec",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-shasthi",
+    "name": "Shasthi",
+    "desc": "Good for construction and coronation; not ideal for marriage.",
+    "wedding": "avoid",
+    "housewarming": "rec",
+    "travel": "caut"
+  },
+  {
+    "id": "tithi-saptami",
+    "name": "Saptami",
+    "desc": "Good for journeys and transport-related starts.",
+    "wedding": "rec",
+    "housewarming": "caut",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-ashtami",
+    "name": "Ashtami",
+    "desc": "Often good for competitive/martial activities and sports.",
+    "wedding": "caut",
+    "housewarming": "avoid",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-navami",
+    "name": "Navami",
+    "desc": "Rikta; generally not for auspicious starts.",
+    "wedding": "avoid",
+    "housewarming": "avoid",
+    "travel": "caut"
+  },
+  {
+    "id": "tithi-dasami",
+    "name": "Dasami",
+    "desc": "Good for completion and virtuous acts.",
+    "wedding": "rec",
+    "housewarming": "rec",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-ekadasi",
+    "name": "Ekadasi",
+    "desc": "Fasting, worship, vows — spiritual focus.",
+    "wedding": "caut",
+    "housewarming": "caut",
+    "travel": "avoid"
+  },
+  {
+    "id": "tithi-dwadasi",
+    "name": "Dwadasi",
+    "desc": "Auspicious for certain rituals and duties.",
+    "wedding": "rec",
+    "housewarming": "rec",
+    "travel": "caut"
+  },
+  {
+    "id": "tithi-trayodasi",
+    "name": "Trayodasi",
+    "desc": "Pradosha — auspicious for Shiva worship and many ceremonies.",
+    "wedding": "rec",
+    "housewarming": "caut",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-chaturdasi",
+    "name": "Chaturdasi",
+    "desc": "Rikta — not ideal for major beginnings.",
+    "wedding": "avoid",
+    "housewarming": "avoid",
+    "travel": "caut"
+  },
+  {
+    "id": "tithi-purnima",
+    "name": "Purnima (Full Moon)",
+    "desc": "Usually auspicious for many ceremonies and completions.",
+    "wedding": "rec",
+    "housewarming": "rec",
+    "travel": "rec"
+  },
+  {
+    "id": "tithi-amavasya",
+    "name": "Amavasya (New Moon)",
+    "desc": "Often reserved for ancestral rites; treat case-by-case.",
+    "wedding": "avoid",
+    "housewarming": "caut",
+    "travel": "caut"
+  }
+]
