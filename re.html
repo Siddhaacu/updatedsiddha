@@ -3,56 +3,57 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Panchanga — Interactive Tithi Guide | Siddha Saraswatha</title>
+  <title>Panchānga — Interactive Tithi Guide | Siddha Saraswatha</title>
 
   <link rel="shortcut icon" type="image/png" href="12.png">
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    /* small page tweaks & table visuals */
-    .wrap{max-width:1100px;margin:18px auto;padding:0 18px}
+    :root{ --accent:#c06b00; --muted:#6b6b6b; --max-w:1100px }
+
+    .wrap{max-width:var(--max-w);margin:18px auto;padding:0 18px}
     .page-header{text-align:center;margin-bottom:12px}
     .muted{color:var(--muted)}
+    .card{background:#fff;padding:14px;border-radius:12px;box-shadow:0 10px 30px rgba(2,6,23,0.04)}
+
     .controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
-    .activity-btn{padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;background:#fff}
+    .activity-btn{padding:8px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);cursor:pointer;background:#fff;font-weight:600}
     .activity-btn.active{box-shadow:0 6px 18px rgba(192,107,0,0.12);background:linear-gradient(90deg,#ffd37b,#ffb84d);color:#221403;border-color:transparent}
     .legend{display:flex;gap:10px;justify-content:center;margin-top:8px}
-    .legend .item{display:flex;gap:6px;align-items:center;font-size:.95rem}
+    .legend .item{display:flex;gap:8px;align-items:center;font-size:.95rem}
     .badge{width:12px;height:12px;border-radius:3px;display:inline-block}
-    .rec{background:#DFF5E0;border:1px solid #B6E6B4} /* recommended */
-    .caut{background:#FFF3D9;border:1px solid #FFD59A} /* caution */
-    .avoid{background:#FDE7E7;border:1px solid #F5B5B5} /* avoid */
+    .rec{background:#DFF5E0;border:1px solid #B6E6B4}
+    .caut{background:#FFF3D9;border:1px solid #FFD59A}
+    .avoid{background:#FDE7E7;border:1px solid #F5B5B5}
 
-    /* table */
     .tithi-table{width:100%;border-collapse:collapse;margin-top:12px}
-    .tithi-table th,.tithi-table td{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,0.04);text-align:left}
+    .tithi-table th,.tithi-table td{padding:10px 12px;border-bottom:1px solid rgba(0,0,0,0.04);text-align:left;vertical-align:middle}
     .tithi-table tr.highlight-recommended{background:rgba(35,177,85,0.06)}
     .tithi-table tr.highlight-caution{background:rgba(255,184,77,0.06)}
     .tithi-table tr.highlight-avoid{background:rgba(220,60,60,0.04)}
-    .tithi-table a.anchor-link{font-weight:700;color:var(--accent);text-decoration:none}
+    .anchor-link{font-weight:700;color:var(--accent);text-decoration:none}
+    .small{font-size:.92rem}
+    .controls .activity-btn { min-width:120px; text-align:center; }
 
-    /* responsive */
     @media(max-width:720px){
       .controls{flex-direction:column;align-items:center}
-      .tithi-table th:nth-child(2), .tithi-table td:nth-child(2) { display:none } /* hide long desc on tiny screens */
+      .tithi-table th:nth-child(2), .tithi-table td:nth-child(2) { display:none }
     }
 
-    /* when deep-linking to a section, give a short highlight */
     .deep-target { box-shadow:0 6px 28px rgba(192,107,0,0.14); border-radius:8px; padding:8px; }
+    .tz-label{font-weight:700;color:#444;margin-left:8px}
   </style>
 </head>
-<body>
 
-  <!-- header fragment -->
+<body>
   <div include-html="header.html"></div>
 
   <main class="wrap" id="main" role="main">
     <header class="page-header">
       <h1>Panchānga — Interactive Tithi Guide</h1>
-      <p class="muted">Click an activity to highlight recommended / caution / avoid tithis. Use anchor links to deep-link specific tithis or sections.</p>
+      <p class="muted">Click an activity to highlight recommended / caution / avoid tithis. Deep-link to any tithi using the anchor links.</p>
     </header>
 
-    <!-- quick anchors -->
     <nav style="text-align:center;margin-bottom:12px" aria-label="Quick links">
       <a class="activity-btn" href="#vara">Vara</a>
       <a class="activity-btn" href="#tithis">Tithis</a>
@@ -60,7 +61,6 @@
       <a class="activity-btn" href="#sixty">60-year cycle</a>
     </nav>
 
-    <!-- activity controls -->
     <div class="controls" role="toolbar" aria-label="Choose activity">
       <button class="activity-btn" data-activity="all" aria-pressed="true">Show All</button>
       <button class="activity-btn" data-activity="wedding">Wedding</button>
@@ -68,16 +68,15 @@
       <button class="activity-btn" data-activity="travel">Travel</button>
     </div>
 
-    <div class="legend" aria-hidden="false">
+    <div class="legend" aria-hidden="false" style="margin-bottom:18px;">
       <div class="item"><span class="badge rec"></span> Recommended</div>
       <div class="item"><span class="badge caut"></span> Caution</div>
       <div class="item"><span class="badge avoid"></span> Avoid</div>
     </div>
 
-    <!-- Tithis section (anchor) -->
-    <section id="tithis" style="margin-top:18px;">
+    <section id="tithis" class="card" style="padding:16px;">
       <h2>Tithis — quick interactive table</h2>
-      <p class="muted">Click an activity above to highlight which tithis are recommended, cautionary or to be avoided for that activity.</p>
+      <p class="muted small">Click an activity above to highlight which tithis are recommended, cautionary or to be avoided for that activity.</p>
 
       <table class="tithi-table" role="table" aria-label="Tithi recommendations">
         <thead>
@@ -90,563 +89,338 @@
           </tr>
         </thead>
         <tbody id="tithiBody">
-          <!-- Note: status values = rec / caut / avoid -->
-          <tr id="tithi-pratipada" data-tithi="pratipada">
-            <td><a class="anchor-link" href="#tithi-pratipada">Pratipada</a></td>
-            <td class="muted">Auspicious for beginnings and ceremonies.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="rec">Recommended</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-dwitiya" data-tithi="dwitiya">
-            <td><a class="anchor-link" href="#tithi-dwitiya">Dwitiya</a></td>
-            <td class="muted">Good for laying foundations and starting work.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="rec">Recommended</td>
-            <td data-travel="caut">Caution</td>
-          </tr>
-
-          <tr id="tithi-tritiya" data-tithi="tritiya">
-            <td><a class="anchor-link" href="#tithi-tritiya">Tritiya</a></td>
-            <td class="muted">Victory & auspicious starts.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="caut">Caution</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-chaturthi" data-tithi="chaturthi">
-            <td><a class="anchor-link" href="#tithi-chaturthi">Chaturthi</a></td>
-            <td class="muted">Often Rikta — avoid major new beginnings.</td>
-            <td data-wedding="avoid">Avoid</td>
-            <td data-housewarming="avoid">Avoid</td>
-            <td data-travel="caut">Caution</td>
-          </tr>
-
-          <tr id="tithi-panchami" data-tithi="panchami">
-            <td><a class="anchor-link" href="#tithi-panchami">Panchami</a></td>
-            <td class="muted">Favourable for healing; completing tasks.</td>
-            <td data-wedding="caut">Caution</td>
-            <td data-housewarming="rec">Recommended</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-shasthi" data-tithi="shasthi">
-            <td><a class="anchor-link" href="#tithi-shasthi">Shasthi</a></td>
-            <td class="muted">Good for construction, coronation; not ideal for marriage.</td>
-            <td data-wedding="avoid">Avoid</td>
-            <td data-housewarming="rec">Recommended</td>
-            <td data-travel="caut">Caution</td>
-          </tr>
-
-          <tr id="tithi-saptami" data-tithi="saptami">
-            <td><a class="anchor-link" href="#tithi-saptami">Saptami</a></td>
-            <td class="muted">Good for journeys and beginnings of transport-related activities.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="caut">Caution</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-ashtami" data-tithi="ashtami">
-            <td><a class="anchor-link" href="#tithi-ashtami">Ashtami</a></td>
-            <td class="muted">Often good for competitive/martial activities and sports.</td>
-            <td data-wedding="caut">Caution</td>
-            <td data-housewarming="avoid">Avoid</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-navami" data-tithi="navami">
-            <td><a class="anchor-link" href="#tithi-navami">Navami</a></td>
-            <td class="muted">Rikta; generally not for auspicious starts.</td>
-            <td data-wedding="avoid">Avoid</td>
-            <td data-housewarming="avoid">Avoid</td>
-            <td data-travel="caut">Caution</td>
-          </tr>
-
-          <tr id="tithi-dasami" data-tithi="dasami">
-            <td><a class="anchor-link" href="#tithi-dasami">Dasami</a></td>
-            <td class="muted">Good for completion and virtuous acts.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="rec">Recommended</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-ekadasi" data-tithi="ekadasi">
-            <td><a class="anchor-link" href="#tithi-ekadasi">Ekadasi</a></td>
-            <td class="muted">Fasting, worship, vows — spiritual focus.</td>
-            <td data-wedding="caut">Caution</td>
-            <td data-housewarming="caut">Caution</td>
-            <td data-travel="avoid">Avoid</td>
-          </tr>
-
-          <tr id="tithi-dwadasi" data-tithi="dwadasi">
-            <td><a class="anchor-link" href="#tithi-dwadasi">Dwadasi</a></td>
-            <td class="muted">Auspicious for certain rituals and duties.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="rec">Recommended</td>
-            <td data-travel="caut">Caution</td>
-          </tr>
-
-          <tr id="tithi-trayodasi" data-tithi="trayodasi">
-            <td><a class="anchor-link" href="#tithi-trayodasi">Trayodasi</a></td>
-            <td class="muted">Pradosha — auspicious for Shiva worship and many ceremonies.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="caut">Caution</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-chaturdasi" data-tithi="chaturdasi">
-            <td><a class="anchor-link" href="#tithi-chaturdasi">Chaturdasi</a></td>
-            <td class="muted">Rikta — not ideal for major beginnings.</td>
-            <td data-wedding="avoid">Avoid</td>
-            <td data-housewarming="avoid">Avoid</td>
-            <td data-travel="caut">Caution</td>
-          </tr>
-
-          <tr id="tithi-purnima" data-tithi="purnima">
-            <td><a class="anchor-link" href="#tithi-purnima">Purnima (Full Moon)</a></td>
-            <td class="muted">Usually auspicious for many ceremonies and completions.</td>
-            <td data-wedding="rec">Recommended</td>
-            <td data-housewarming="rec">Recommended</td>
-            <td data-travel="rec">Recommended</td>
-          </tr>
-
-          <tr id="tithi-amavasya" data-tithi="amavasya">
-            <td><a class="anchor-link" href="#tithi-amavasya">Amavasya (New Moon)</a></td>
-            <td class="muted">Often reserved for ancestral rites; certain ceremonies may be held; treat case-by-case.</td>
-            <td data-wedding="avoid">Avoid</td>
-            <td data-housewarming="caut">Caution</td>
-            <td data-travel="caut">Caution</td>
-          </tr>
-
+          <!-- JS loads rows from tithis.json -->
         </tbody>
       </table>
     </section>
 
-    <!-- small note + anchor examples -->
-    <section id="anchors" style="margin-top:18px;">
-      <p class="muted">You can deep-link to any Tithi by its id; for example:</p>
-      <p>
-        <code>panchanga.html#tithi-pratipada</code> — scrolls to Pratipada.  
-        <code>panchanga.html#tithi-purnima</code> — jumps to Full Moon entry.
-      </p>
+    <section style="margin-top:18px">
+      <p class="muted">Deep-link examples: <code>panchanga.html#tithi-pratipada</code> or <code>panchanga.html#tithi-purnima</code>.</p>
+
+      <div style="text-align:center;margin-top:18px">
+        <a class="activity-btn" href="services-page.html">Book a Muhurtha Consultation</a>
+        <a class="activity-btn" href="learn.html" style="margin-left:8px">Learn Planets & Nakshatra</a>
+      </div>
     </section>
 
-    <!-- CTA -->
-    <section style="text-align:center;margin:20px 0;">
-      <a class="activity-btn" href="services-page.html">Book a Muhurtha Consultation</a>
-      <a class="activity-btn" href="learn.html" style="margin-left:8px">Learn Planets & Nakshatra</a>
+    <section id="muhurtha-calculator" style="margin-top:26px;">
+      <div class="card" style="max-width:980px;margin:12px auto;">
+        <h3 style="text-align:center;margin:0 0 8px">Muhurtha Calculator — Rāhu Kāla · Yāma Gaṇḍā · Durmuhurta · Varjya</h3>
+        <p class="muted small" style="text-align:center;margin-bottom:10px">Auto-detects sunrise & sunset. Falls back to IP-based lookup when denied.</p>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:end;justify-content:center">
+          <label style="display:flex;flex-direction:column;gap:6px;">
+            Date
+            <input id="calcDate" type="date">
+          </label>
+
+          <label style="display:flex;flex-direction:column;gap:6px;">
+            Sunrise
+            <input id="sunrise" type="time">
+          </label>
+
+          <label style="display:flex;flex-direction:column;gap:6px;">
+            Sunset
+            <input id="sunset" type="time">
+          </label>
+
+          <label style="display:flex;flex-direction:column;gap:6px;">
+            Region
+            <select id="regionPreset" aria-label="Region preset">
+              <option value="default">Auto / Default</option>
+              <option value="telugu">Telugu</option>
+              <option value="tamil">Tamil</option>
+              <option value="kannada">Kannada</option>
+              <option value="malayalam">Malayalam</option>
+              <option value="hindi">Hindi / North India</option>
+              <option value="custom">Custom</option>
+            </select>
+          </label>
+
+          <button id="geoBtn" class="activity-btn" title="Attempt geolocation">Auto detect</button>
+          <button id="calcBtn" class="activity-btn" style="background:var(--accent);color:#fff;border:none">Calculate</button>
+          <button id="resetBtn" class="activity-btn">Reset</button>
+        </div>
+
+        <div id="calcResults" aria-live="polite" style="margin-top:12px;text-align:center" class="small muted">
+          Loading... attempting auto-detect.
+        </div>
+
+        <details style="margin-top:12px">
+          <summary class="small">Method notes</summary>
+          <div style="margin-top:8px" class="small muted">
+            Daytime split into 8 equal parts. Rāhu/Kala and Yāma occupy whole 1/8th slots. Durmuhurta windows are shown as 48-minute blocks around sunrise by default. Sunrise/sunset from <code>api.sunrise-sunset.org</code>. IP fallback uses <code>ipapi.co</code>.
+          </div>
+        </details>
+      </div>
     </section>
   </main>
 
-  <!-- footer fragment -->
   <div include-html="footer.html"></div>
 
   <script>
-    // Mapping class names for highlight
-    const statusClass = { rec: 'highlight-recommended', caut: 'highlight-caution', avoid: 'highlight-avoid' };
-
-    // Helper: set active button style
-    function setActiveButton(btn) {
-      document.querySelectorAll('.activity-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+  (function(){
+    /* Utility */
+    function parseTimeToMinutes(t){ if(!t) return null; const [hh,mm]=t.split(':').map(Number); return hh*60+mm; }
+    function minutesToHHMM(m){ m=Math.round(m); m=(m+24*60)%(24*60); const hh=String(Math.floor(m/60)).padStart(2,'0'); const mm=String(m%60).padStart(2,'0'); return hh+':'+mm; }
+    function toLocalHHMMFromISO(iso){ const d=new Date(iso); return d.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',hour12:false}); }
+    function formatUTCOffset(offsetMin){
+      // offsetMin = minutes east of UTC is negative of getTimezoneOffset
+      const sign = offsetMin >= 0 ? '+' : '-';
+      const absMin = Math.abs(offsetMin);
+      const hh = String(Math.floor(absMin/60)).padStart(2,'0');
+      const mm = String(absMin%60).padStart(2,'0');
+      return `UTC${sign}${hh}:${mm}`;
     }
 
-    // Highlight rows based on activity (wedding / housewarming / travel)
-    function highlightFor(activity) {
-      // remove all highlight classes first
-      document.querySelectorAll('#tithiBody tr').forEach(tr => {
-        tr.classList.remove(...Object.values(statusClass));
+    /* Tithis — load from external JSON (tithis.json). If fetch fails, fallback to embedded array. */
+    const tithisUrl = 'tithis.json';
+    const fallbackTithis = [
+      {"id":"tithi-pratipada","name":"Pratipada","desc":"Auspicious for beginnings and ceremonies.","wedding":"rec","housewarming":"rec","travel":"rec"},
+      {"id":"tithi-dwitiya","name":"Dwitiya","desc":"Good for laying foundations and starting work.","wedding":"rec","housewarming":"rec","travel":"caut"},
+      {"id":"tithi-tritiya","name":"Tritiya","desc":"Victory & auspicious starts.","wedding":"rec","housewarming":"caut","travel":"rec"},
+      {"id":"tithi-chaturthi","name":"Chaturthi","desc":"Often Rikta — avoid major new beginnings.","wedding":"avoid","housewarming":"avoid","travel":"caut"},
+      {"id":"tithi-panchami","name":"Panchami","desc":"Favourable for healing; completing tasks.","wedding":"caut","housewarming":"rec","travel":"rec"},
+      {"id":"tithi-shasthi","name":"Shasthi","desc":"Good for construction and coronation; not ideal for marriage.","wedding":"avoid","housewarming":"rec","travel":"caut"},
+      {"id":"tithi-saptami","name":"Saptami","desc":"Good for journeys and transport-related starts.","wedding":"rec","housewarming":"caut","travel":"rec"},
+      {"id":"tithi-ashtami","name":"Ashtami","desc":"Often good for competitive/martial activities and sports.","wedding":"caut","housewarming":"avoid","travel":"rec"},
+      {"id":"tithi-navami","name":"Navami","desc":"Rikta; generally not for auspicious starts.","wedding":"avoid","housewarming":"avoid","travel":"caut"},
+      {"id":"tithi-dasami","name":"Dasami","desc":"Good for completion and virtuous acts.","wedding":"rec","housewarming":"rec","travel":"rec"},
+      {"id":"tithi-ekadasi","name":"Ekadasi","desc":"Fasting, worship, vows — spiritual focus.","wedding":"caut","housewarming":"caut","travel":"avoid"},
+      {"id":"tithi-dwadasi","name":"Dwadasi","desc":"Auspicious for certain rituals and duties.","wedding":"rec","housewarming":"rec","travel":"caut"},
+      {"id":"tithi-trayodasi","name":"Trayodasi","desc":"Pradosha — auspicious for Shiva worship and many ceremonies.","wedding":"rec","housewarming":"caut","travel":"rec"},
+      {"id":"tithi-chaturdasi","name":"Chaturdasi","desc":"Rikta — not ideal for major beginnings.","wedding":"avoid","housewarming":"avoid","travel":"caut"},
+      {"id":"tithi-purnima","name":"Purnima (Full Moon)","desc":"Usually auspicious for many ceremonies and completions.","wedding":"rec","housewarming":"rec","travel":"rec"},
+      {"id":"tithi-amavasya","name":"Amavasya (New Moon)","desc":"Often reserved for ancestral rites; treat case-by-case.","wedding":"avoid","housewarming":"caut","travel":"caut"}
+    ];
+
+    async function loadTithis(){
+      try{
+        const res = await fetch(tithisUrl, {cache:'no-cache'});
+        if (!res.ok) throw new Error('fetch failed');
+        const arr = await res.json();
+        if (!Array.isArray(arr) || arr.length === 0) throw new Error('bad json');
+        return arr;
+      }catch(e){
+        console.warn('Loading tithis.json failed — using fallback.', e);
+        return fallbackTithis;
+      }
+    }
+
+    function renderTithiTable(tithiData){
+      const tithiBody = document.getElementById('tithiBody');
+      tithiBody.innerHTML = '';
+      tithiData.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.id = t.id;
+        tr.dataset.tithi = t.name.toLowerCase();
+        tr.innerHTML = `
+          <td><a class="anchor-link" href="#${t.id}">${t.name}</a></td>
+          <td class="muted">${t.desc}</td>
+          <td data-wedding="${t.wedding}">${statusText(t.wedding)}</td>
+          <td data-housewarming="${t.housewarming}">${statusText(t.housewarming)}</td>
+          <td data-travel="${t.travel}">${statusText(t.travel)}</td>
+        `;
+        tithiBody.appendChild(tr);
       });
+    }
+    function statusText(s){ return s === 'rec' ? 'Recommended' : (s === 'caut' ? 'Caution' : 'Avoid'); }
 
-      if (!activity || activity === 'all') return; // nothing to highlight
+    /* Load & render tithis on startup */
+    loadTithis().then(arr => renderTithiTable(arr));
 
+    /* Activity highlight behavior */
+    const statusClass = { rec: 'highlight-recommended', caut: 'highlight-caution', avoid: 'highlight-avoid' };
+    function setActiveButton(btn) {
+      document.querySelectorAll('.controls .activity-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+    function highlightFor(activity) {
+      document.querySelectorAll('#tithiBody tr').forEach(tr => tr.classList.remove(...Object.values(statusClass)));
+      if (!activity || activity === 'all') return;
       document.querySelectorAll('#tithiBody tr').forEach(tr => {
         const cell = tr.querySelector('[data-' + activity + ']');
         if (!cell) return;
         const stat = cell.getAttribute('data-' + activity);
-        if (stat && statusClass[stat]) {
-          tr.classList.add(statusClass[stat]);
-        }
+        if (stat && statusClass[stat]) tr.classList.add(statusClass[stat]);
       });
     }
-<!-- ===== Muhurtha Calculator with timezone-aware fallback + auto-run on load ===== -->
-<section id="muhurtha-calculator" class="wrap" aria-labelledby="muhurtha-heading" style="margin-top:22px;">
-  <h2 id="muhurtha-heading" style="text-align:center">Muhurtha Calculator — Rāhu Kāla · Yāma Gaṇḍā · Durmuhurta · Varjya</h2>
-
-  <div class="card" style="max-width:980px;margin:12px auto;padding:14px;">
-    <p class="muted small">
-      Auto-detects sunrise & sunset for your location (permission requested). If permission is refused, the page falls back to an IP-based timezone/coords service and continues automatically.
-    </p>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:end;justify-content:center;margin-top:10px;">
-      <label style="display:flex;flex-direction:column;gap:6px;">
-        Date
-        <input id="calcDate" type="date" value="">
-      </label>
-
-      <label style="display:flex;flex-direction:column;gap:6px;">
-        Sunrise (HH:MM)
-        <input id="sunrise" type="time" value="">
-      </label>
-
-      <label style="display:flex;flex-direction:column;gap:6px;">
-        Sunset (HH:MM)
-        <input id="sunset" type="time" value="">
-      </label>
-
-      <label style="display:flex;flex-direction:column;gap:6px;">
-        Region preset
-        <select id="regionPreset" aria-label="Choose regional rules">
-          <option value="default">Auto / Default (Common)</option>
-          <option value="telugu">Telugu</option>
-          <option value="tamil">Tamil</option>
-          <option value="kannada">Kannada</option>
-          <option value="malayalam">Malayalam</option>
-          <option value="hindi">Hindi / North India</option>
-          <option value="custom">Custom (advanced)</option>
-        </select>
-      </label>
-
-      <button id="geoBtn" class="btn-ghost" title="Attempt geolocation to fetch sunrise/sunset">Auto detect</button>
-      <button id="calcBtn" class="btn-primary" style="height:40px;">Calculate</button>
-      <button id="resetBtn" class="btn-ghost" style="height:40px;">Reset</button>
-    </div>
-
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;align-items:center;justify-content:center">
-      <small class="muted">If auto-detect fails, enter sunrise/sunset manually and click Calculate.</small>
-    </div>
-
-    <hr style="margin:12px 0">
-
-    <!-- Optional custom overrides -->
-    <div id="customOverrides" style="display:none;margin-bottom:10px;">
-      <details>
-        <summary class="small">Custom mapping (advanced)</summary>
-        <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-          <label class="small">Rāhu slots (Sun→Sat): <input id="customRahu" type="text" value="8,2,7,5,6,4,3" style="min-width:220px"/></label>
-          <label class="small">Yāma slots (Sun→Sat): <input id="customYama" type="text" value="7,5,6,4,3,2,1" style="min-width:220px"/></label>
-          <label class="small">Dur indices (e.g. -1,0,1): <input id="customDur" type="text" value="-1,0,1" style="min-width:140px"/></label>
-        </div>
-        <p class="muted small">Slots are 1..8 mapping the 8 equal daytime parts. Dur indices are muhurta offsets relative to sunrise muhurta.</p>
-      </details>
-    </div>
-
-    <div id="calcResults" aria-live="polite" style="margin-top:12px;">
-      <div class="small muted" style="text-align:center;">Loading... attempting auto-detect.</div>
-    </div>
-
-    <details style="margin-top:12px;">
-      <summary>Method notes</summary>
-      <div class="small" style="margin-top:8px;">
-        <p>Daytime is split into 8 equal parts. Rāhu Kāla and Yāma Gaṇḍā occupy whole 1/8th slots. Durmuhurta uses 48-minute muhurta windows; Varjya is shown as half-muhurta near sunrise/sunset. Regional presets alter mappings; use Custom to override exactly.</p>
-        <p>Sunrise/sunset data source: <code>https://api.sunrise-sunset.org</code> (formatted=0). Fallback lookup uses <code>https://ipapi.co/json/</code> when geolocation is denied.</p>
-      </div>
-    </details>
-  </div>
-</section>
-
-<script>
-/* ===================== Utility helpers ===================== */
-function parseTimeToMinutes(t) {
-  if (!t) return null;
-  const [hh, mm] = t.split(':').map(Number);
-  return hh*60 + mm;
-}
-function minutesToHHMM(m) {
-  m = Math.round(m);
-  m = (m + 24*60) % (24*60);
-  const hh = String(Math.floor(m/60)).padStart(2,'0');
-  const mm = String(m%60).padStart(2,'0');
-  return hh + ':' + mm;
-}
-function toLocalHHMMFromISO(isoStr) {
-  const d = new Date(isoStr);
-  const parts = d.toLocaleTimeString(undefined, {hour:'2-digit', minute:'2-digit', hour12:false}).split(':');
-  return parts[0].padStart(2,'0') + ':' + parts[1].padStart(2,'0');
-}
-
-/* ===================== Presets & constants ===================== */
-const MUHURTA = 48;
-const HALF_MUHURTA = 24;
-
-const presetMappings = {
-  default: { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
-  telugu:  { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
-  tamil:   { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
-  kannada: { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
-  malayalam:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
-  hindi:   { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-2,-1,0] }
-};
-
-function computeSlotTimes(sunriseMin, sunsetMin, slotIndex) {
-  const dayDuration = sunsetMin - sunriseMin;
-  const slot = dayDuration / 8;
-  const start = sunriseMin + slot * (slotIndex - 1);
-  const end = start + slot;
-  return { start, end };
-}
-
-/* ===================== DOM refs ===================== */
-const geoBtn = document.getElementById('geoBtn');
-const calcBtn = document.getElementById('calcBtn');
-const resetBtn = document.getElementById('resetBtn');
-const dateInput = document.getElementById('calcDate');
-const sunriseInput = document.getElementById('sunrise');
-const sunsetInput = document.getElementById('sunset');
-const regionSel = document.getElementById('regionPreset');
-const customBlock = document.getElementById('customOverrides');
-const customRahu = document.getElementById('customRahu');
-const customYama = document.getElementById('customYama');
-const customDur = document.getElementById('customDur');
-const resultsEl = document.getElementById('calcResults');
-
-/* Initialize date */
-dateInput.value = new Date().toISOString().slice(0,10);
-
-/* Show/hide custom overrides */
-regionSel.addEventListener('change', () => {
-  customBlock.style.display = regionSel.value === 'custom' ? 'block' : 'none';
-});
-
-/* ====== Geolocation + fallback via ipapi.co ====== */
-async function fetchSunriseSunsetByCoords(lat, lng, date) {
-  try {
-    const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=${date}&formatted=0`;
-    const r = await fetch(url);
-    const j = await r.json();
-    if (j.status !== 'OK') throw new Error('sunrise-sunset API error');
-    const sr = toLocalHHMMFromISO(j.results.sunrise);
-    const ss = toLocalHHMMFromISO(j.results.sunset);
-    return { sunrise: sr, sunset: ss };
-  } catch (err) {
-    console.error('Sunrise API failed:', err);
-    return null;
-  }
-}
-
-async function tryAutoDetectAndFill(autoRun=true) {
-  resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Attempting to auto-detect location & sunrise/sunset…</div>';
-  const date = dateInput.value || new Date().toISOString().slice(0,10);
-
-  // 1) Try browser geolocation first (preferred)
-  if (navigator.geolocation) {
-    try {
-      const pos = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
-      });
-      const lat = pos.coords.latitude;
-      const lon = pos.coords.longitude;
-      const got = await fetchSunriseSunsetByCoords(lat, lon, date);
-      if (got) {
-        sunriseInput.value = got.sunrise;
-        sunsetInput.value  = got.sunset;
-        resultsEl.innerHTML = `<div class="small muted" style="text-align:center">Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (from your device location).</div>`;
-        if (autoRun) computeAndRender();
-        return;
-      }
-    } catch (err) {
-      // geolocation failed / permission denied — fall through to IP fallback
-      console.warn('Geolocation failed or denied:', err);
-    }
-  }
-
-  // 2) IP-based fallback (approximate location) using ipapi.co
-  try {
-    resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Geolocation denied — using IP-based fallback (approximate).</div>';
-    const resp = await fetch('https://ipapi.co/json/');
-    const data = await resp.json();
-    if (!data || !data.latitude || !data.longitude) throw new Error('ipapi did not return coords');
-    const got = await fetchSunriseSunsetByCoords(data.latitude, data.longitude, date);
-    if (got) {
-      sunriseInput.value = got.sunrise;
-      sunsetInput.value  = got.sunset;
-      resultsEl.innerHTML = `<div class="small muted" style="text-align:center">Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (from IP-based location: ${data.city || data.region || data.country_name}).</div>`;
-      if (autoRun) computeAndRender();
-      return;
-    } else {
-      resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Failed to fetch sunrise/sunset via IP fallback — please enter times manually.</div>';
-    }
-  } catch (err) {
-    console.warn('IP fallback failed:', err);
-    resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Auto-detect failed — please enter sunrise & sunset manually and click Calculate.</div>';
-  }
-}
-
-/* Hook auto-detect button */
-geoBtn.addEventListener('click', () => tryAutoDetectAndFill(true));
-
-/* Reset */
-resetBtn.addEventListener('click', () => {
-  dateInput.value = new Date().toISOString().slice(0,10);
-  sunriseInput.value = '';
-  sunsetInput.value = '';
-  regionSel.value = 'default';
-  customBlock.style.display = 'none';
-  resultsEl.innerHTML = '<div class="small muted" style="text-align:center">Reset. Use Auto detect or enter times manually then click Calculate.</div>';
-});
-
-/* Main computing & render routine */
-function computeAndRender() {
-  resultsEl.innerHTML = '';
-  const sunriseVal = sunriseInput.value;
-  const sunsetVal = sunsetInput.value;
-  const dateVal = dateInput.value || new Date().toISOString().slice(0,10);
-
-  if (!sunriseVal || !sunsetVal) {
-    resultsEl.innerHTML = '<div class="small muted">Please provide sunrise and sunset times (or use Auto detect) and click Calculate.</div>';
-    return;
-  }
-
-  const sunriseMin = parseTimeToMinutes(sunriseVal);
-  const sunsetMin = parseTimeToMinutes(sunsetVal);
-  if (sunsetMin <= sunriseMin) {
-    resultsEl.innerHTML = '<div class="small muted">Sunset must be later than sunrise. Adjust times.</div>';
-    return;
-  }
-
-  // mapping selection (with custom override support)
-  let mapping = presetMappings[regionSel.value] || presetMappings.default;
-  if (regionSel.value === 'custom') {
-    const rahuArr = customRahu.value.split(',').map(s => Number(s.trim()));
-    const yamaArr = customYama.value.split(',').map(s => Number(s.trim()));
-    const durArr  = customDur.value.split(',').map(s => Number(s.trim()));
-    if (rahuArr.length === 7 && yamaArr.length === 7) {
-      mapping = { rahu: rahuArr, yama: yamaArr, durIndices: durArr.length?durArr:[-1,0,1] };
-    } else {
-      mapping = presetMappings.default;
-      alert('Custom arrays must contain 7 numbers (Sun→Sat). Using defaults.');
-    }
-  }
-
-  // weekday for selected date
-  const wd = new Date(dateVal + 'T00:00').getDay();
-
-  const rahuSlot = mapping.rahu[wd];
-  const yamaSlot = mapping.yama[wd];
-
-  const rSlot = computeSlotTimes(sunriseMin, sunsetMin, rahuSlot);
-  const ySlot = computeSlotTimes(sunriseMin, sunsetMin, yamaSlot);
-
-  // prepare muhurta windows around sunrise (48 min blocks)
-  const baseStart = sunriseMin - 8 * MUHURTA;
-  const muList = [];
-  for (let i=0;i<40;i++){
-    const s = baseStart + i*MUHURTA;
-    muList.push({ idx: i-8, start: s, end: s + MUHURTA });
-  }
-  const durBlocks = muList.filter(w => mapping.durIndices.includes(w.idx)).map(w => ({start:w.start, end:w.end}));
-
-  const varBefore = { start: sunriseMin - HALF_MUHURTA, end: sunriseMin };
-  const varAfter  = { start: sunsetMin, end: sunsetMin + HALF_MUHURTA };
-
-  // render
-  const weekdayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const out = document.createElement('div');
-  out.innerHTML = `
-    <h3 style="margin-top:6px">Results — ${dateVal} — ${weekdayNames[wd]}</h3>
-    <table style="width:100%;border-collapse:collapse;margin-top:8px">
-      <tr><td style="width:170px"><strong>Sunrise</strong></td><td>${sunriseVal}</td></tr>
-      <tr><td><strong>Sunset</strong></td><td>${sunsetVal}</td></tr>
-      <tr><td><strong>Daytime (mins)</strong></td><td>${sunsetMin - sunriseMin} minutes</td></tr>
-      <tr><td><strong>One 1/8th slot</strong></td><td>${((sunsetMin - sunriseMin)/8).toFixed(1)} minutes</td></tr>
-    </table>
-
-    <hr style="margin:12px 0">
-
-    <h4>Rāhu Kāla</h4>
-    <p class="small">Slot #${rahuSlot} (1/8th): <strong>${minutesToHHMM(rSlot.start)} — ${minutesToHHMM(rSlot.end)}</strong></p>
-
-    <h4>Yāma Gaṇḍā</h4>
-    <p class="small">Slot #${yamaSlot} (1/8th): <strong>${minutesToHHMM(ySlot.start)} — ${minutesToHHMM(ySlot.end)}</strong></p>
-
-    <h4>Durmuhurta — example caution windows (48 min)</h4>
-    <p class="small">Displayed muhurta windows are shown around sunrise (preset: ${regionSel.value}). Validate with a local panchānga for ritual precision:</p>
-    <ul class="small">${durBlocks.map(b => `<li>${minutesToHHMM(b.start)} — ${minutesToHHMM(b.end)}</li>`).join('')}</ul>
-
-    <h4>Varjyam (examples)</h4>
-    <ul class="small">
-      <li>Before sunrise: ${minutesToHHMM(varBefore.start)} — ${minutesToHHMM(varBefore.end)}</li>
-      <li>After sunset: ${minutesToHHMM(varAfter.start)} — ${minutesToHHMM(varAfter.end)}</li>
-    </ul>
-
-    <p class="small muted">Preset: <strong>${regionSel.value}</strong>. Use Custom to override mappings.</p>
-
-    <p style="margin-top:8px;">
-      <button id="copyResults" class="btn-ghost">Copy results</button>
-      <a class="btn-primary" href="services-page.html" style="margin-left:8px">Book Muhurtha</a>
-    </p>
-  `;
-  resultsEl.appendChild(out);
-
-  document.getElementById('copyResults').addEventListener('click', () => {
-    const txt = `Date: ${dateVal}
-Sunrise: ${sunriseVal}
-Sunset: ${sunsetVal}
-Rahu Kala (slot ${rahuSlot}): ${minutesToHHMM(rSlot.start)} - ${minutesToHHMM(rSlot.end)}
-Yama Ganda (slot ${yamaSlot}): ${minutesToHHMM(ySlot.start)} - ${minutesToHHMM(ySlot.end)}
-Durmuhurta examples: ${durBlocks.map(b => minutesToHHMM(b.start)+'-'+minutesToHHMM(b.end)).join(', ')}
-Varjyam examples: ${minutesToHHMM(varBefore.start)}-${minutesToHHMM(varBefore.end)}, ${minutesToHHMM(varAfter.start)}-${minutesToHHMM(varAfter.end)}
-(Preset: ${regionSel.value})`;
-    navigator.clipboard?.writeText(txt).then(()=> alert('Copied results')).catch(()=> prompt('Copy results', txt));
-  });
-}
-
-/* Hook Calculate button */
-calcBtn.addEventListener('click', computeAndRender);
-
-/* Auto-run on load: try geolocation → IP fallback → else show UI */
-window.addEventListener('load', () => {
-  // try auto-detect; if successful this auto-runs compute; otherwise user can enter manually
-  tryAutoDetectAndFill(true);
-});
-</script>
-
-    // Hook activity buttons
     document.querySelectorAll('.controls .activity-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const activity = btn.dataset.activity || 'all';
-        // UI active
         setActiveButton(btn);
-        // Highlight
         highlightFor(activity);
-        // set aria-pressed
-        document.querySelectorAll('.controls .activity-btn').forEach(b => b.setAttribute('aria-pressed', 'false'));
-        btn.setAttribute('aria-pressed', 'true');
+        document.querySelectorAll('.controls .activity-btn').forEach(b => b.setAttribute('aria-pressed','false'));
+        btn.setAttribute('aria-pressed','true');
       });
     });
+    const defaultBtn = document.querySelector('.controls .activity-btn[data-activity="all"]');
+    if (defaultBtn) setActiveButton(defaultBtn);
 
-    // On page load: apply deep-link behavior & open <details> if target is a tithi
+    /* Deep-link support */
     function openAndScrollToHash() {
       const id = location.hash && location.hash.slice(1);
       if (!id) return;
       const el = document.getElementById(id);
-      if (el) {
-        // if inside a details element, open it
-        const detailsParent = el.closest('details');
-        if (detailsParent) detailsParent.open = true;
-        // add temporary highlight
-        el.classList.add('deep-target');
-        // scroll into view with offset
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 80);
-        // remove highlight after 2.6s
-        setTimeout(() => el.classList.remove('deep-target'), 2600);
-      }
+      if (!el) return;
+      const detailsParent = el.closest('details');
+      if (detailsParent) detailsParent.open = true;
+      el.classList.add('deep-target');
+      setTimeout(()=>el.scrollIntoView({behavior:'smooth', block:'center'}), 80);
+      setTimeout(()=> el.classList.remove('deep-target'), 2600);
+    }
+    window.addEventListener('load', openAndScrollToHash);
+    window.addEventListener('hashchange', openAndScrollToHash);
+
+    /* Muhurtha calculator */
+    const MUHURTA = 48;
+    const HALF_MUHURTA = 24;
+
+    // PRESET MAPPINGS
+    // Telugu mapping tuned here explicitly (common south-Indian mapping).
+    // RAHU array and YAMA array map Sun->Sat (7 numbers). Values are slot numbers 1..8.
+    const presetMappings = {
+      default: { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
+      telugu:  { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] }, // tuned for Telugu tradition
+      tamil:   { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
+      kannada: { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-1,0,1] },
+      malayalam:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
+      hindi:   { rahu: [8,2,7,5,6,4,3], yama: [7,5,6,4,3,2,1], durIndices: [-2,-1,0] }
+    };
+
+    function computeSlotTimes(sunriseMin, sunsetMin, slotIndex){
+      const dayDuration = sunsetMin - sunriseMin;
+      const slot = dayDuration / 8;
+      const start = sunriseMin + slot * (slotIndex - 1);
+      const end = start + slot;
+      return { start, end };
     }
 
-    // If page loaded with hash — scroll to it
-    window.addEventListener('load', () => {
-      // default active = 'all'
-      const defaultBtn = document.querySelector('.controls .activity-btn[data-activity="all"]');
-      setActiveButton(defaultBtn);
-      // apply deep link if present
-      openAndScrollToHash();
+    // DOM refs
+    const geoBtn = document.getElementById('geoBtn');
+    const calcBtn = document.getElementById('calcBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const dateInput = document.getElementById('calcDate');
+    const sunriseInput = document.getElementById('sunrise');
+    const sunsetInput = document.getElementById('sunset');
+    const regionSel = document.getElementById('regionPreset');
+    const resultsEl = document.getElementById('calcResults');
+
+    if(dateInput) dateInput.value = new Date().toISOString().slice(0,10);
+
+    async function fetchSunriseSunsetByCoords(lat,lng,date){
+      try{
+        const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=${date}&formatted=0`;
+        const r = await fetch(url);
+        const j = await r.json();
+        if (!j || j.status!=='OK') throw new Error('sunrise-sunset API error');
+        return { sunrise: toLocalHHMMFromISO(j.results.sunrise), sunset: toLocalHHMMFromISO(j.results.sunset) };
+      }catch(e){ console.warn(e); return null; }
+    }
+
+    async function tryAutoDetectAndFill(autoRun=true){
+      resultsEl.textContent = 'Attempting to auto-detect location & sunrise/sunset…';
+      const date = dateInput.value || new Date().toISOString().slice(0,10);
+
+      if (navigator.geolocation){
+        try{
+          const pos = await new Promise((res,rej)=> navigator.geolocation.getCurrentPosition(res,rej,{timeout:10000}));
+          const got = await fetchSunriseSunsetByCoords(pos.coords.latitude, pos.coords.longitude, date);
+          if (got){ sunriseInput.value = got.sunrise; sunsetInput.value = got.sunset; resultsEl.textContent = `Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (your device).`; if (autoRun) computeAndRender(); return; }
+        }catch(err){ console.warn('geolocation failed', err); }
+      }
+
+      try{
+        resultsEl.textContent = 'Geolocation denied — using IP fallback (approximate).';
+        const resp = await fetch('https://ipapi.co/json/');
+        const data = await resp.json();
+        if (!data || !data.latitude) throw new Error('ipapi failed');
+        const got = await fetchSunriseSunsetByCoords(data.latitude, data.longitude, date);
+        if (got){ sunriseInput.value = got.sunrise; sunsetInput.value = got.sunset; resultsEl.textContent = `Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (approx: ${data.city||data.region||data.country_name}).`; if (autoRun) computeAndRender(); return; }
+      }catch(err){ console.warn('ip fallback failed', err); resultsEl.textContent = 'Auto-detect failed — enter sunrise & sunset manually and click Calculate.'; }
+    }
+
+    if (geoBtn) geoBtn.addEventListener('click', () => tryAutoDetectAndFill(true));
+    if (resetBtn) resetBtn.addEventListener('click', () => {
+      if(dateInput) dateInput.value = new Date().toISOString().slice(0,10);
+      if(sunriseInput) sunriseInput.value = '';
+      if(sunsetInput) sunsetInput.value = '';
+      if(regionSel) regionSel.value = 'default';
+      resultsEl.textContent = 'Reset. Use Auto detect or enter times manually then click Calculate.';
     });
 
-    // also handle hashchange during session
-    window.addEventListener('hashchange', openAndScrollToHash);
+    function computeAndRender(){
+      resultsEl.innerHTML = '';
+      const sunriseVal = sunriseInput.value;
+      const sunsetVal = sunsetInput.value;
+      const dateVal = dateInput.value || new Date().toISOString().slice(0,10);
+      if(!sunriseVal || !sunsetVal){ resultsEl.textContent = 'Please provide sunrise and sunset times (or use Auto detect) and click Calculate.'; return; }
+      const sunriseMin = parseTimeToMinutes(sunriseVal);
+      const sunsetMin = parseTimeToMinutes(sunsetVal);
+      if (sunsetMin <= sunriseMin){ resultsEl.textContent = 'Sunset must be later than sunrise. Adjust times.'; return; }
+
+      let mapping = presetMappings[regionSel.value] || presetMappings.default;
+      if (regionSel.value === 'custom') {
+        // left simple: you can later add custom parsing UI
+        mapping = presetMappings.default;
+      }
+
+      const wd = new Date(dateVal + 'T00:00').getDay();
+      const rahuSlot = mapping.rahu[wd];
+      const yamaSlot = mapping.yama[wd];
+      const rSlot = computeSlotTimes(sunriseMin, sunsetMin, rahuSlot);
+      const ySlot = computeSlotTimes(sunriseMin, sunsetMin, yamaSlot);
+
+      const baseStart = sunriseMin - 8 * MUHURTA;
+      const muList = [];
+      for (let i=0;i<40;i++){ const s = baseStart + i*MUHURTA; muList.push({ idx:i-8, start:s, end:s+MUHURTA }); }
+      const durBlocks = muList.filter(w => mapping.durIndices.includes(w.idx)).map(w => ({start:w.start,end:w.end}));
+      const varBefore = { start: sunriseMin - HALF_MUHURTA, end: sunriseMin };
+      const varAfter = { start: sunsetMin, end: sunsetMin + HALF_MUHURTA };
+
+      const weekdayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+      // timezone offset and IANA name
+      const tzName = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Local';
+      const offsetMin = -new Date().getTimezoneOffset(); // minutes east of UTC
+      const utcLabel = (function(){ const sign = offsetMin >= 0 ? '+' : '-'; const abs = Math.abs(offsetMin); const hh = String(Math.floor(abs/60)).padStart(2,'0'); const mm = String(abs%60).padStart(2,'0'); return `UTC${sign}${hh}:${mm}`; })();
+
+      const wrap = document.createElement('div');
+      wrap.innerHTML = `
+        <h4 style="margin:8px 0">Results — ${dateVal} — ${weekdayNames[wd]} <span class="tz-label">(${utcLabel} — ${tzName})</span></h4>
+        <table style="width:100%;border-collapse:collapse">
+          <tr><td style="width:170px"><strong>Sunrise</strong></td><td>${sunriseVal}</td></tr>
+          <tr><td><strong>Sunset</strong></td><td>${sunsetVal}</td></tr>
+          <tr><td><strong>Daytime (mins)</strong></td><td>${sunsetMin - sunriseMin} minutes</td></tr>
+          <tr><td><strong>1/8th slot</strong></td><td>${((sunsetMin - sunriseMin)/8).toFixed(1)} minutes</td></tr>
+        </table>
+        <hr style="margin:10px 0">
+        <h5>Rāhu Kāla</h5><p class="small">Slot #${rahuSlot}: <strong>${minutesToHHMM(rSlot.start)} — ${minutesToHHMM(rSlot.end)}</strong></p>
+        <h5>Yāma Gaṇḍā</h5><p class="small">Slot #${yamaSlot}: <strong>${minutesToHHMM(ySlot.start)} — ${minutesToHHMM(ySlot.end)}</strong></p>
+        <h5>Durmuhurta (example 48-min windows)</h5>
+        <ul class="small">${durBlocks.map(b=>`<li>${minutesToHHMM(b.start)} — ${minutesToHHMM(b.end)}</li>`).join('')}</ul>
+        <h5>Varjyam (examples)</h5>
+        <ul class="small"><li>Before sunrise: ${minutesToHHMM(varBefore.start)} — ${minutesToHHMM(varBefore.end)}</li><li>After sunset: ${minutesToHHMM(varAfter.start)} — ${minutesToHHMM(varAfter.end)}</li></ul>
+        <p class="small muted">Preset: <strong>${regionSel.value}</strong></p>
+        <p style="margin-top:8px"><button id="copyResults" class="activity-btn">Copy results</button> <a class="activity-btn" href="services-page.html" style="background:var(--accent);color:#fff;border:none">Book Muhurtha</a></p>
+      `;
+      resultsEl.appendChild(wrap);
+      document.getElementById('copyResults')?.addEventListener('click', ()=>{
+        const txt = `Date: ${dateVal}\nTimezone: ${utcLabel} — ${tzName}\nSunrise: ${sunriseVal}\nSunset: ${sunsetVal}\nRahu Kala (slot ${rahuSlot}): ${minutesToHHMM(rSlot.start)} - ${minutesToHHMM(rSlot.end)}\nYama Ganda (slot ${yamaSlot}): ${minutesToHHMM(ySlot.start)} - ${minutesToHHMM(ySlot.end)}\nDurmuhurta examples: ${durBlocks.map(b=>minutesToHHMM(b.start)+'-'+minutesToHHMM(b.end)).join(', ')}\nVarjyam examples: ${minutesToHHMM(varBefore.start)}-${minutesToHHMM(varBefore.end)}, ${minutesToHHMM(varAfter.start)}-${minutesToHHMM(varAfter.end)}\n(Preset: ${regionSel.value})`;
+        navigator.clipboard?.writeText(txt).then(()=> alert('Copied results')).catch(()=> prompt('Copy results', txt));
+      });
+    }
+
+    // hooks
+    const geoBtnEl = document.getElementById('geoBtn');
+    const calcBtnEl = document.getElementById('calcBtn');
+    if (calcBtnEl) calcBtnEl.addEventListener('click', computeAndRender);
+    if (geoBtnEl) geoBtnEl.addEventListener('click', ()=> tryAutoDetectAndFill(true));
+
+    // start
+    window.addEventListener('load', ()=> tryAutoDetectAndFill(true));
+
+  })();
   </script>
 </body>
 </html>
