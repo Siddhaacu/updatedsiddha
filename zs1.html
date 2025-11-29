@@ -11,107 +11,124 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <style>
-    /* Page layout */
     :root {
-      --max-width: 1100px;
-      --accent: #c06b00;
-      --muted: #6b6b6b;
+      --max-width:1100px;
+      --accent:#c06b00;
+      --muted:#6b6b6b;
     }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color: #222;
-      line-height: 1.6;
-      margin: 0;
-      background: #f7f7f7;
-    }
-    .wrapper {
-      max-width: var(--max-width);
-      margin: 18px auto;
-      padding: 18px;
-    }
-    .text { background:#fff; padding:18px; border-radius:10px; box-shadow: 0 8px 26px rgba(6,10,18,0.04); }
 
-    /* header / utilities */
-    .site-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+    /* Base */
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:#f6f6f6;
+      color:#222;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    .site-header .logo { display:block; max-width:50px; height:auto; }
-    .back-link { text-decoration:none; color:var(--accent); font-weight:700; }
 
-    /* Main title/block */
-    .center-block { text-align:center; margin: 8px 0 18px; }
-    .center-block img { max-width:220px; height:auto; border-radius:12px; display:block; margin: 0 auto 8px; }
-    h1 { margin: 6px 0; font-size:1.6rem; }
-    h3 { margin:10px 0 6px; font-size:1.05rem; }
-    p { margin: 0 0 12px; color:#222; }
+    /* Container */
+    .wrapper{
+      max-width:var(--max-width);
+      margin:18px auto;
+      padding:18px;
+    }
 
-    /* Thumbnails grid (small icons linking to other signs) */
-    .thumb-grid {
-      display:grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap:12px;
-      align-items:start;
-      margin-top:18px;
+    /* Card */
+    .card {
+      background:#fff;
+      border-radius:10px;
+      padding:18px;
+      box-shadow:0 8px 26px rgba(6,10,18,0.04);
     }
-    @media (max-width:980px) {
-      .thumb-grid { grid-template-columns: repeat(4, 1fr); }
-    }
-    @media (max-width:640px) {
-      .thumb-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .thumb {
+
+    /* Top row */
+    .top-row{
       display:flex;
-      flex-direction:column;
+      justify-content:space-between;
       align-items:center;
-      gap:6px;
+      gap:12px;
+      margin-bottom:12px;
     }
-    .thumb a { display:block; text-decoration:none; color:inherit; }
-    .thumb img {
-      width:50px;
-      height:50px;
-      object-fit:cover;
+    .back-link{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:700;
+      font-size:1rem;
+    }
+
+    /* Hero/logo */
+    .logo {
+      max-width:300px;
+      height:auto;
+      display:block;
+      border-radius:8px;
+    }
+    @media (max-width:640px){
+      .top-row{flex-direction:column;align-items:flex-start}
+      .logo{max-width:160px}
+    }
+
+    /* Center block */
+    .center-block{text-align:center;margin:8px 0 18px}
+    .center-block img{
+      max-width:220px;
+      width:100%;
+      height:auto;
       border-radius:12px;
       display:block;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+      margin:0 auto 8px;
+    }
+    h1{margin:6px 0;font-size:1.6rem}
+    h3{margin:10px 0 6px;font-size:1.05rem}
+    p{margin:0 0 12px;color:#222}
+    .muted{color:var(--muted)}
+
+    /* Thumbnail grid */
+    .thumb-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+      margin-top:18px;
+      align-items:start;
+    }
+    @media (max-width:980px){
+      .thumb-grid{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (max-width:640px){
+      .thumb-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    .thumb{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .thumb a{display:block;text-decoration:none;color:inherit}
+    .thumb img{
+      width:50px;height:50px;object-fit:cover;border-radius:12px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.06);display:block;
     }
 
-    /* Large image style used near top (12.png) */
-    .hero-right { float:right; margin-left:12px; max-width:50px; }
-    @media (max-width:640px) {
-      .hero-right { float:none; display:block; margin: 0 auto 12px; max-width:20px; }
-    }
-
-    /* small helper */
-    .muted { color:var(--muted); }
-    .clearfix::after { content:""; display:table; clear:both; }
-
+    /* helpers */
+    .clearfix::after{content:"";display:table;clear:both}
   </style>
 </head>
 <body>
-
   <div class="wrapper">
-    <div class="text">
-      
-      <!-- back link on left -->
+    <div class="card">
+
+      <div class="top-row clearfix">
         <div>
           <a class="back-link" href="zs.html">← Back</a>
         </div>
-      
-      <div class="site-header clearfix">
-        <!-- clickable logo / hero on the right like original -->
-        <a href="index.html" aria-label="Home (Siddha Saraswatha)">
-          <img class="hero-left" src="12.png" alt="Siddha Saraswatha logo">
-        </a>
-</div>
-        
 
-      <!-- Centered sign title + main image -->
+        <div>
+          <a href="index.html" aria-label="Home — Siddha Saraswatha">
+            <img class="logo" src="12.png" alt="Siddha Saraswatha logo" loading="lazy">
+          </a>
+        </div>
+      </div>
+
       <div class="center-block" role="region" aria-labelledby="title-aries">
-        <img src="zs1.png" alt="Aries / Mesh Rashi symbol">
+        <img src="zs1.png" alt="Aries / Mesh Rashi symbol" loading="lazy">
         <h1 id="title-aries">Aries / Mesh Rashi</h1>
       </div>
 
@@ -120,73 +137,50 @@
       <p class="muted">Chu, Choo ,Che, Chay ,Cho ,La, Lha ,Li, Lee, Lhi ,Lu, Loo, Lhu ,Le, Lay ,Lo ,A</p>
 
       <p>
-        The persons born under Aries sign have a bit dark complexioned face, eyes somewhat brown,
-        dwarf or medium height, sturdy and strong body, long neck and they talk cleverly. This rashi includes Ashwini,
-        Bharani and first Charan of Krittika Nakshatras. The persons of this sign as a rule are solitary by nature;
-        they have smiling faces and are less spoken. They are brisk walkers. They have thin teeth in the lower jaw,
-        upper jaw may sometimes have long teeth protruding out of the mouth. Anger reflects from their faces.
-        They have ample travels and frequent transfers from place to place in life. Service or business they acquire has touring feature.
-        Usually they may have bleeding teeth. They possess limited intelligence. They prefer to work under directions and guidance from others.
-        Their eyes acquire red or pale colour. They have scars on forehead or face. They are temperamental in nature and are prone to fevers and blood diseases.
+        The persons born under Aries sign have a bit dark complexioned face, eyes somewhat brown, 
+        dwarf or medium height, sturdy and strong body, long neck and they talk cleverly. This rashi includes Ashwini, 
+        Bharani and first Charan of Krittika Nakshatras.
+        The persons of this sign as a rule are solitary by nature; they have smiling faces and are less spoken. 
+        They are brisk walkers. They have thin teeth in the lower jaw, upper jaw may sometimes have long teeth 
+        protruding out of the mouth. Anger reflects from their faces. They have ample travels and frequent 
+        transfers from place to place in life. Service or business they acquire has touring feature. 
+        Usually they may have bleeding teeth. They possess limited intelligence. They prefer to work 
+        under directions and guidance from others. Their eyes acquire red or pale colour. They have scars 
+        on forehead or face. They are temperamental in nature and are prone to fevers and blood diseases. 
         They may have some skin diseases or are prone to them. They have large eyes and rough hair.
       </p>
 
       <p>
-        They are usually short tempered and impatient in nature. They are ambitious, courageous and vigilant for self-respect.
-        They shape their own destiny by dint of struggle and hard work. They are straight forward, generous and lovers of freedom.
-        They are practical at work and work for welfare in many areas of the social fabric.
+        They are usually short tempered and impatient in nature. They are ambitious, courageous and 
+        vigilant for self-respect. They shape their own destiny by dint of struggle and hard work. 
+        They are straight forward, generous and lovers of freedom. They are practical at work and work 
+        for welfare in many areas of the social fabric.
       </p>
 
       <p>
-        They may have weak knees and are allergic to suffocation of closed chambers. Many of them are water phobic.
-        They like to stick to the profession or job they do. They may sometimes be acknowledged as friend offenders
-        in the society because they don't open up with their likes and dislikes. They usually have fewer children.
+        They may have weak knees and are allergic to suffocation of closed chambers. Many of them are water phobic. 
+        They like to stick to the profession or job they do. They may sometimes be acknowledged as friend offenders 
+        in the society because they don't open up with their likes and dislikes. They usually have fewer children. 
         They are gluttonous.
       </p>
 
-      <!-- small thumbnails linking to other signs (keeps exact image sources) -->
       <div class="thumb-grid" aria-label="Quick links to other zodiac signs">
-        <div class="thumb">
-          <a href="zs1.html" title="Aries"><img src="Nakshatras/12/1.jpg" alt="Aries"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs2.html" title="Taurus"><img src="Nakshatras/12/2.jpg" alt="Taurus"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs3.html" title="Gemini"><img src="Nakshatras/12/3.jpg" alt="Gemini"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs4.html" title="Cancer"><img src="Nakshatras/12/4.jpg" alt="Cancer"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs5.html" title="Leo"><img src="Nakshatras/12/5.jpg" alt="Leo"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs6.html" title="Virgo"><img src="Nakshatras/12/6.jpg" alt="Virgo"></a>
-        </div>
+        <div class="thumb"><a href="zs1.html" title="Aries"><img src="Nakshatras/12/1.jpg" alt="Aries" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs2.html" title="Taurus"><img src="Nakshatras/12/2.jpg" alt="Taurus" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs3.html" title="Gemini"><img src="Nakshatras/12/3.jpg" alt="Gemini" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs4.html" title="Cancer"><img src="Nakshatras/12/4.jpg" alt="Cancer" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs5.html" title="Leo"><img src="Nakshatras/12/5.jpg" alt="Leo" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs6.html" title="Virgo"><img src="Nakshatras/12/6.jpg" alt="Virgo" loading="lazy"></a></div>
 
-        <div class="thumb">
-          <a href="zs7.html" title="Libra"><img src="Nakshatras/12/7.jpg" alt="Libra"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs8.html" title="Scorpio"><img src="Nakshatras/12/8.jpg" alt="Scorpio"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs9.html" title="Sagittarius"><img src="Nakshatras/12/9.jpg" alt="Sagittarius"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs10.html" title="Capricorn"><img src="Nakshatras/12/10.jpg" alt="Capricorn"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs11.html" title="Aquarius"><img src="Nakshatras/12/11.jpg" alt="Aquarius"></a>
-        </div>
-        <div class="thumb">
-          <a href="zs12.html" title="Pisces"><img src="Nakshatras/12/12.jpg" alt="Pisces"></a>
-        </div>
+        <div class="thumb"><a href="zs7.html" title="Libra"><img src="Nakshatras/12/7.jpg" alt="Libra" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs8.html" title="Scorpio"><img src="Nakshatras/12/8.jpg" alt="Scorpio" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs9.html" title="Sagittarius"><img src="Nakshatras/12/9.jpg" alt="Sagittarius" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs10.html" title="Capricorn"><img src="Nakshatras/12/10.jpg" alt="Capricorn" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs11.html" title="Aquarius"><img src="Nakshatras/12/11.jpg" alt="Aquarius" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs12.html" title="Pisces"><img src="Nakshatras/12/12.jpg" alt="Pisces" loading="lazy"></a></div>
       </div>
 
     </div>
   </div>
-
 </body>
 </html>
