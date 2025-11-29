@@ -530,6 +530,216 @@
 
   })();
   </script>
+<script>
+(function(){
+  /* --- Utilities --- */
+  const $ = id => document.getElementById(id);
+  function toMinutes(t){ if(!t) return null; const [hh,mm]=t.split(':').map(Number); return hh*60+mm; }
+  function pad2(n){ return String(Math.floor(n)).padStart(2,'0'); }
+  function minutesToHHMM(m){ m=Math.round(m); m=(m+24*60)%(24*60); return pad2(Math.floor(m/60))+':'+pad2(m%60); }
+  function toLocalTimeFromISO(iso){ try { return new Date(iso).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', hour12:false}); } catch(e){ return ''; } }
+
+  /* --- Constants / presets --- */
+  const MUHURTA = 48, HALF_MUHURTA = MUHURTA/2;
+  const PRESETS = {
+    default:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
+    telugu:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
+    hindi: { rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-2,-1,0] },
+    tamil: { rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
+    kannada:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
+    malayalam:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] },
+    custom:{ rahu:[8,2,7,5,6,4,3], yama:[7,5,6,4,3,2,1], durIndices:[-1,0,1] }
+  };
+
+  /* --- DOM refs (match your page) --- */
+  const dateInput = $('calcDate');
+  const sunriseInput = $('sunrise');
+  const sunsetInput = $('sunset');
+  const regionSel = $('regionPreset');
+  const geoBtn = $('geoBtn');
+  const calcBtn = $('calcBtn');
+  const resetBtn = $('resetBtn');
+  const resultsEl = $('calcResults');
+  const locationText = $('locationText');
+
+  if(dateInput) dateInput.value = new Date().toISOString().slice(0,10);
+  if(!locationText){ console.warn('locationText element not found — add the HTML snippet for visible location label.'); }
+
+  /* --- fetch sunrise/sunset by coords (api.sunrise-sunset.org) --- */
+  async function fetchSunriseSunsetByCoords(lat,lng,date){
+    try{
+      const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&date=${date}&formatted=0`;
+      const r = await fetch(url);
+      const j = await r.json();
+      if (!j || j.status !== 'OK') throw new Error('sunrise API error');
+      return { sunrise: toLocalTimeFromISO(j.results.sunrise), sunset: toLocalTimeFromISO(j.results.sunset) };
+    }catch(e){
+      console.warn('fetchSunriseSunsetByCoords failed', e);
+      return null;
+    }
+  }
+
+  /* --- optional reverse geocode to friendly name (OpenStreetMap Nominatim) --- */
+  async function reverseGeocode(lat,lng){
+    try{
+      const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
+      const r = await fetch(url, { headers: { 'User-Agent': 'SiddhaSaraswatha/1.0 (site)' } });
+      if(!r.ok) throw new Error('nominatim error');
+      const j = await r.json();
+      return j.display_name || null;
+    }catch(e){
+      return null;
+    }
+  }
+
+  /* --- auto-detect location -> fill sunrise/sunset & label --- */
+  async function tryAutoDetectAndFill(autoRun=true){
+    if(locationText) locationText.textContent = 'Detecting…';
+    resultsEl.textContent = 'Attempting to auto-detect sunrise & sunset…';
+
+    const date = (dateInput && dateInput.value) || new Date().toISOString().slice(0,10);
+
+    // 1) Browser geolocation (precise)
+    if(navigator.geolocation){
+      try{
+        const pos = await new Promise((res, rej) => navigator.geolocation.getCurrentPosition(res, rej, {timeout:10000}));
+        const lat = pos.coords.latitude; const lng = pos.coords.longitude;
+        const got = await fetchSunriseSunsetByCoords(lat,lng,date);
+        if(got){
+          sunriseInput.value = got.sunrise; sunsetInput.value = got.sunset;
+          // attempt to get a friendly place name (non-critical)
+          const place = await reverseGeocode(lat,lng).catch(()=>null);
+          locationText && (locationText.textContent = place ? place : `lat:${lat.toFixed(4)}, lon:${lng.toFixed(4)}`);
+          resultsEl.textContent = `Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (precise).`;
+          if(autoRun) computeAndRender();
+          return;
+        }
+      }catch(err){
+        console.warn('geolocation failed/denied', err);
+      }
+    }
+
+    // 2) IP-based fallback (approximate)
+    try{
+      resultsEl.textContent = 'Geolocation denied/unavailable — trying IP-based lookup (approximate)…';
+      const resp = await fetch('https://ipapi.co/json/');
+      const j = await resp.json();
+      if(j && j.latitude && j.longitude){
+        const got = await fetchSunriseSunsetByCoords(j.latitude, j.longitude, date);
+        if(got){
+          sunriseInput.value = got.sunrise; sunsetInput.value = got.sunset;
+          const place = [j.city, j.region, j.country_name].filter(Boolean).join(', ') || `lat:${j.latitude.toFixed(3)}, lon:${j.longitude.toFixed(3)}`;
+          locationText && (locationText.textContent = `Approx: ${place}`);
+          resultsEl.textContent = `Auto-filled sunrise ${got.sunrise} & sunset ${got.sunset} (approx).`;
+          if(autoRun) computeAndRender();
+          return;
+        }
+      }
+      throw new Error('ipapi missing coords');
+    }catch(e){
+      console.warn('ip fallback failed', e);
+      locationText && (locationText.textContent = 'Unknown — enter sunrise & sunset manually');
+      resultsEl.textContent = 'Auto-detect failed — please enter sunrise & sunset manually and click Calculate.';
+    }
+  }
+
+  /* --- compute function (Rahu, Yama, Durmuhurta, Varjyam) --- */
+  function computeMuhurtha(sunriseVal, sunsetVal, dateVal, presetKey){
+    const sr = toMinutes(sunriseVal), ss = toMinutes(sunsetVal);
+    if(sr==null || ss==null) return { error: 'Provide sunrise & sunset (or use Auto detect).' };
+    if(ss <= sr) return { error: 'Sunset must be later than sunrise.' };
+
+    const dayDuration = ss - sr;
+    const slot = dayDuration / 8;
+    const wd = new Date((dateVal||new Date().toISOString().slice(0,10)) + 'T00:00').getDay();
+    const mapping = PRESETS[presetKey] || PRESETS.default;
+    const rahuSlot = mapping.rahu[wd];
+    const yamaSlot = mapping.yama[wd];
+
+    function slotTimes(slotIndex){
+      const start = sr + slot*(slotIndex-1);
+      const end = start + slot;
+      return { start, end };
+    }
+    const rSlot = slotTimes(rahuSlot);
+    const ySlot = slotTimes(yamaSlot);
+
+    // generate muhurtas (48-min windows) and pick durIndices
+    const muhurtas = []; // idx range -8..31 (covers before/after)
+    const baseStart = sr - 8*MUHURTA;
+    for(let i=-8;i<32;i++){
+      muhurtas.push({ idx:i, start: baseStart + (i+8)*MUHURTA, end: baseStart + (i+8)*MUHURTA + MUHURTA });
+    }
+    const durBlocks = muhurtas.filter(m => (mapping.durIndices || [-1,0,1]).includes(m.idx)).map(m => ({ start: minutesToHHMM(m.start), end: minutesToHHMM(m.end) }));
+
+    const varBefore = { start: minutesToHHMM(sr - HALF_MUHURTA), end: minutesToHHMM(sr) };
+    const varAfter  = { start: minutesToHHMM(ss), end: minutesToHHMM(ss + HALF_MUHURTA) };
+
+    return {
+      sunrise: minutesToHHMM(sr),
+      sunset: minutesToHHMM(ss),
+      dayLengthMin: dayDuration,
+      oneEighth: slot,
+      rahu: { slot: rahuSlot, start: minutesToHHMM(rSlot.start), end: minutesToHHMM(rSlot.end) },
+      yama: { slot: yamaSlot, start: minutesToHHMM(ySlot.start), end: minutesToHHMM(ySlot.end) },
+      durmuhurta: durBlocks,
+      varjyam: { before: varBefore, after: varAfter },
+      tzLabel: (function(){ const off = -new Date().getTimezoneOffset(); const sign = off>=0?'+':'-'; const abs = Math.abs(off); const hh = String(Math.floor(abs/60)).padStart(2,'0'); const mm = String(abs%60).padStart(2,'0'); return `UTC${sign}${hh}:${mm}`; })()
+    };
+  }
+
+  /* --- render results into calcResults --- */
+  function renderResults(out){
+    if(!out){ resultsEl.innerHTML = ''; return; }
+    if(out.error){ resultsEl.innerHTML = `<div class="muted small" style="color:#a00">${out.error}</div>`; return; }
+
+    const html = [];
+    html.push(`<div style="text-align:center;margin-bottom:8px"><strong>${dateInput.value} — <small class="muted">${out.tzLabel}</small></strong></div>`);
+    html.push(`<div style="display:flex;gap:10px;justify-content:center;margin-bottom:8px"><div><strong>Sunrise</strong><div class="mono">${out.sunrise}</div></div><div><strong>Sunset</strong><div class="mono">${out.sunset}</div></div></div>`);
+    html.push(`<div class="muted small">Day length: ${out.dayLengthMin} minutes — 1/8th = ${Number(out.oneEighth).toFixed(1)} min</div>`);
+    html.push(`<hr style="margin:10px 0">`);
+    html.push(`<div><strong>Rāhu Kāla (slot ${out.rahu.slot})</strong><div class="mono">${out.rahu.start} — ${out.rahu.end}</div></div>`);
+    html.push(`<div style="margin-top:6px"><strong>Yāma Gaṇḍā (slot ${out.yama.slot})</strong><div class="mono">${out.yama.start} — ${out.yama.end}</div></div>`);
+    html.push(`<div style="margin-top:8px"><strong>Durmuhurta (example ${MUHURTA}-min blocks)</strong>`);
+    out.durmuhurta.forEach(b => html.push(`<div class="mono" style="margin-top:4px">${b.start} — ${b.end}</div>`));
+    html.push(`<div style="margin-top:8px"><strong>Varjyam (examples)</strong>`);
+    html.push(`<div class="mono">Before sunrise: ${out.varjyam.before.start} — ${out.varjyam.before.end}</div>`);
+    html.push(`<div class="mono">After sunset: ${out.varjyam.after.start} — ${out.varjyam.after.end}</div>`);
+    html.push(`<div style="margin-top:10px"><button id="copyCalc" class="activity-btn">Copy results</button> <a class="activity-btn" href="services-page.html" style="background:var(--accent);color:#fff;border:none">Book Muhurtha</a></div>`);
+
+    resultsEl.innerHTML = html.join('');
+    document.getElementById('copyCalc')?.addEventListener('click', ()=>{
+      const txt = [
+        `Date: ${dateInput.value} (${out.tzLabel})`,
+        `Sunrise: ${out.sunrise}`,
+        `Sunset: ${out.sunset}`,
+        `Rahu Kala (slot ${out.rahu.slot}): ${out.rahu.start} - ${out.rahu.end}`,
+        `Yama Gaṇḍā (slot ${out.yama.slot}): ${out.yama.start} - ${out.yama.end}`,
+        `Durmuhurta: ${out.durmuhurta.map(d => d.start+'-'+d.end).join(', ')}`,
+        `Varjyam: ${out.varjyam.before.start}-${out.varjyam.before.end} , ${out.varjyam.after.start}-${out.varjyam.after.end}`
+      ].join('\\n');
+      navigator.clipboard?.writeText(txt).then(()=> alert('Copied results')).catch(()=> prompt('Copy results', txt));
+    });
+  }
+
+  /* --- Event listeners --- */
+  geoBtn?.addEventListener('click', ()=> tryAutoDetectAndFill(true));
+  calcBtn?.addEventListener('click', ()=>{
+    const out = computeMuhurtha(sunriseInput.value, sunsetInput.value, dateInput.value, regionSel.value);
+    renderResults(out);
+  });
+  resetBtn?.addEventListener('click', ()=>{
+    dateInput.value = new Date().toISOString().slice(0,10);
+    sunriseInput.value = ''; sunsetInput.value = ''; regionSel.value = 'default';
+    resultsEl.textContent = 'Reset. Use Auto detect or enter times manually then click Calculate.';
+    locationText && (locationText.textContent = 'Not detected');
+  });
+
+  /* --- auto-run on load (silent attempt) --- */
+  window.addEventListener('load', ()=> { tryAutoDetectAndFill(true); });
+
+})();
+</script>
 
 
 
