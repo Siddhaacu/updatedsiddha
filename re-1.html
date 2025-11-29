@@ -1,52 +1,101 @@
 <!doctype html>
-<html lang="te">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <title>Remedies — Siddha Saraswatha</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Samaya — Siddha Saraswatha</title>
+
   <link rel="shortcut icon" type="image/png" href="12.png">
 
-  <!-- Styles (deduplicated to match site-wide pattern) -->
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Site CSS -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 
-  <!-- JS libs (loaded in head only for legacy header include; main scripts at body end) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://kit.fontawesome.com/4282616b2c.js" crossorigin="anonymous"></script>
-
+  <!-- small page-specific tweaks -->
   <style>
-    /* minor layout tweaks to match samaya page styling without changing content */
-    .wrap{max-width:1100px;margin:24px auto;padding:0 18px}
-    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(2,6,23,0.04)}
-    .section-2{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-    .section-2 a{display:inline-block;padding:8px 12px;background:#fff;border-radius:8px;text-decoration:none;color:#333;border:1px solid rgba(0,0,0,0.06)}
-    .row{display:flex;flex-wrap:wrap;gap:18px}
-    .column1{flex:1 1 30%;min-width:220px}
-    .column2{flex:1 1 45%;min-width:260px}
-    .text p{line-height:1.6}
-    h1,h2,h3{font-weight:700}
-    @media(max-width:720px){ .row{flex-direction:column} }
-    .download-links a{display:inline-block;margin-right:12px}
-    .mt-4{margin-top:1rem}
-    .text-center{text-align:center}
+    /* Page container */
+    .wrap { max-width: 1100px; margin: 22px auto; padding: 0 18px; }
+
+    /* Page header */
+    .page-header { text-align: center; margin-bottom: 18px; }
+    .page-header h1 { margin: 6px 0 4px; font-size: 1.9rem; }
+    .note { color: #555; margin: 6px 0 14px; }
+
+    /* Quick nav (card) */
+    .card { background: #fff; border-radius: 12px; padding: 14px; box-shadow: 0 8px 28px rgba(6,10,18,0.04); }
+    .btn-ghost { display:inline-block; padding:8px 12px; margin:0; border-radius:8px; text-decoration:none; color:var(--accent, #c06b00); border:1px solid rgba(0,0,0,0.06); font-weight:600; background:transparent; }
+    .btn-ghost:hover { box-shadow:0 6px 18px rgba(192,107,0,0.06); transform:translateY(-1px); }
+
+    /* Content card */
+    article.content { padding:18px; margin-top:18px; }
+
+    /* Vara tiles */
+    .tiled { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:12px; }
+    .tile { background:linear-gradient(180deg,#fff,#fff); border-radius:10px; padding:12px; min-height:110px; box-shadow:0 6px 20px rgba(6,10,18,0.03); }
+    .tile h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent,#c06b00); }
+    .tile p { margin:0; color:#333; line-height:1.55; font-size:0.96rem; }
+
+    /* Tithi small tiles (match Vara style) */
+    .tithi-tiles { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px; }
+    .tithi-tile { background:#fff; border-radius:10px; padding:10px; min-height:80px; box-shadow:0 6px 18px rgba(6,10,18,0.03); }
+    .tithi-tile h4 { margin:0 0 6px; font-size:0.98rem; color:var(--accent,#c06b00); }
+    .tithi-tile p { margin:0; font-size:0.92rem; color:#333; line-height:1.45; }
+
+    /* Sixty-year cycle grid */
+    .sixty-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px; }
+    .sixty-tile { background:#fff; border-radius:10px; padding:10px; min-height:80px; box-shadow:0 6px 18px rgba(6,10,18,0.03); }
+    .sixty-tile strong { display:block; color:var(--accent,#c06b00); margin-bottom:6px; }
+    .sixty-tile p { margin:0; font-size:0.92rem; color:#222; line-height:1.35; }
+
+    /* Tiled helper for smaller content */
+    .tile-small { font-size:0.95rem; }
+
+    /* Muted text */
+    .muted { color:#6b6b6b; }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .tiled { grid-template-columns: repeat(2, 1fr); }
+      .tithi-tiles { grid-template-columns: repeat(2, 1fr); }
+      .sixty-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width:640px){
+      .tiled, .tithi-tiles, .sixty-grid { grid-template-columns: 1fr; }
+      .page-header h1 { font-size:1.5rem; }
+    }
+
+    /* Small utility */
+    .flags { font-weight:700; margin-top:12px; display:block; color:#333; }
   </style>
+
+  <!-- include loader for header/footer -->
+  <script src="include.js" defer></script>
 </head>
-<body class="background">
-  <div id="header"></div>
 
-  <main class="wrap" role="main">
-    <div class="card text">
-      <section class="section-2" aria-label="Quick links">
-        <div><a href="learn.html">Planets/Graha</a></div>
-        <div><a href="zs.html">Zodiac Sign/Rasi</a></div>
-        <div><a href="bs.html">Nakshatra/Birth Star</a></div>
-        <div><a href="re.html">Smaya</a></div>
-        <div><a href="tb.html">Tarabalam</a></div>
-        <div><a href="re-1.html">Remedies</a></div>
-      </section>
+<body>
+  <!-- header fragment -->
+  <div include-html="header.html"></div>
 
+  <main class="wrap" role="main" aria-labelledby="page-title">
+    <header class="page-header">
+      <h1 id="page-title">Samaya — Siddha Saraswatha</h1>
+    </header>
+
+    <!-- quick nav for learning pages -->
+    <section class="card" aria-label="Quick learning links" style="margin-bottom:18px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <a class="btn-ghost" href="learn.html">Planets / Graha</a>
+        <a class="btn-ghost" href="zs.html">Zodiac / Rasi</a>
+        <a class="btn-ghost" href="bs.html">Nakshatra / Birth Star</a>
+        <a class="btn-ghost" href="re.html">Smaya</a>
+        <a class="btn-ghost" href="tb.html">Tarabalam</a>
+        <a class="btn-ghost" href="re-1.html">Remedies</a>
+      </div>
+    </section>
       <h1 class="mt-4">Remedies for all Birth Star – Nakshatra (నక్షత్రం)</h1>
 
       <p>
