@@ -148,4 +148,76 @@
       <div class="download-links" style="float:right;margin-bottom:12px;">
         <h3>DOWNLOAD</h3>
         <a href="VISHNU SAHASRANAMAM.pdf" download>VISHNU SAHASRANAMAM</a><br />
-        <a href=
+        <a href="శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్.pdf" download>శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్</a>
+      </div>
+
+      <div class="row mt-2" role="group" aria-label="Nakshatra list">
+        <div class="column1">
+          <p>Ashwani (Asvini) 1 to 4</p>
+          <p>Bharani (Barani) 5 to 8</p>
+          <p>Kruttika (Krithikai) 9 to 12</p>
+          <p>Rohini 13 to 16</p>
+          <p>Mrugasira 17 to 20</p>
+          <p>Ardra (Thirivathirai) 21 to 24</p>
+          <p>Punarvasu (Punarpusam) 25 to 28</p>
+          <p>Pushyam (Pusam / Poosam) 29 to 32</p>
+          <p>Aslesha (Ayilyam) 33 to 36</p>
+        </div>
+
+        <div class="column1">
+          <p>Makam 37 to 40</p>
+          <p>Poorvapalguni (Puram) 41 to 44</p>
+          <p>Uttaraphalguni (Uthiram) 45 to 48</p>
+          <p>Hasta (Hastham) 49 to 52</p>
+          <p>Chitra (Chithirai) 53 to 56</p>
+          <p>Swati (Swathi) 57 to 60</p>
+          <p>Visaakhaa (Visakam) 61 to 64</p>
+          <p>Anuradha (Anusham) 65 to 68</p>
+          <p>Jyeshtha (Kettai) 69 to 72</p>
+        </div>
+
+        <div class="column1">
+          <p>Moolaa (Mulam) 73 to 76</p>
+          <p>Poorvaashada (Puradam) 77 to 80</p>
+          <p>Uthraashada (Thiradam) 81 to 84</p>
+          <p>Sravanam (Thiruvonam) 85 to 88</p>
+          <p>Dhanishtha (Avittam) 89 to 92</p>
+          <p>Sathabishang (Sathayam) 93 to 96</p>
+          <p>Poorvabhadra 97 to 100</p>
+          <p>Uttarabhadra 101 to 104</p>
+          <p>Revati (Revathi) 105 to 108</p>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- footer placeholder fragment -->
+  <div include-html="footer.html"></div>
+
+  <!-- Fallback fragment loader: tiny, safe — only runs if include.js didn't already replace fragments -->
+  <script>
+    (function(){ 
+      // If include.js provided a loader we don't run fallback.
+      if (window.__INCLUDE_JS_LOADED) return;
+      async function loadFragment(el){
+        const src = el.getAttribute('include-html');
+        if (!src) return;
+        try {
+          const resp = await fetch(src, {cache:'no-cache'});
+          if (!resp.ok) throw new Error('fetch failed');
+          const text = await resp.text();
+          el.insertAdjacentHTML('afterend', text);
+          el.remove();
+        } catch(err) {
+          // leave placeholder if fetch fails — non-fatal
+          console.warn('include fallback failed for', src, err);
+        }
+      }
+      document.addEventListener('DOMContentLoaded', ()=> {
+        document.querySelectorAll('div[include-html]').forEach(loadFragment);
+      });
+    })();
+  </script>
+</body>
+</html>
