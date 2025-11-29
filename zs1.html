@@ -42,6 +42,7 @@
       border-radius:10px;
       padding:18px;
       box-shadow:0 8px 26px rgba(6,10,18,0.04);
+      position:relative; /* needed for absolute positioned back button */
     }
 
     /* Top row */
@@ -52,12 +53,23 @@
       gap:12px;
       margin-bottom:12px;
     }
+
+    /* Back button moved to top-right corner */
     .back-link{
       color:var(--accent);
       text-decoration:none;
       font-weight:700;
       font-size:1rem;
+      position:absolute;
+      top:14px;
+      right:18px;
+      background: rgba(192,107,0,0.06);
+      padding:6px 10px;
+      border-radius:8px;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform .12s ease, box-shadow .12s ease;
     }
+    .back-link:hover{ transform:translateY(-2px); box-shadow:0 6px 14px rgba(0,0,0,0.06); }
 
     /* Hero/logo */
     .logo {
@@ -69,6 +81,7 @@
     @media (max-width:640px){
       .top-row{flex-direction:column;align-items:flex-start}
       .logo{max-width:160px}
+      .back-link{position:static; margin-top:8px;} /* fallback: not absolute on small screens */
     }
 
     /* Center block */
@@ -116,16 +129,13 @@
     <div class="card">
 
       <div class="top-row clearfix">
-       
-
         <div>
           <a href="index.html" aria-label="Home — Siddha Saraswatha">
             <img class="logo" src="12.png" alt="Siddha Saraswatha logo" loading="lazy">
           </a>
-        </div> 
-        <div>
-          <a class="back-link" href="zs.html">← Back</a>
         </div>
+        <!-- back-link is visually placed top-right using absolute positioning -->
+        <a class="back-link" href="zs.html" aria-label="Back to Zodiac list">← Back</a>
       </div>
 
       <div class="center-block" role="region" aria-labelledby="title-aries">
