@@ -1,45 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Panchānga — Siddha Saraswatha</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nakshatras — Siddha Saraswatha</title>
+
   <link rel="shortcut icon" type="image/png" href="12.png">
 
-  <!-- Site styles (base) + local page stylesheet -->
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="panchanga.css">
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- Fonts & icons -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
 
-  <!-- Libraries -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJ+Y5C2v6k0qT6kYfQZQ5s3Qx8v+q6Z6Y5R7k=" crossorigin="anonymous"></script>
+  <!-- small page-specific tweaks -->
+  <style>
+    /* keep small thumbnail images circular */
+    .nak-thumb { width: 92px; height: 92px; object-fit:cover; border-radius:12px; display:block; margin:0 auto 10px; }
+    .nak-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+    @media (max-width:980px){ .nak-grid{grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:640px){ .nak-grid{grid-template-columns:1fr;} }
+    .text-block p { margin: 0 0 12px; line-height:1.6; color:#333; }
+    .flags { font-weight:700; margin-top:12px; }
+  </style>
+
+  <!-- include loader for header/footer -->
+  <script src="include.js" defer></script>
 </head>
+
 <body>
-  <!-- header/footer are shared fragments used across the site -->
-  <div id="header" role="banner"></div>
 
-  <main id="main" class="container">
-    <nav class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span aria-hidden="true">/</span>
-      <span>Panchānga</span>
-    </nav>
+  <!-- header fragment -->
+  <div include-html="header.html"></div>
 
-    <header class="page-head">
-      <img src="12.png" alt="Siddha Saraswatha logo" class="logo">
-      <h1>Panchānga — Vara · Tithi · Masa · Samvatsara</h1>
-      <p class="lead">Traditional Panchānga explanations and an interactive muhurta calculator to help plan auspicious activities.</p>
-    </header>
-
-    <section class="nav-links card" aria-label="Quick learning links">
-      <a href="learn.html">Planets / Graha</a>
-      <a href="zs.html">Zodiac Sign / Rasi</a>
-      <a href="bs.html">Nakshatra / Birth Star</a>
-      <a href="re.html">Smaya</a>
-      <a href="tb.html">Tarabalam</a>
-      <a href="re-1.html">Remedies</a>
+  <main class="wrap" role="main">
+    <header class="page-header">
+      
     </section>
 
     <article class="content card" id="panchanga-content">
