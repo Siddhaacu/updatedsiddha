@@ -6,19 +6,20 @@
   <title>Remedies — Siddha Saraswatha</title>
   <link rel="shortcut icon" type="image/png" href="12.png">
 
-  <!-- Styles (deduplicated) -->
+  <!-- Styles (deduplicated to match site-wide pattern) -->
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 
-  <!-- JS libs -->
+  <!-- JS libs (loaded in head only for legacy header include; main scripts at body end) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/4282616b2c.js" crossorigin="anonymous"></script>
 
   <style>
-    /* small page-level tweaks to match site */
-    .wrapper{max-width:1100px;margin:24px auto;padding:0 18px}
+    /* minor layout tweaks to match samaya page styling without changing content */
+    .wrap{max-width:1100px;margin:24px auto;padding:0 18px}
+    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(2,6,23,0.04)}
     .section-2{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
     .section-2 a{display:inline-block;padding:8px 12px;background:#fff;border-radius:8px;text-decoration:none;color:#333;border:1px solid rgba(0,0,0,0.06)}
     .row{display:flex;flex-wrap:wrap;gap:18px}
@@ -28,13 +29,15 @@
     h1,h2,h3{font-weight:700}
     @media(max-width:720px){ .row{flex-direction:column} }
     .download-links a{display:inline-block;margin-right:12px}
+    .mt-4{margin-top:1rem}
+    .text-center{text-align:center}
   </style>
 </head>
 <body class="background">
   <div id="header"></div>
 
-  <main class="wrapper">
-    <div class="text card">
+  <main class="wrap" role="main">
+    <div class="card text">
       <section class="section-2" aria-label="Quick links">
         <div><a href="learn.html">Planets/Graha</a></div>
         <div><a href="zs.html">Zodiac Sign/Rasi</a></div>
@@ -118,7 +121,7 @@
       <div class="download-links float-right mb-3">
         <h3>DOWNLOAD</h3>
         <a href="VISHNU SAHASRANAMAM.pdf" download>VISHNU SAHASRANAMAM</a><br />
-        <a href="శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్.pdf" download>శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్</a>
+        <a href="శ్రీ విష్ణু సహస్ర నామ స్తోత్రమ్.pdf" download>శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్</a>
       </div>
 
       <div class="row mt-2">
