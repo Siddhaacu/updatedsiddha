@@ -15,64 +15,56 @@
   <!-- Site CSS -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- small page-specific tweaks -->
+  <!-- Page-specific (scoped) -->
   <style>
-    /* Page container */
-    .wrap { max-width: 1100px; margin: 22px auto; padding: 0 18px; }
+    :root{ --accent:#c06b00; --muted:#6b6b6b; }
+    .wrap { max-width:1100px; margin:24px auto; padding:0 18px; }
+    .page-header { text-align:center; margin-bottom:18px; }
+    .page-header h1 { margin:6px 0 4px; font-size:1.9rem; }
+    .muted { color:var(--muted); }
+    .card { background:#fff; border-radius:12px; padding:16px; box-shadow:0 8px 28px rgba(6,10,18,0.04); }
 
-    /* Page header */
-    .page-header { text-align: center; margin-bottom: 18px; }
-    .page-header h1 { margin: 6px 0 4px; font-size: 1.9rem; }
-    .note { color: #555; margin: 6px 0 14px; }
-
-    /* Quick nav (card) */
-    .card { background: #fff; border-radius: 12px; padding: 14px; box-shadow: 0 8px 28px rgba(6,10,18,0.04); }
-    .btn-ghost { display:inline-block; padding:8px 12px; margin:0; border-radius:8px; text-decoration:none; color:var(--accent, #c06b00); border:1px solid rgba(0,0,0,0.06); font-weight:600; background:transparent; }
-    .btn-ghost:hover { box-shadow:0 6px 18px rgba(192,107,0,0.06); transform:translateY(-1px); }
-
-    /* Content card */
-    article.content { padding:18px; margin-top:18px; }
-
-    /* Vara tiles */
-    .tiled { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:12px; }
-    .tile { background:linear-gradient(180deg,#fff,#fff); border-radius:10px; padding:12px; min-height:110px; box-shadow:0 6px 20px rgba(6,10,18,0.03); }
-    .tile h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent,#c06b00); }
-    .tile p { margin:0; color:#333; line-height:1.55; font-size:0.96rem; }
-
-    /* Tithi small tiles (match Vara style) */
-    .tithi-tiles { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px; }
-    .tithi-tile { background:#fff; border-radius:10px; padding:10px; min-height:80px; box-shadow:0 6px 18px rgba(6,10,18,0.03); }
-    .tithi-tile h4 { margin:0 0 6px; font-size:0.98rem; color:var(--accent,#c06b00); }
-    .tithi-tile p { margin:0; font-size:0.92rem; color:#333; line-height:1.45; }
-
-    /* Sixty-year cycle grid */
-    .sixty-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px; }
-    .sixty-tile { background:#fff; border-radius:10px; padding:10px; min-height:80px; box-shadow:0 6px 18px rgba(6,10,18,0.03); }
-    .sixty-tile strong { display:block; color:var(--accent,#c06b00); margin-bottom:6px; }
-    .sixty-tile p { margin:0; font-size:0.92rem; color:#222; line-height:1.35; }
-
-    /* Tiled helper for smaller content */
-    .tile-small { font-size:0.95rem; }
-
-    /* Muted text */
-    .muted { color:#6b6b6b; }
-
-    /* Responsive */
-    @media (max-width:980px){
-      .tiled { grid-template-columns: repeat(2, 1fr); }
-      .tithi-tiles { grid-template-columns: repeat(2, 1fr); }
-      .sixty-grid { grid-template-columns: repeat(2, 1fr); }
+    /* buttons */
+    .btn-ghost{
+      display:inline-block; padding:8px 12px; border-radius:8px;
+      text-decoration:none; color:var(--accent);
+      border:1px solid rgba(0,0,0,0.06); font-weight:600; background:transparent;
     }
-    @media (max-width:640px){
-      .tiled, .tithi-tiles, .sixty-grid { grid-template-columns: 1fr; }
-      .page-header h1 { font-size:1.5rem; }
+    .btn-ghost:hover{
+      box-shadow:0 6px 18px rgba(192,107,0,0.06);
+      transform:translateY(-1px);
     }
 
-    /* Small utility */
-    .flags { font-weight:700; margin-top:12px; display:block; color:#333; }
+    /* layout grids */
+    .row{ display:flex; flex-wrap:wrap; gap:18px; margin-top:12px; }
+    .column1{ flex:1 1 30%; min-width:220px; }
+    .column2{ flex:1 1 45%; min-width:260px; }
+
+    /* tiles */
+    .tiled,.tithi-tiles,.sixty-grid{
+      display:grid; gap:12px; margin-top:12px;
+      grid-template-columns:repeat(3,1fr);
+    }
+    @media(max-width:980px){
+      .tiled,.tithi-tiles,.sixty-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:640px){
+      .tiled,.tithi-tiles,.sixty-grid{ grid-template-columns:1fr; }
+      .page-header h1{ font-size:1.5rem; }
+    }
+
+    .tile,.tithi-tile,.sixty-tile{
+      background:#fff; border-radius:10px; padding:12px;
+      box-shadow:0 6px 20px rgba(6,10,18,0.03);
+    }
+    .tile h3,.tithi-tile h4,.sixty-tile strong{
+      color:var(--accent); margin-bottom:6px;
+    }
+
+    .download-links a{ display:inline-block; margin-right:12px; }
   </style>
 
-  <!-- include loader for header/footer (include.js should populate elements with include-html attribute) -->
+  <!-- include helper -->
   <script src="include.js" defer></script>
 </head>
 
@@ -81,13 +73,14 @@
   <div include-html="header.html"></div>
 
   <main class="wrap" role="main" aria-labelledby="page-title">
+
     <header class="page-header">
       <h1 id="page-title">Samaya — Siddha Saraswatha</h1>
     </header>
 
-    <!-- quick nav for learning pages -->
-    <section class="card" aria-label="Quick learning links" style="margin-bottom:18px;">
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+    <!-- quick nav -->
+    <section class="card" aria-label="Quick links" style="margin-bottom:18px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
         <a class="btn-ghost" href="learn.html">Planets / Graha</a>
         <a class="btn-ghost" href="zs.html">Zodiac / Rasi</a>
         <a class="btn-ghost" href="bs.html">Nakshatra / Birth Star</a>
@@ -97,71 +90,55 @@
       </div>
     </section>
 
-    <article class="content card" id="panchanga-content">
+    <article class="card">
 
       <h1 class="mt-4">Remedies for all Birth Star – Nakshatra (నక్షత్రం)</h1>
 
       <p>
-        There is no need for any other means to achieve success in any issue. For convenience, a list of Nakshatram and corresponding slokhas from Sri Vishnu Sahasranamam are given below.
+        There is no need for any other means to achieve success in any issue.
+        For convenience, a list of Nakshatram and corresponding slokhas from
+        Sri Vishnu Sahasranamam are given below.
       </p>
 
       <h2 class="text-center">ZODIAC SIGN</h2>
 
       <div class="row">
         <div class="column2">
-          <ol>
-            <li>సూర్యుడు - ఆదివారం</li>
-          </ol>
+          <ol><li>సూర్యుడు - ఆదివారం</li></ol>
           <p>దానాలు: 1 Kg గోధుమలు</p>
           <p>పూజలు: విష్ణుమూర్తికి పూజ</p>
 
-          <ol start="2">
-            <li>చంద్రుడు – సోమవారం</li>
-          </ol>
+          <ol start="2"><li>చంద్రుడు – సోమవారం</li></ol>
           <p>దానాలు: 1 Kg బియ్యం</p>
           <p>పూజలు: శివారాధన</p>
 
-          <ol start="3">
-            <li>కుజుడు - మంగళవారం</li>
-          </ol>
+          <ol start="3"><li>కుజుడు - మంగళవారం</li></ol>
           <p>దానాలు: 1 Kg కందులు</p>
           <p>పూజలు: దుర్గా/సుబ్రహ్మణ్యారాధన</p>
 
-          <ol start="4">
-            <li>బుధుడు - బుధవారం</li>
-          </ol>
+          <ol start="4"><li>బుధుడు - బుధవారం</li></ol>
           <p>దానాలు: 1 Kg పెసలు</p>
           <p>పూజలు: విష్ణు ఆరాధన, కుబేర పూజ</p>
         </div>
 
         <div class="column2">
-          <ol start="5">
-            <li>గురు - గురువారం</li>
-          </ol>
+          <ol start="5"><li>గురు - గురువారం</li></ol>
           <p>దాన్యం: 1 Kg సెనగలు</p>
           <p>పూజలు: హయగ్రీవ, సరస్వతి, లలితా పూజలు</p>
 
-          <ol start="6">
-            <li>శుక్రుడు - శుక్రవారం</li>
-          </ol>
+          <ol start="6"><li>శుక్రుడు - శుక్రవారం</li></ol>
           <p>దానాలు: 1 Kg బబ్బేలు</p>
           <p>పూజలు: లలితా, కాకి</p>
 
-          <ol start="7">
-            <li>శని - శనివారం</li>
-          </ol>
+          <ol start="7"><li>శని - శనివారం</li></ol>
           <p>దాన్యం: 1 Kg నల్ల నువ్వులు</p>
           <p>పూజలు: రుద్రాభిషేకం, వేంకటేశ్వరారాధన</p>
 
-          <ol start="8">
-            <li>రాహువు - శనివారం</li>
-          </ol>
+          <ol start="8"><li>రాహువు - శనివారం</li></ol>
           <p>దాన్యం: 1 Kg మినుగులు</p>
           <p>పూజలు: దుర్గారాధన, కాలసర్ప పూజలు, సుబ్రహ్మణ్యారాధన</p>
 
-          <ol start="9">
-            <li>కేతువు - మంగళవారం</li>
-          </ol>
+          <ol start="9"><li>కేతువు - మంగళవారం</li></ol>
           <p>దాన్యం: 1 Kg ఉలవలు</p>
         </div>
       </div>
@@ -170,9 +147,9 @@
 
       <h2 class="text-center mt-4">Birth Star – Nakshatra</h2>
 
-      <div class="download-links float-right mb-3">
+      <div class="download-links" style="float:right;margin-bottom:12px;">
         <h3>DOWNLOAD</h3>
-        <a href="VISHNU SAHASRANAMAM.pdf" download>VISHNU SAHASRANAMAM</a><br />
+        <a href="VISHNU SAHASRANAMAM.pdf" download>VISHNU SAHASRANAMAM</a><br/>
         <a href="శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్.pdf" download>శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్</a>
       </div>
 
@@ -221,6 +198,5 @@
   <!-- footer fragment -->
   <div include-html="footer.html"></div>
 
-  <!-- include.js will populate include-html fragments; if include.js not present, fallback to nothing -->
 </body>
 </html>
