@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tarabalam — Siddha Saraswatha</title>
-
   <link rel="shortcut icon" type="image/png" href="12.png">
 
   <!-- Icon set -->
@@ -20,7 +19,7 @@
 
     .wrap { max-width:var(--page-max); margin:20px auto; padding:0 18px; }
 
-    .card { background:#fff; padding:18px; border-radius:12px;
+    .card { background:var(--card-bg); padding:18px; border-radius:12px;
             box-shadow:0 8px 24px rgba(2,6,23,0.04); }
 
     h1,h2,h3 { color:#2b2b2b; margin-top:0.4rem; }
@@ -43,8 +42,10 @@
       width:100%;
       max-width:900px;
       border-radius:12px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      box-shadow:0 10px 30px rgba(0,0,0,0.10);
       cursor:zoom-in;
+      display:block;
+      margin:0 auto;
     }
 
     /* LIGHTBOX */
@@ -64,197 +65,174 @@
       font-size:28px; color:#fff;
       cursor:pointer; background:none; border:none;
     }
+
+    /* small utility classes */
+    .lead { font-size:1.05rem; color:#222; margin-bottom:12px; }
+    .muted { color:var(--muted); }
+    .callout { background:#fff7ea; border-left:4px solid var(--accent); padding:10px 12px; border-radius:8px; margin-top:12px; }
+    @media (max-width:720px){
+      .full-img-wrapper img { max-width:100%; }
+    }
   </style>
 
+  <!-- include header/footer loader (must implement include.js or replace with your own loader) -->
   <script src="include.js" defer></script>
 </head>
 
 <body>
+
+  <!-- header fragment -->
   <div include-html="header.html"></div>
-    </header>
-   <!-- quick nav for learning pages -->
-    <section class="card" aria-label="Quick learning links" style="margin-bottom:18px;">
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-        <a class="btn-ghost" href="learn.html">Planets / Graha</a>
-        <a class="btn-ghost" href="zs.html">Zodiac / Rasi</a>
-        <a class="btn-ghost" href="bs.html">Nakshatra / Birth Star</a>
-        <a class="btn-ghost" href="re.html">Smaya</a>
-        <a class="btn-ghost" href="tb.html">Tarabalam</a>
-        <a class="btn-ghost" href="re-1.html">Remedies</a>
-      </div>
-    </section>
-  
-<main class="wrap">
+
+  <!-- quick nav for learning pages -->
+  <section class="card" aria-label="Quick learning links" style="margin:18px auto; max-width:var(--page-max);">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <a class="btn-ghost" href="learn.html">Planets / Graha</a>
+      <a class="btn-ghost" href="zs.html">Zodiac / Rasi</a>
+      <a class="btn-ghost" href="bs.html">Nakshatra / Birth Star</a>
+      <a class="btn-ghost" href="re.html">Smaya</a>
+      <a class="btn-ghost" href="tb.html">Tarabalam</a>
+      <a class="btn-ghost" href="re-1.html">Remedies</a>
+    </div>
+  </section>
+
+  <main class="wrap" role="main" aria-labelledby="page-title">
     <header class="page-header">
-      <h1>Tarabalam</h1>
-          <section id="overview" aria-labelledby="overview-heading">
-          <h2 id="overview-heading">Overview</h2>
-          <p class="lead">
-            Tarabalam is most significant for any business travel, education or starting a business or even for
-            marriages and other functions. Tara is calculated from the person’s birth star (Janma Nakshatra)
-            and the nakshatra that rules the day you plan to act. If the day's star is not auspicious per the
-            Tara chart, look for the next available favourable day.
-          </p>
-        </section>
-    <article class="card">
+      <h1 id="page-title">Tarabalam</h1>
+    </header>
 
-       <!-- 🎯 FULL-WIDTH IMAGE MOVED TO MAIN ARTICLE -->
-      <div class="full-img-wrapper">
-        <img id="tarabalaImage" src="tarabala-chakra.gif" alt="Tarabala Chakra Diagram" />
+    <article class="card" id="tarabalam-article">
+
+      <!-- Overview -->
+      <section id="overview" aria-labelledby="overview-heading">
+        <h2 id="overview-heading">Overview</h2>
+        <p class="lead">
+          Tarabalam is most significant for any business travel, education or starting a business or even for the marriages and other functions. Tara is being calculated as per the person’s own birth star and connecting it with the Star on the day you would like to start the things. In some cases when the day’s star is not auspicious as per the Tara chart – you need to look for the next available day.
+        </p>
+      </section>
+
+      <!-- FULL-WIDTH IMAGE -->
+      <div class="full-img-wrapper" aria-hidden="false">
+        <img id="tarabalaImage" src="tarabala-chakra.gif" alt="Tarabala Chakra" />
       </div>
 
-    <section id="method" aria-labelledby="method-heading">
-          <h2 id="method-heading">Matrix of calculation (method)</h2>
-          <p>
-            There are 27 nakshatras in total and your birth star is fixed. Refer to the Panchanga to find the
-            day's nakshatra and then count from your birth star (inclusive) to that day's star. Example:
-            Birth star = Rohini; day star = Viśākhā. Count Rohini=1, Mrigasira=2, Ārdra=3, Punarvasu=4, Puṣyami=5,
-            Aśleṣā=6, Mgha=7, Pūrva-Phalguni=8, Uttara-Phalguni=9, Hastā=10, Citrā=11, Svāti=12, Viśākhā=13.
-            Divide the count by 9 and use the remainder (or 9 if remainder is 0) to consult the Tara chart.
-          </p>
-        </section>
+      <!-- Main content (kept unchanged) -->
+      <section id="method" aria-labelledby="method-heading">
+        <h2 id="method-heading">Matrix of calculation: As you are aware there are 27 stars in total</h2>
+        <p>
+          Matrix of calculation: As you are aware there are 27 stars in total. Your birth star is constant. So refer the Panchanga, and see the Star on the particular day, and note it. Then you start counting from your birth start (including your star to the star you noted for the particular day) For example your Birth star is Rohini and the star in the Panchanga on that day is Visakha. So Rohini 1, Mrigasira 2, Aardra 3, Punarvasu 4, Pushyami 5, Ashlesha 6, Magha 7, Pur – Phalguni 8, Uttara 9, Hasta 10, Chitta 11, Swathi 12, Visakha 13 ; That is it. The total is 13, then divide it with 9, you get a balance of 4, See the chart – on top line select the Visakha ( as it is Star of Panchanga) and search for the left side row and look out for Rohini ( Your Birth Star) The meeting point is shown as Ravi 4 !
+        </p>
+      </section>
 
-        <section id="tarabala-types" aria-labelledby="tarabala-types-heading">
-          <h2 id="tarabala-types-heading">Tarabalam — meaning of remainders</h2>
-          <p>
-            If the remainder is:
-          </p>
-          <ul>
-            <li><strong>1 — Janma</strong>: Danger to body; mental stress (inauspicious).</li>
-            <li><strong>2 — Sampat</strong>: Very good for business; financial gains.</li>
-            <li><strong>3 — Vipat</strong>: Dangerous; avoid important actions.</li>
-            <li><strong>4 — Kshema</strong>: Safe; prosperity and comfort.</li>
-            <li><strong>5 — Pratyak</strong>: Not good; potential obstacles or mishaps.</li>
-            <li><strong>6 — Sadhana</strong>: Very good; success and fame.</li>
-            <li><strong>7 — Naidhana</strong>: Very bad; risk of loss and difficulties.</li>
-            <li><strong>8 — Mitra</strong>: Good; comforts and creativity.</li>
-            <li><strong>9 — Parama Mitra</strong>: Good; favourable with little effort.</li>
-          </ul>
+      <section id="tarabalam-defs" aria-labelledby="tarabalam-types-heading">
+        <h2 id="tarabalam-types-heading">Tarabalam — Strength of Constellation & remainders</h2>
 
-          <p class="callout">
-            <strong>Short guidance:</strong> Prefer Sampat (2), Kshema (4), Sadhana (6), Mitra (8) and Parama Mitra (9).
-            Avoid Vipat (3) and Naidhana (7) for important undertakings.
-          </p>
-        </section>
+        <p>Tarabalam Tarabalam – Strength of Constellation. – The constellation ruling at the time of birth is one’s Janmanakshatra or birth star and the zodiacal sign in which the Moon is situated at the time of one’s birth is one’s Janma Rasi or Birth Moon. These are highly important. Count from the birth constellation to the one ruling on the particular day on which a new work is to be done or a journey undertaken and divide the number by 9 if divisible. Otherwise keep it as it is. If the remainder is 1 (janma) it indicates danger to body; if 2 (sampat) wealth and prosperity; if 3 (vipat) dangers, losses and accidents; if 4 (kshema) prosperity; if 5 (pratyak) obstacles; if 6 (sadhana) realisation of ambitions; if 7 (naidhana) dangers; if 8 (mitra) good; and if 9 (parama mitra) very favourable. </p>
 
-        <section id="chandrabalam" aria-labelledby="chandrabalam-heading">
-          <h2 id="chandrabalam-heading">Chandrabalam</h2>
-          <p>
-            Chandrabalam examines the natal Moon (Rasi). If the Moon is in the 6th, 8th or 12th sign from natal Rasi
-            then Chandrabalam is weak (8th being worst). In other placements Chandrabalam is present and beneficial.
-          </p>
-        </section>
+        <p>Now coming to the different Tara Bala numbers:</p>
 
-        <section id="details" aria-labelledby="details-heading">
-          <h2 id="details-heading">Tarabalam — extended details</h2>
+        <p>If you get balance 1 – Janma Tara : Not Good, Sun ( Ravi is the lord) creates problems that will hit your mind. The third Pada of the star is having inbuilt bad effects. It creates unbelievable mental torture.</p>
 
-          <p>
-            Tarabalam — Strength of Constellation. The constellation ruling at birth is one’s Janma Nakshatra and
-            the zodiacal sign of the Moon at birth is Janma Rasi. Count from the birth constellation to the daily
-            constellation (both inclusive), divide by 9. If the remainder is 2,4,6,8,9 or 0 it’s generally good;
-            if 3,5,7 avoid.
-          </p>
+        <p> If you get balance 2 - Sampat Tara : Very Good for business, Good. Budha (Mercury) is the lord. Financial gains and comforts are indicated.</p>
 
-          <p>When the day’s nakshatra falls in the first paryaya (1–9) the above results are fully effective.
-             In the second paryaya (10–18) the harmful effects are partial; in the third (19–27) the effects are minimal.
-          </p>
+        <p> If you get balance 3 - Vipat Tara : Dangerous, Not Good, Rahu is the lord. The first Pada of the star is not in good position. There may be difficult situations and people may discredit you and misunderstands may occur. No positive work will be done rather there will be some clashes.</p>
 
-          <p>
-            If choice is limited and the day is otherwise favourable, avoid only the negative part of an unfavourable
-            constellation (for example avoid first 7 ghatis of Janma, first 3 ghatis of Vipat, etc.). Pushya is noted as
-            a powerful neutraliser of negative factors (but Pushya itself may be inauspicious for marriage).
-          </p>
-        </section>
+        <p> If you get balance 4 Kshema Tara : Safe Good, there are no bad afflictions and negative results. You get mental confidence, your work will be done and there will be comforts and the people live happily ever after!</p>
 
-        <section aria-labelledby="long-info-heading">
-          <h3 id="long-info-heading">Full explanatory text (preserved)</h3>
-          <div class="muted">
-            <!-- (full long paragraphs preserved unchanged) -->
-            <p>Tarabalam Tarabalam – Strength of Constellation. – The constellation ruling at the time of birth is one’s Janmanakshatra or birth star and the zodiacal sign in which the Moon is situated at the time of one’s birth is one’s Janma Rasi or Birth Moon. These are highly important. Count from the birth constellation to the one ruling on the particular day on which a new work is to be done or a journey undertaken and divide the number by 9 if divisible. Otherwise keep it as it is. If the remainder is 1 (janma) it indicates danger to body; if 2 (sampat) wealth and prosperity; if 3 (vipat) dangers, losses and accidents; if 4 (kshema) prosperity; if 5 (pratyak) obstacles; if 6 (sadhana) realisation of ambitions; if 7 (naidhana) dangers; if 8 (mitra) good; and if 9 (parama mitra) very favourable.</p>
+        <p> If you get balance 5 Pratyak Tara : Not Good , Not Good. The 4th Pada in the star is not good. Danger of fatal accidents and danger of harming your business deals and career path!</p>
 
-            <p>Now coming to the different Tara Bala numbers: If you get balance 1 – Janma Tara : Not Good, Sun ( Ravi is the lord) creates problems that will hit your mind. The third Pada of the star is having inbuilt bad effects. It creates unbelievable mental torture.</p>
+        <p> If you get balance 6 Sadhana Tara : Very Good ! Fame enabler. You help others, your get wealth and you become famous and in the process – your work will be done.</p>
 
-            <p> If you get balance 2 - Sampat Tara : Very Good for business, Good. Budha (Mercury) is the lord. Financial gains and comforts are indicated.</p>
+        <p> If you get balance 7 Naidhana Tara : Totally Bad, Not Good. Creates financial loss and fear of clashes! The 2nd pada of the star is not good. Difficulties, roaming around, unnecessary spending, expenses.</p>
 
-            <p> If you get balance 3 - Vipat Tara : Dangerous, Not Good, Rahu is the lord. The first Pada of the star is not in good position. There may be difficult situations and people may discredit you and misunderstands may occur. No positive work will be done rather there will be some clashes.</p>
+        <p> If you get balance 8 Mitra Tara : Good. Gives the comfort and happiness – particularly the sexual pleasures. Develop creative spirits and unexpected pleasures are indicated.</p>
 
-            <p> If you get balance 4 Kshema Tara : Safe Good, there are no bad afflictions and negative results. You get mental confidence, your work will be done and there will be comforts and the people live happily ever after!</p>
+        <p>If you get balance 9 Parama Mitra Tara : Good but with little effort, your work will be done. There will be some financial gains at the end.</p>
+      </section>
 
-            <p> If you get balance 5 Pratyak Tara : Not Good , Not Good. The 4th Pada in the star is not good. Danger of fatal accidents and danger of harming your business deals and career path!</p>
+      <section id="chandrabalam" aria-labelledby="chandrabalam-heading">
+        <h2 id="chandrabalam-heading">Chandrabalam</h2>
+        <p>From your natal moon, ie Rasi, if the moon is in the 6th, 8th, or 12th sign then it is bad and on that day your chandra balam is bad or no chandrabalam. All other places moon has chandrabaam. 8th is the worst. </p>
+      </section>
 
-            <p> If you get balance 6 Sadhana Tara : Very Good ! Fame enabler. You help others, your get wealth and you become famous and in the process – your work will be done.</p>
+      <section id="details" aria-labelledby="details-heading">
+        <h2 id="details-heading">Tarabalam details below for your information only.</h2>
+        <p>To calculate tarabalam one must calculate position of daily nakshatra from your Janma nakshatra (both nakshatra inclusive). Divide that by 9. If the reminder is 2,4,6,8,9 or 0 then it’s good otherwise it’s bad, ie, 3,5,7 to be avoided.</p>
 
-            <p> If you get balance 7 Naidhana Tara : Totally Bad, Not Good. Creates financial loss and fear of clashes! The 2nd pada of the star is not good. Difficulties, roaming around, unnecessary spending, expenses.</p>
+        <p>1.Janma (Birth) Tara – The Janma (birth star) Nakshatra, the 10th from Janma nakshatra also known as Karna nakshatra and the 19th from Janma nakshatra known as Adhana nakshatra constitute this Tara.</p>
 
-            <p> If you get balance 8 Mitra Tara : Good. Gives the comfort and happiness – particularly the sexual pleasures. Develop creative spirits and unexpected pleasures are indicated.</p>
+        <p>2.Sampat Tara – The 2nd the 11th and the 20th Nakshatras counted from Janma nakshatra constitute this Tara.</p>
 
-            <p>If you get balance 9 Parama Mitra Tara : Good but with little effort, your work will be done. There will be some financial gains at the end.</p>
+        <p>3.Vipat Tara – The 3rd, the 12th and the 21st stars counted from Janma nakshatra constitute this Tara.</p>
 
-            <p>From your natal moon, ie Rasi, if the moon is in the 6th, 8th, or 12th sign then it is bad and on that day your chandra balam is bad or no chandrabalam. All other places moon has chandrabaam. 8th is the worst.</p>
+        <p>4.Kshema Tara – The 4th, the 13th and the 22nd Nakshatras counted from the janama nakshatra constitute this Tara.</p>
 
-            <p>Tarabalam details below for your information only. To calculate tarabalam one must calculate position of daily nakshatra from your Janma nakshatra (both nakshatra inclusive). Divide that by 9. If the reminder is 2,4,6,8,9 or 0 then it’s good otherwise it’s bad, ie, 3,5,7 to be avoided.</p>
+        <p>5.Pratyak Tara – The 5t, the 14th, and the 23rd nakshatras from Janma nakshatra constitutes this Tara.</p>
 
-            <p>1.Janma (Birth) Tara – The Janma (birth star) Nakshatra, the 10th from Janma nakshatra also known as Karna nakshatra and the 19th from Janma nakshatra known as Adhana nakshatra constitute this Tara.</p>
+        <p>6.Sadhaka Tara – The 6th, the 15th, and the 24th nakshatras from Janma nakshatra constitutes this tara.</p>
 
-            <p>2.Sampat Tara – The 2nd the 11th and the 20th Nakshatras counted from Janma nakshatra constitute this Tara.</p>
+        <p>7.Nidhana Tara – The 7th, the 16th, and the 25th nakshatras from the Janma nakshatra constitutes this tara.</p>
 
-            <p>3.Vipat Tara – The 3rd, the 12th and the 21st stars counted from Janma nakshatra constitute this Tara.</p>
+        <p>8.Mitra Tara – The 8th, the 17th and the 26th nakshatras from Janma nakshatra constitute this tara.</p>
 
-            <p>4.Kshema Tara – The 4th, the 13th and the 22nd Nakshatras counted from the janama nakshatra constitute this Tara.</p>
+        <p>9.Ati or Parama Mitra Tara – The 9th, the 18th and the 27th nakshatras from Janma nakshatra constitutes this tara.</p>
 
-            <p>5.Pratyak Tara – The 5t, the 14th, and the 23rd nakshatras from Janma nakshatra constitutes this Tara.</p>
+        <p>When the day’s nakshatra falls in the first Paryaya or cycle(1st nine), that is-within the first nine stars, the evil suggested above, viz. 3rd star Vipat. 5th star Pratyak. etc., holds good in full.</p>
 
-            <p>6.Sadhaka Tara – The 6th, the 15th, and the 24th nakshatras from Janma nakshatra constitutes this tara.</p>
+        <p>In the Second Paryaya or cycle, e.g. Janma Nakshatra, etc., falling from the 10th to 18th, the evil is said to be only fifty per cent. In fact the evil is centred only in the first quarter of the 3rd (Vipat), the 4th quarter of the 5th (Pratyak) and the 3rd quarter of the 7th (Naidhana) of the second cycle.</p>
 
-            <p>7.Nidhana Tara – The 7th, the 16th, and the 25th nakshatras from the Janma nakshatra constitutes this tara.</p>
+        <p>In the third cycle or Paryaya, the Janma, Vipat, etc., falling from the 19th to 27th the evil is said to be almost negligible. Suppose the birth star is Rohini and the day’s star is Satabhisha. The day’s star counted from birth star comes to 21. or the 3rd in the third cycle. The 3rd is Vipat. But it is said to carry little or no evil.</p>
 
-            <p>8.Mitra Tara – The 8th, the 17th and the 26th nakshatras from Janma nakshatra constitute this tara.</p>
+        <p>It is better to avoid Vipat and Naidhana stars for all important undertakings – long journeys, marriage, starting of an enterprise, etc., even if such a star happens to fall in the 3rd-cycle, unless there are other counteracting factors.</p>
 
-            <p>9.Ati or Parama Mitra Tara – The 9th, the 18th and the 27th nakshatras from Janma nakshatra constitutes this tara.</p>
+        <p>When choice is limited – if the day is otherwise favourable, only the negative parts of these unfavourable constellations may be avoided. Thus, in the Janma, Vipat, Pratyak and Naidhana constellations, the first 7, 3, 8 and 6 ghatis respectively may be  avoided.The Rishis go to the extent of saying that even if unfavourable combinations are present – the ruling constellation and the position of the Moon are all adverse, Pushya has the power of neutralising these evil forces and asserting its benefic nature. BUT Pushya, it is inauspicious for purposes of marriage.</p>
+      </section>
 
-            <p>When the day’s nakshatra falls in the first Paryaya or cycle(1st nine), that is-within the first nine stars, the evil suggested above, viz. 3rd star Vipat. 5th star Pratyak. etc., holds good in full.</p>
-
-            <p>In the Second Paryaya or cycle, e.g. Janma Nakshatra, etc., falling from the 10th to 18th, the evil is said to be only fifty per cent. In fact the evil is centred only in the first quarter of the 3rd (Vipat), the 4th quarter of the 5th (Pratyak) and the 3rd quarter of the 7th (Naidhana) of the second cycle.</p>
-
-            <p>In the third cycle or Paryaya, the Janma, Vipat, etc., falling from the 19th to 27th the evil is said to be almost negligible. Suppose the birth star is Rohini and the day’s star is Satabhisha. The day’s star counted from birth star comes to 21. or the 3rd in the third cycle. The 3rd is Vipat. But it is said to carry little or no evil.</p>
-
-            <p>It is better to avoid Vipat and Naidhana stars for all important undertakings – long journeys, marriage, starting of an enterprise, etc., even if such a star happens to fall in the 3rd-cycle, unless there are other counteracting factors.</p>
-
-            <p>When choice is limited – if the day is otherwise favourable, only the negative parts of these unfavourable constellations may be avoided. Thus, in the Janma, Vipat, Pratyak and Naidhana constellations, the first 7, 3, 8 and 6 ghatis respectively may be  avoided.The Rishis go to the extent of saying that even if unfavourable combinations are present – the ruling constellation and the position of the Moon are all adverse, Pushya has the power of neutralising these evil forces and asserting its benefic nature. BUT Pushya, it is inauspicious for purposes of marriage.</p>
-          </div>
-        </section>
-      </article>
+    </article>
   </main>
 
-  <div id="lightbox" class="lightbox">
-    <button class="close-btn">&times;</button>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Image zoom">
+    <button class="close-btn" aria-label="Close image">&times;</button>
     <img src="" alt="Zoomed Tarabala Image" />
   </div>
 
+  <!-- footer fragment -->
   <div include-html="footer.html"></div>
 
   <script>
-    // Lightbox
-    const img = document.getElementById('tarabalaImage');
-    const lb = document.getElementById('lightbox');
-    const lbImg = lb.querySelector('img');
-    const closeBtn = lb.querySelector('.close-btn');
+    // Lightbox functionality (accessible)
+    (function(){
+      const img = document.getElementById('tarabalaImage');
+      const lb = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('img');
+      const closeBtn = lb.querySelector('.close-btn');
 
-    img.addEventListener('click', () => {
-      lbImg.src = img.src;
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    });
+      if (!img) return;
 
-    closeBtn.addEventListener('click', closeLightbox);
-    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+      img.addEventListener('click', openLightbox);
+      img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(); });
 
-    function closeLightbox(){
-      lb.classList.remove('open');
-      lbImg.src = '';
-      document.body.style.overflow = '';
-    }
+      closeBtn.addEventListener('click', closeLightbox);
+      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+      function openLightbox(){
+        lbImg.src = img.src;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeLightbox(){
+        lb.classList.remove('open');
+        lbImg.src = '';
+        lb.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+        img.focus();
+      }
+    })();
   </script>
 </body>
 </html>
