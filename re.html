@@ -311,6 +311,68 @@
     </p>
   </details>
 </section>
+<script>
+/* Muhurtha term definitions — renders into #defsList and provides getMuhurthaDefinitions() */
+(function(){
+  const defs = {
+    rahuKala: {
+      title: 'Rāhu Kāla',
+      short: 'A daily inauspicious period ruled by the shadow-planet Rāhu.',
+      detail: 'Rāhu Kāla (Rahu Kaal) is an inauspicious block of time each day traditionally avoided for beginning important tasks. It falls on a fixed 1/8th slot of daytime; the exact slot depends on weekday. Calculated by dividing sunrise→sunset into eight equal parts and using the weekday mapping for which slot is Rahu.',
+      example: 'Shown as "Rāhu Kāla — slot #".'
+    },
+    yamaGanda: {
+      title: 'Yāma Gaṇḍā',
+      short: 'A time of day associated with Yāma (lord of death) — also treated cautiously.',
+      detail: 'Yāma Gaṇḍā occupies another whole 1/8th daytime slot (mapping varies by weekday). It is used in Muhūrtha practice to advise caution for certain actions and is computed the same way as Rahu Kāla (using the 1/8th slots).',
+      example: 'Shown as "Yāma Gaṇḍā — slot #".'
+    },
+    durmuhurta: {
+      title: 'Durmuhurta',
+      short: 'Short 48-minute windows considered inauspicious for beginning ceremonies.',
+      detail: 'Durmuhurta (Dur Muhurta) are small fixed-duration blocks (commonly 48 minutes) that are considered especially inauspicious. The calculator shows sample 48-minute muhūrtas around sunrise (and can be adapted). These are taken from a list of contiguous muhūrtas computed around sunrise/sunset range.',
+      example: 'Displayed as a list of 48-min blocks near sunrise.'
+    },
+    varjyam: {
+      title: 'Varjyam (Vargyam)',
+      short: 'Periods to be avoided — often immediately before sunrise and just after sunset.',
+      detail: 'Varjyam / Vargyam are short periods (commonly half-muhūrta blocks) that are considered unsuitable for starting auspicious work. Common examples include the half-Muhurta just before sunrise and the half-Muhurta immediately after sunset; some authorities use other conventions.',
+      example: 'Displayed as before-sunrise and after-sunset examples.'
+    }
+  };
+
+  function renderDefinitions(targetId){
+    const target = document.getElementById(targetId);
+    if(!target) return;
+    target.innerHTML = '';
+    const map = [
+      ['rahuKala','yamaGanda'],
+      ['durmuhurta','varjyam']
+    ];
+    map.forEach(row => {
+      row.forEach(key => {
+        const d = defs[key];
+        const el = document.createElement('div');
+        el.className = 'def-card';
+        el.innerHTML = `<h5><span class="def-term">${d.title}</span></h5>
+                        <p>${d.short}</p>
+                        <p class="small-mut">${d.detail}</p>`;
+        target.appendChild(el);
+      });
+    });
+  }
+
+  // call renderer on DOM ready (if defsList present)
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', ()=> renderDefinitions('defsList'));
+  } else {
+    renderDefinitions('defsList');
+  }
+
+  // expose a small programmatic accessor
+  window.getMuhurthaDefinitions = function(){ return JSON.parse(JSON.stringify(defs)); };
+})();
+</script>
 
     
   </main>
