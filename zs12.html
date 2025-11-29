@@ -1,85 +1,184 @@
-<link rel="shortcut icon" type="image/png" href="12.png">
-<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale-1.0, shrink-to-fit">
-<link rel="stylesheet" href="styles.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-img{
-    border-radius: 50px;
-    width:100px;
-    height: 100px;
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Pisces / Meena Rashi — Siddha Saraswatha</title>
 
-</style>
+  <link rel="shortcut icon" type="image/png" href="12.png">
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-<body class="background"></body>
-<div class="wrapper">
-<div class="text">
-        <div align="right"><a href="index.html"><img src="12.png" alt="No photo"width="300" /></a></div>
-        <div align="left"> <a href="zs.html"><h2>←Back</h2></a></div>
-            
-            <center><h3><img src="zs12.jpg"><br>Pisces / Meena Rashi</h3>
-                <h3>Master Planet : Jupiter / Guru</h3>
-                <p>Di, Dee ,Du, Doo ,Tha ,Jha, Ja ,Ana ,De, Day, De ,Do, Dau ,Cha ,Chi, Chee</p></center> 
-                <P align="center">
-                    This Rashi comprises of the last charan of Poorvabhadrapada, complete Uttara-bhadrapada and Revati Nakshatras. 
-                    The persons under this sign have good qualities like truthfulness, innocence, logical thinking and love for mankind.
-                </P><p>        
-                    They are dwarf-heighted,have small parts of body and beautiful nose,are lazy by nature but versatile, ardent lovers of 
-                    pleasure, good writers. They easily trust people. They have simple life. They face dangers in early life and are 
-                    sometimes courageous and at times timid. They develop friendship with leading and popular people. 
-                    They do work after meticulously pondering over matters and issues.
-                </p><p>
-                    They drink more water. They commonly become popular because of their easygoing nature. 
-                    They tend to be more emotional rather than rational. They have limited concentration and will power. 
-                    They are gifted with commanding and impressive personality. They sensibly divide their time between work and rest. 
-                    They are idle and careless, sometimes dishonest in their dealings.
-                </p><p>
-                    They are afraid of sins. They have good speculative power. They earn large sums all of a sudden in life. 
-                    They are calm and cool by nature and earn by dint of their own efforts in life. They travel a lot and have many children.
-                </p><p>
-                    They are unprejudiced, frank, tolerant, quick-witted, practical, intuitive and imaginative. 
-                    They inherit property but face litigation, sometimes of disputes in the process of inheritance. 
-                    They are patients of arthritis, stomach ailments, heart and eye diseases. 
-                    They start earning at 20-21 years of their age.
-                </p>
+  <style>
+    :root{
+      --max-width:1100px;
+      --accent:#c06b00;
+      --muted:#6b6b6b;
+    }
 
-                <style>
-                    img.two {
-                        border-radius: 25px;
-                        width: 50px;
-                        height: 50px;
-                    }
-                    
-                </style>
-                        
-                    <div class="row">
-                      <div class="column5">
-                        <div><a href="zs1.html"><img class="two" src="Nakshatras/12/1.jpg"></div><br>
-                        <div><a href="zs7.html"><img class="two" src="Nakshatras/12/7.jpg"></a></div>
-                      </div>
-                      <div class="column5">
-                        <div><a href="zs2.html"><img class="two" src="Nakshatras/12/2.jpg"></div><br>
-                        <div> <a href="zs8.html"><img class="two" src="Nakshatras/12/8.jpg"></div>
-                      </div>
-                      <div class="column5">
-                        <div> <a href="zs3.html"><img class="two" src="Nakshatras/12/3.jpg"></div><br>
-                        <div> <a href="zs9.html"><img class="two" src="Nakshatras/12/9.jpg"></div>     
-                      </div>      
-                    <div class="column5">
-                       <div><a href="zs4.html"><img class="two" src="Nakshatras/12/4.jpg"></div> <br>
-                       <div><a href="zs10.html"><img class="two" src="Nakshatras/12/10.jpg"></div>
-                    </div>
-                    <div class="column5">
-                        <div> <a href="zs5.html"><img class="two" src="Nakshatras/12/5.jpg"></div> <br>
-                        <div> <a href="zs11.html"><img class="two" src="Nakshatras/12/11.jpg"></div>
-                        </div>
-                    <div class="column5">
-                        <div> <a href="zs6.html"><img class="two" src="Nakshatras/12/6.jpg"></div><br>
-                        <div> <a href="zs12.html"><img class="two" src="Nakshatras/12/12.jpg"></div>
-                    </div>
-                 
-                    </div>
+    /* Base */
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:#f6f6f6;
+      color:#222;
+      line-height:1.6;
+    }
+
+    .wrapper{
+      max-width:var(--max-width);
+      margin:20px auto;
+      padding:18px;
+    }
+
+    .card{
+      background:#fff;
+      padding:18px;
+      border-radius:10px;
+      box-shadow:0 8px 26px rgba(0,0,0,0.05);
+      position:relative;
+    }
+
+    /* Top row: logo left, back right */
+    .top-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:15px;
+    }
+
+    .logo{
+      max-width:150px;
+      height:auto;
+      display:block;
+    }
+
+    .back-btn{
+      text-decoration:none;
+      color:var(--accent);
+      font-weight:700;
+      padding:6px 12px;
+      background:rgba(192,107,0,0.08);
+      border-radius:8px;
+      border:1px solid rgba(0,0,0,0.05);
+    }
+    .back-btn:hover{ box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+
+    /* Center hero/title */
+    .center-block{ text-align:center; margin-bottom:20px; }
+    .center-block img.hero{
+      max-width:220px;
+      width:100%;
+      display:block;
+      margin:0 auto 10px;
+      border-radius:12px;
+    }
+    h3{ margin:10px 0; }
+
+    /* Thumbnail grid */
+    .thumb-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+      margin-top:20px;
+    }
+    @media (max-width:980px){
+      .thumb-grid{ grid-template-columns:repeat(4,1fr); }
+    }
+    @media (max-width:640px){
+      .thumb-grid{ grid-template-columns:repeat(3,1fr); }
+    }
+    .thumb img.two{
+      width:50px;
+      height:50px;
+      border-radius:12px;
+      object-fit:cover;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+      display:block;
+      margin:0 auto;
+    }
+
+    /* small image default (keeps your original circle style when used) */
+    img.small-circle{
+      border-radius:50px;
+      width:100px;
+      height:100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+
+      <!-- top row -->
+      <div class="top-row">
+        <a href="index.html" aria-label="Home — Siddha Saraswatha">
+          <img class="logo" src="12.png" alt="Siddha Saraswatha logo" loading="lazy">
+        </a>
+        <a class="back-btn" href="zs.html" aria-label="Back to Zodiac list">← Back</a>
+      </div>
+
+      <!-- hero / title -->
+      <div class="center-block" role="region" aria-labelledby="title-pisces">
+        <img src="zs12.jpg" class="hero" alt="Pisces / Meena Rashi" loading="lazy">
+        <h3 id="title-pisces">Pisces / Meena Rashi</h3>
+        <h3>Master Planet : Jupiter / Guru</h3>
+        <p>Di, Dee ,Du, Doo ,Tha ,Jha, Ja ,Ana ,De, Day, De ,Do, Dau ,Cha ,Chi, Chee</p>
+      </div>
+
+      <!-- content (unchanged) -->
+      <p align="center">
+        This Rashi comprises of the last charan of Poorvabhadrapada, complete Uttara-bhadrapada and Revati Nakshatras. 
+        The persons under this sign have good qualities like truthfulness, innocence, logical thinking and love for mankind.
+      </p>
+
+      <p>
+        They are dwarf-heighted,have small parts of body and beautiful nose,are lazy by nature but versatile, ardent lovers of 
+        pleasure, good writers. They easily trust people. They have simple life. They face dangers in early life and are 
+        sometimes courageous and at times timid. They develop friendship with leading and popular people. 
+        They do work after meticulously pondering over matters and issues.
+      </p>
+
+      <p>
+        They drink more water. They commonly become popular because of their easygoing nature. 
+        They tend to be more emotional rather than rational. They have limited concentration and will power. 
+        They are gifted with commanding and impressive personality. They sensibly divide their time between work and rest. 
+        They are idle and careless, sometimes dishonest in their dealings.
+      </p>
+
+      <p>
+        They are afraid of sins. They have good speculative power. They earn large sums all of a sudden in life. 
+        They are calm and cool by nature and earn by dint of their own efforts in life. They travel a lot and have many children.
+      </p>
+
+      <p>
+        They are unprejudiced, frank, tolerant, quick-witted, practical, intuitive and imaginative. 
+        They inherit property but face litigation, sometimes of disputes in the process of inheritance. 
+        They are patients of arthritis, stomach ailments, heart and eye diseases. 
+        They start earning at 20-21 years of their age.
+      </p>
+
+      <!-- thumbnails (exact image sources preserved) -->
+      <div class="thumb-grid" aria-label="Quick links to other zodiac signs">
+        <div class="thumb"><a href="zs1.html"><img class="two" src="Nakshatras/12/1.jpg" alt="Aries"></a></div>
+        <div class="thumb"><a href="zs2.html"><img class="two" src="Nakshatras/12/2.jpg" alt="Taurus"></a></div>
+        <div class="thumb"><a href="zs3.html"><img class="two" src="Nakshatras/12/3.jpg" alt="Gemini"></a></div>
+        <div class="thumb"><a href="zs4.html"><img class="two" src="Nakshatras/12/4.jpg" alt="Cancer"></a></div>
+        <div class="thumb"><a href="zs5.html"><img class="two" src="Nakshatras/12/5.jpg" alt="Leo"></a></div>
+        <div class="thumb"><a href="zs6.html"><img class="two" src="Nakshatras/12/6.jpg" alt="Virgo"></a></div>
+
+        <div class="thumb"><a href="zs7.html"><img class="two" src="Nakshatras/12/7.jpg" alt="Libra"></a></div>
+        <div class="thumb"><a href="zs8.html"><img class="two" src="Nakshatras/12/8.jpg" alt="Scorpio"></a></div>
+        <div class="thumb"><a href="zs9.html"><img class="two" src="Nakshatras/12/9.jpg" alt="Sagittarius"></a></div>
+        <div class="thumb"><a href="zs10.html"><img class="two" src="Nakshatras/12/10.jpg" alt="Capricorn"></a></div>
+        <div class="thumb"><a href="zs11.html"><img class="two" src="Nakshatras/12/11.jpg" alt="Aquarius"></a></div>
+        <div class="thumb"><a href="zs12.html"><img class="two" src="Nakshatras/12/12.jpg" alt="Pisces"></a></div>
+      </div>
+
     </div>
-    </div>
+  </div>
+</body>
+</html>
