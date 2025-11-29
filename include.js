@@ -211,3 +211,38 @@ function openModal(){
   else alert('Booking modal not configured — demo only.');
 }
 
+/*
+  Minimal HTML include loader
+  Usage:
+      <div include-html="header.html"></div>
+      <script src="include.js" defer></script>
+*/
+
+(function() {
+  window.__INCLUDE_JS_LOADED = true;
+
+  async function loadIncludes() {
+    const elements = document.querySelectorAll('[include-html]');
+    for (const el of elements) {
+      const file = el.getAttribute('include-html');
+      if (!file) continue;
+
+      try {
+        const response = await fetch(file, { cache: "no-cache" });
+        if (!response.ok) {
+          el.innerHTML = "<!-- include: file not found -->";
+          continue;
+        }
+        const html = await response.text();
+        el.insertAdjacentHTML("afterend", html);
+        el.remove();
+      } catch (err) {
+        console.warn("include.js error loading:", file, err);
+      }
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", loadIncludes);
+})();
+
+
