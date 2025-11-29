@@ -25,14 +25,12 @@
       line-height:1.6;
     }
 
-    /* Page container */
     .wrapper {
       max-width: var(--max-width);
       margin: 20px auto;
       padding: 18px;
     }
 
-    /* Main card */
     .card {
       background:#fff;
       padding:18px;
@@ -41,7 +39,7 @@
       position:relative;
     }
 
-    /* Back button in top right */
+    /* Correct back button (top-right) */
     .back-btn {
       position:absolute;
       top:15px;
@@ -56,14 +54,11 @@
     }
     .back-btn:hover { box-shadow:0 4px 10px rgba(0,0,0,0.1); }
 
-    /* Logo right side */
-    .logo-block {
-      text-align:right;
-      margin-bottom:10px;
+    .logo {
+      max-width:160px;
+      height:auto;
     }
-    .logo-block img { max-width:160px; }
 
-    /* Center block */
     .center-block {
       text-align:center;
       margin-bottom:20px;
@@ -74,8 +69,6 @@
       display:block;
       margin:0 auto 10px;
     }
-
-    h3 { margin:8px 0; }
 
     /* Thumbnail grid */
     .thumb-grid {
@@ -106,43 +99,61 @@
 <div class="wrapper">
   <div class="card">
 
-  <div class="top-row clearfix">
-        <div>
-          <a href="index.html" aria-label="Home — Siddha Saraswatha">
-            <img class="logo" src="12.png" alt="Siddha Saraswatha logo" loading="lazy">
-          </a>
-        </div>
-        <!-- back-link is visually placed top-right using absolute positioning -->
-        <a class="back-link" href="zs.html" aria-label="Back to Zodiac list">← Back</a>
-      </div>
+    <!-- back button -->
+    <a class="back-btn" href="zs.html">← Back</a>
 
-    <!-- Center title + image -->
+    <!-- logo (kept same alignment/content) -->
+    <div class="logo-block" style="text-align:right; margin-bottom:10px;">
+      <a href="index.html">
+        <img class="logo" src="12.png" alt="Siddha Saraswatha logo">
+      </a>
+    </div>
+
+    <!-- Center title + content -->
     <div class="center-block">
       <h3>
-        <img src="zs2.png" alt="Taurus">
+        <img src="zs2.png" alt="Taurus"><br>
+        Taurus / Vrisha Rashi
+      </h3>
+
       <h3>Master Planet : Venus / Shukra</h3>
-         <p>I, Ee, Ei, Eh ,U, Oo ,Ae, Ai, E ,Oh, Ou ,Va, Ba ,Bee, Bi, Vee, Wee, Vi, Wi ,Vu, Voo, Wu, Bu, Boo, Woo ,Vey, Vay, Way, Wey, Be, Bay, Veh, Weh, Beh ,Vo, Wo, Bo </p></center> 
-        <P align="center">The person of this sign possesses charming physique with a medium height, have sparkling teeth, 
-          fair complexion, attractive face and beautiful eyes. This rashi comprises of the later three charans of Krittika, 
-          complete Rohini and the first two charans of Mrigshira Nakshatras. </P><p> The people under this sign have sound 
-            physique, thick neck and round face. They have curly hair; they may have distinctive image scar on their face. 
-            They are labourious and steady but slow workers. They are nurtures of old traditions and taboos. </p>
-        
-        <p> They seldom lose temper, but when they do so they don't care for the repercussions. 
-          They seldom seek the advice of others. They are pleasure lovers and possess serious nature. 
-          They make friends easily and are behaviour efficient. Whatever they do, they do efficiently 
-          and with total self-confidence. They love music and adore jewellery and fine clothes.</p> 
-        
-        <p> They have regulated habits and possess remarkable tolerance power. 
-          They are devotees of respectable people and are obedient to their parents. 
-          They acquire riches and develop qualities. They may suffer a lot in the early 
-          age of their lives but gradually in the middle age and later in life, they 
-          acquire luxuries. They believe in religion and run their family with noble principles.
-          They love travel and have aptitude for purchase and selection of things. 
-          They have good power of digestion. They are prone to cold, cough and diseases. 
-          They seldom fall sick. They have worry free nature. They feel happy in every 
-          situation to which they adapt themselves easily. </P>
-    <!-- Thumbnail grid -->
+
+      <p>I, Ee, Ei, Eh ,U, Oo ,Ae, Ai, E ,Oh, Ou ,Va, Ba ,Bee, Bi, Vee, Wee, Vi, Wi ,Vu, Voo,
+        Wu, Bu, Boo, Woo ,Vey, Vay, Way, Wey, Be, Bay, Veh, Weh, Beh ,Vo, Wo, Bo 
+      </p>
+    </div>
+
+    <p align="center">
+      The person of this sign possesses charming physique with a medium height, have sparkling teeth, 
+      fair complexion, attractive face and beautiful eyes. This rashi comprises of the later three charans 
+      of Krittika, complete Rohini and the first two charans of Mrigshira Nakshatras.
+    </p>
+
+    <p>
+      The people under this sign have sound physique, thick neck and round face. They have curly hair; 
+      they may have distinctive image scar on their face. They are labourious and steady but slow workers. 
+      They are nurtures of old traditions and taboos.
+    </p>
+
+    <p>
+      They seldom lose temper, but when they do so they don't care for the repercussions. 
+      They seldom seek the advice of others. They are pleasure lovers and possess serious nature. 
+      They make friends easily and are behaviour efficient. Whatever they do, they do efficiently 
+      and with total self-confidence. They love music and adore jewellery and fine clothes.
+    </p>
+
+    <p>
+      They have regulated habits and possess remarkable tolerance power. They are devotees of respectable 
+      people and are obedient to their parents. They acquire riches and develop qualities. They may suffer 
+      a lot in the early age of their lives but gradually in the middle age and later in life, they 
+      acquire luxuries. They believe in religion and run their family with noble principles.
+      They love travel and have aptitude for purchase and selection of things. 
+      They have good power of digestion. They are prone to cold, cough and diseases. 
+      They seldom fall sick. They have worry free nature. They feel happy in every 
+      situation to which they adapt themselves easily.
+    </p>
+
+    <!-- Thumbnails -->
     <div class="thumb-grid">
 
       <div class="thumb"><a href="zs1.html"><img class="two" src="Nakshatras/12/1.jpg"></a></div>
