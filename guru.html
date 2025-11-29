@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — Siddha Saraswatha</title>
+
+  <link rel="shortcut icon" type="image/png" href="12.png">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- small page-specific tweaks -->
+  <style>
+    /* keep small thumbnail images circular */
+    .nak-thumb { width: 92px; height: 92px; object-fit:cover; border-radius:12px; display:block; margin:0 auto 10px; }
+    .nak-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+    @media (max-width:980px){ .nak-grid{grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:640px){ .nak-grid{grid-template-columns:1fr;} }
+    .text-block p { margin: 0 0 12px; line-height:1.6; color:#333; }
+    .flags { font-weight:700; margin-top:12px; }
+  </style>
+
+  <!-- include loader for header/footer -->
+  <script src="include.js" defer></script>
+</head>
+
+<body>
+
+  <!-- header fragment -->
+  <div include-html="header.html"></div>
+
+  <main class="wrap" role="main">
+<section id="blogs" class="wrap">
+  <h3>నిత్య పారాయణ (Nitya pārāyaṇa)</h3>
+  
+  <div class="grid-3">
+    <!-- Nitya pārāyaṇa -->
+    <article class="card"> <p>
+        <a href="zb1-16.html">1.తోటకాష్టకం (Tōṭakāṣṭakaṁ)</a><br>
+        <a href="zb1-17.html">2.గురు పాదుకా స్తోత్రం (Guru pādukā stōtraṁ)</a><br>
+        <a href="zb1-18.html">3.శ్రీ గుర్వష్టకం (గురు అష్టకం)(Sri Gurvashtakam (Guru Ashtakam))</a><br>
+        <a href="zb1-19.html">4.శ్రీ వేద వ్యాస స్తుతి (Sri Veda Vyasa Stuti)</a><br>
+        <a href="zb1-20.html">5.శివ పంచాక్షరి స్తోత్రం (Śiva pan̄cākṣari stōtraṁ) </a><br>
+        <a href="zb1-21.html">6.నిర్వాణ షట్కం (Nirvana Shatkam)</a><br>
+    </p> </article>
+    <article class="card"> <p>
+      <a href="zb1-22.html">7.భజ గోవిందం (మోహ ముద్గరం) (Bhaja Govindam (Moha Mudgaram))</a><br>
+        <a href="zb1-23.html">8.దక్షిణా మూర్తి స్తోత్రం (Dakshina Murthy Stotram)</a><br>
+        <a href="zb1-24.html">9.అచ్యుతాష్టకం (Achyutashtakam)</a><br>
+        <a href="zb1-25.html">10.శ్రీ అన్నపూర్ణా స్తోత్రం (Sri Annapurna Stotram)</a><br>
+        <a href="zb1-26.html">11.ద్వాదశ జ్యోతిర్లింగ స్తోత్రం (Dwadasa Jyotirlinga Stotram)</a><br>
+        <a href="zb1-27.html">12.విష్ణు షట్పది (Vishnu Shatpadi)</a><br>
+       </p> </article>
+    <article class="card"> <p>
+        <a href="zb1-28.html">13.గోవిందాష్టకం(Govindashtakam)</a><br>
+        <a href="zb1-29.html">14.లక్ష్మీ నృసింహ కరావలంబ స్తోత్రం (Lakshmi Nrisimha Karavalamba Stotram)</a><br>
+        <a href="zb1-30.html">15.నిర్వాణ దశకం (Nirvāṇa daśakaṁ)</a><br>
+        <a href="zb1-31.html">16.శ్రీ శంకరాచార్య వర్యం (Sri Shankaracharya Varyam)</a><br>
+        <a href="zb1-32.html">17.శ్యామలా దండకం (Shyamala Dandakam)</a><br><br>
+      </p>
+    </article>
+</section>
+</main></body>
+<div include-html="footer.html"></div>
+  </html>
