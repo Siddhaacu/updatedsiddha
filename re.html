@@ -17,13 +17,52 @@
 
   <!-- small page-specific tweaks -->
   <style>
-    /* keep small thumbnail images circular */
-    .nak-thumb { width: 92px; height: 92px; object-fit:cover; border-radius:12px; display:block; margin:0 auto 10px; }
-    .nak-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
-    @media (max-width:980px){ .nak-grid{grid-template-columns:repeat(2,1fr);} }
-    @media (max-width:640px){ .nak-grid{grid-template-columns:1fr;} }
-    .text-block p { margin: 0 0 12px; line-height:1.6; color:#333; }
-    .flags { font-weight:700; margin-top:12px; }
+    /* Page container */
+    .wrap { max-width: 1100px; margin: 22px auto; padding: 0 18px; }
+
+    /* Page header */
+    .page-header { text-align: center; margin-bottom: 18px; }
+    .page-header h1 { margin: 6px 0 4px; font-size: 1.9rem; }
+    .note { color: #555; margin: 6px 0 14px; }
+
+    /* Quick nav (card) */
+    .card { background: #fff; border-radius: 12px; padding: 14px; box-shadow: 0 8px 28px rgba(6,10,18,0.04); }
+    .btn-ghost { display:inline-block; padding:8px 12px; margin:0; border-radius:8px; text-decoration:none; color:var(--accent, #c06b00); border:1px solid rgba(0,0,0,0.06); font-weight:600; background:transparent; }
+    .btn-ghost:hover { box-shadow:0 6px 18px rgba(192,107,0,0.06); transform:translateY(-1px); }
+
+    /* Content card */
+    article.content { padding:18px; margin-top:18px; }
+
+    /* Vara tiles */
+    .tiled { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:12px; }
+    .tile { background:linear-gradient(180deg,#fff,#fff); border-radius:10px; padding:12px; min-height:110px; box-shadow:0 6px 20px rgba(6,10,18,0.03); }
+    .tile h3 { margin:0 0 8px; font-size:1.05rem; color:var(--accent,#c06b00); }
+    .tile p { margin:0; color:#333; line-height:1.55; font-size:0.96rem; }
+
+    /* Tithis list */
+    .tithi-list { margin:12px 0 8px 1.1rem; color:#222; line-height:1.6; }
+    .tithi-list li { margin:8px 0; }
+
+    /* Columns for months/adhika */
+    .columns { display:flex; gap:28px; margin-top:12px; }
+    .columns > div { flex:1; min-width:220px; }
+    .columns ul { margin:8px 0 0 1.1rem; }
+
+    /* Muted text */
+    .muted { color:#6b6b6b; }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .tiled { grid-template-columns: repeat(2, 1fr); }
+      .columns { flex-direction:column; }
+    }
+    @media (max-width:640px){
+      .tiled { grid-template-columns: 1fr; }
+      .page-header h1 { font-size:1.5rem; }
+    }
+
+    /* Small utility */
+    .flags { font-weight:700; margin-top:12px; display:block; color:#333; }
   </style>
 
   <!-- include loader for header/footer -->
@@ -31,16 +70,17 @@
 </head>
 
 <body>
-
   <!-- header fragment -->
   <div include-html="header.html"></div>
 
-  <main class="wrap" role="main">
+  <main class="wrap" role="main" aria-labelledby="page-title">
     <header class="page-header">
-      
-    </section>
-          <!-- quick nav for learning pages -->
-    <section class="card" style="margin-bottom:18px;">
+      <h1 id="page-title">Nakshatras — Siddha Saraswatha</h1>
+      <p class="note">Reference: Nakshatra / Panchānga learning content — tidy presentation for the site.</p>
+    </header>
+
+    <!-- quick nav for learning pages -->
+    <section class="card" aria-label="Quick learning links" style="margin-bottom:18px;">
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
         <a class="btn-ghost" href="learn.html">Planets / Graha</a>
         <a class="btn-ghost" href="zs.html">Zodiac / Rasi</a>
@@ -51,47 +91,45 @@
       </div>
     </section>
 
-
     <article class="content card" id="panchanga-content">
-      <!-- The long textual content is preserved (cleaned markup) -->
 
       <!-- Vara / Week -->
-      <section id="vara">
-        <h2>Vara — Week</h2>
+      <section id="vara" aria-labelledby="vara-heading">
+        <h2 id="vara-heading">Vara — Week</h2>
         <p class="note">In traditional Panchānga the weekday runs from sunrise to next sunrise — not midnight to midnight.</p>
 
-        <div class="tiled">
-          <div class="tile">
+        <div class="tiled" role="list">
+          <div class="tile" role="listitem">
             <h3>Sunday — Adivaram</h3>
             <p>Ruled by Aditya (Sun). A day of life, integrity and conscious attention. Suitable for nature-related activities, work with metals, coronation, etc. Avoid laziness and anger.</p>
           </div>
 
-          <div class="tile">
+          <div class="tile" role="listitem">
             <h3>Monday — Somavaram</h3>
             <p>Ruled by Chandra (Moon). Creative and intuitive. Good for buying clothes, marriage and matters related to water and mother. Avoid haircuts and manicure.</p>
           </div>
 
-          <div class="tile">
+          <div class="tile" role="listitem">
             <h3>Tuesday — Mangalavaram</h3>
             <p>Ruled by Mangal (Mars). Material, energetic day. Good for metalwork, medicine and sporting activities. Avoid important new beginnings.</p>
           </div>
 
-          <div class="tile">
+          <div class="tile" role="listitem">
             <h3>Wednesday — Budhavaram</h3>
             <p>Ruled by Budha (Mercury). Day of knowledge, communication and commerce. Good for publishing, business starts and learning.</p>
           </div>
 
-          <div class="tile">
+          <div class="tile" role="listitem">
             <h3>Thursday — Guruvaram</h3>
             <p>Ruled by Brihaspati (Jupiter). Auspicious for teaching, learning, charity, weddings and financial planning.</p>
           </div>
 
-          <div class="tile">
+          <div class="tile" role="listitem">
             <h3>Friday — Shukravaram</h3>
             <p>Ruled by Shukra (Venus). A day of harmony, arts and relationships. Good for shopping, weddings and pleasures.</p>
           </div>
 
-          <div class="tile">
+          <div class="tile" role="listitem">
             <h3>Saturday — Shanivaram</h3>
             <p>Ruled by Shani (Saturn). Rest, patience and service. Good for property, farming and meditation. Avoid starting important tasks.</p>
           </div>
@@ -99,11 +137,11 @@
       </section>
 
       <!-- Tithis -->
-      <section id="tithis">
-        <h2>The 15 Tithis</h2>
+      <section id="tithis" aria-labelledby="tithis-heading" style="margin-top:18px;">
+        <h2 id="tithis-heading">The 15 Tithis</h2>
         <p>Vridhi / Kshaya definitions and short descriptions for each tithi are listed below.</p>
 
-        <ol class="tithi-list">
+        <ol class="tithi-list" aria-label="List of tithis">
           <li><strong>Pratipada</strong> — Auspicious for beginnings, ceremonies and installations.</li>
           <li><strong>Dwitiya</strong> — Good for foundations and starting steady work.</li>
           <li><strong>Tritiya</strong> — Victory; good for inaugurations and the arts.</li>
@@ -118,18 +156,18 @@
           <li><strong>Dwadasi</strong> — Auspicious for rituals and duties.</li>
           <li><strong>Trayodasi</strong> — Pradosha; auspicious for Shiva worship and many ceremonies.</li>
           <li><strong>Chaturdasi</strong> — Rikta; avoid important beginnings.</li>
-          <li><strong>Purnima / Amavasya</strong> — Full / New Moon notes and ritual guidance.
+          <li><strong>Purnima / Amavasya</strong> — Full / New Moon notes and ritual guidance.</li>
         </ol>
 
         <p class="muted">A fuller descriptive text (long paragraphs) is preserved in the original source — let me know if you want the full paragraph-for-paragraph import or a tighter summary for the site.</p>
       </section>
 
       <!-- Months, Adhika / Kshaya, 60-year cycle -->
-      <section id="months">
-        <h2>Months, Adhika &amp; Kshaya</h2>
+      <section id="months" style="margin-top:18px;" aria-labelledby="months-heading">
+        <h2 id="months-heading">Months, Adhika &amp; Kshaya</h2>
         <p>Two month systems: <strong>Amanta</strong> (new-moon start, South India) and <strong>Purnimanta</strong> (full-moon start, North India). Festivals fall on the same civil date regardless of system.</p>
 
-        <div class="columns">
+        <div class="columns" role="group" aria-label="Seasons and Adhika information">
           <div>
             <h3>Seasons &amp; Months</h3>
             <ul>
@@ -148,103 +186,94 @@
           </div>
         </div>
 
-        <h3>Sixty-year cycle</h3>
+        <h3 style="margin-top:14px;">Sixty-year cycle</h3>
         <p>The Ugadi 60-year cycle names are supported on this site and can be displayed by year when you add the dynamic year component.</p>
-        <p>The sixty Ugadi year names are as follows:
-        
-                </p><p>1.  (1867, 1927, 1987, 2047) Prabhava ప్రభవ (యజ్ఞములు అధికంగా జరుగుతాయి)
-                </p><p>2.  (1868, 1928, 1988, 2048) Vibhava విభవ (సుఖంగా జీవిస్తారు)
-                </p><p>3.  (1869, 1929, 1989, 2049) Śukla శుక్ల (సమృద్దిగా పంటలు పండుతాయి)
-                </p><p>4.  (1870, 1930, 1990, 2050) Pramōdyuta ప్రమోద్యూత (అందరికి ఆనందాన్ని ఇస్తుంది)
-                </p><p>5.  (1871, 1931, 1991, 2051) Prajōtpatti ప్రజోత్పత్తి (అన్నింటిలోను అభివృద్ధి ఉంటుంది)
-                </p><p>6.  (1872, 1932, 1992, 2052) Āṅgīrasa ఆంగీరస (భోగాలు కలుగుతాయి)
-                </p><p>7.  (1873, 1933, 1993, 2053) Śrīmukha శ్రీముఖ (వనరులు సమృద్దిగా ఉంటాయి)
-                </p><p>8.  (1874, 1934, 1994, 2054) Bhava భవ (ఉన్నత భావాలు కలిగి ఉంటారు)
-                </p><p>9.  (1875, 1935, 1995, 2055) Yuva యువ (వర్షాలు కురిపించి పంటలు సమృద్ధిగా చేతికి అందుతాయి)
-                </p><p>10.  (1876, 1936, 1996, 2056) Dhāta ధాత (అనారోగ్య బాధలు తగ్గుతాయి)
-                </p><p>11.  (1877, 1937, 1997, 2057) Īśvara ఈశ్వర (క్షేమం, ఆరోగ్యాన్ని సూచిస్తుంది)
-                </p><p>12.  (1878, 1938, 1998, 2058) Bahudhānya బహుధాన్య (దేశం సుభిక్షంగా, సంతోషంగా ఉండాలని సూచిస్తుంది)
-                </p><p>13.  (1879, 1939, 1999, 2059) Pramādhi ప్రమాధి (వర్షాలు మధ్యస్థంగా ఉంటాయి‌)
-                </p><p>14.  (1880, 1940, 2000, 2060) Vikrama విక్రమ (పంటలు బాగా పండి రైతన్నలు సంతోషిస్తారు, విజయాలు సాధిస్తారు)
-                </p><p>15.  (1881, 1941, 2001, 2061) Vr̥ṣa వృష (వర్షాలు సమృద్ధిగా కురుస్తాయి)
-                </p><p>16.  (1882, 1942, 2002, 2062) Citrabhānu చిత్రభాను (అద్భుతమైన ఫలితాలు పొందుతారు)
-                </p><p>17.  (1883, 1943, 2003, 2063) Svabhānu స్వభాను (క్షేమము, ఆరోగ్యం)
-                </p><p>18.  (1884, 1944, 2004, 2064) Tāraṇa తారణ (మేఘాలు సరైన సమయంలో వర్షించి సమృద్ధిగా వర్షాలు కురుస్తాయి)
-                </p><p>19.  (1885, 1945, 2005, 2065) Pārthiva పార్థివ (ఐశ్వర్యం, సంపద పెరుగుతాయి)
-                </p><p>20.  (1886, 1946, 2006, 2066) Vyaya వ్యయ (అతివృష్టి, అనవసర ఖర్చులు)
-                </p><p>21.  (1887, 1947, 2007, 2067) Sarvajittu సర్వజిత్తు (సంతోషకరంగా చాలా వర్షాలు కురుస్తాయి)
-                </p><p>22.  (1888, 1948, 2008, 2068) Sarvadhāri సర్వధారి (సుభిక్షంగా ఉంటారు)
-                </p><p>23.  (1889, 1949, 2009, 2069) Virōdhi విరోధి (వర్షాలు లేకుండా ఇబ్బందులు పడే సమయం)
-                </p><p>24.  (1890, 1950, 2010, 2070) Vikr̥ti వికృతి (ఈ సమయం భయంకరంగా ఉంటుంది)
-                </p><p>25.  (1891, 1951, 2011, 2071) Khara ఖర (పరిస్థితులు సాధారణంగా ఉంటాయి)
-                </p><p>26.  (1892, 1952, 2012, 2072) Nandana ‌నందన (ప్రజలకు ఆనందం కలుగుతుంది)
-                </p><p>27.  (1893, 1953, 2013, 2073) Vijaya విజయ (శత్రువులను జయిస్తారు)
-                </p><p>28.  (1894, 1954, 2014, 2074) Jaya జయ (లాభాలు, విజయం సాధిస్తారు)
-                </p><p>29.  (1895, 1955, 2015, 2075) Manmadha మన్మధ (జ్వరాది బాధలు తొలగిపోతాయి)
-                </p><p>30.  (1896, 1956, 2016, 2076) Durmukhi దుర్ముఖి (ఇబ్బందులు ఉన్న క్షేమంగానే ఉంటారు)
-                </p><p>31.  (1897, 1957, 2017, 2077) Hēvaḷambi హేవళంబి (ప్రజలు సంతోషంగా ఉంటారు)
-                </p><p>32.  (1898, 1958, 2018, 2078) Viḷambi విళంబి (సుభిక్షంగా ఉంటారు)
-                </p><p>33.  (1899, 1959, 2019, 2079) Vikāri వికారి (అనారోగ్యాన్ని కలిగిస్తుంది, శత్రువులకు చాలా కోపం తీసుకొస్తుంది)
-                </p><p>34.  (1900, 1960, 2020, 2080) Śārvari శార్వరి (చీకటి)
-                </p><p>35.  (1901, 1961, 2021, 2081) Plava ప్లవ (ఒడ్డుకు చేర్చునది)
-                </p><p>36.  (1902, 1962, 2022, 2082) Śubhakr̥ttu శుభకృతు (శుభములు కలిగించేది)
-                </p><p>37.  (1903, 1963, 2023, 2083) Śōbhakr̥ttu శోభకృతు (లాభములు కలిగించేది)
-                </p><p>38.  (1904, 1964, 2024, 2084) Krōdhi క్రోధి (కోపం కలిగించేది)
-                </p><p>39.  (1905, 1965, 2025, 2085) Viśvāvasu విశ్వావసు (ధనం సమృద్ధిగా ఉంటుంది)
-                </p><p>40.  (1906, 1966, 2026, 2086) Parābhava పరాభవ (ప్రజల పరాభవాలకు గురవుతారు)
-                </p><p>41.  (1907, 1967, 2027, 2087) Plavaṅga ప్లవంగ (నీరు సమృద్ధిగా ఉంటుంది)
-                </p><p>42.  (1908, 1968, 2028, 2088) Kīlaka కీలక (పంటలు బాగా పండుతాయి)
-                </p><p>43.  (1909, 1969, 2029, 2089) Saumya సౌమ్య (శుభ ఫలితాలు అధికం)
-                </p><p>44.  (1910, 1970, 2030, 2090) Sādhāraṇa సాధారణ (సాధారణ పరిస్థితులు ఉంటాయి)
-                </p><p>45.  (1911, 1971, 2031, 2091) Virōdhikr̥ttu విరోధికృతు (ప్రజల్లో విరోధం ఏర్పడుతుంది)
-                </p><p>46.  (1912, 1972, 2032, 2092) Paridhāvi పరిధావి (ప్రజల్లో భయం ఎక్కువగా ఉంటుంది)
-                </p><p>47.  (1913, 1973, 2033, 2093) Pramādīca ప్రమాదీచ (ప్రమాదాలు ఎక్కువ)
-                </p><p>48.  (1914, 1974, 2034, 2094) Ānanda ఆనంద (ఆనందంగా ఉంటారు)
-                </p><p>49.  (1915, 1975, 2035, 2095) Rākṣasa రాక్షస (కఠిన హృదయం కలిగి ఉంటారు)
-                </p><p>50.  (1916, 1976, 2036, 2096) Nala నల (పంటలు బాగా పండుతాయి)
-                </p><p>51.  (1917, 1977, 2037, 2097) Piṅgaḷa పింగళ (సామాన్య ఫలితాలు కలుగుతాయి)
-                </p><p>52.  (1918, 1978, 2038, 2098) Kāḷayukti కాళయుక్తి (కాలానికి అనుకూలమైన ఫలితాలు లభిస్తాయి)
-                </p><p>53.  (1919, 1979, 2039, 2099) Siddhārthi సిద్ధార్ది (కార్య సిద్ధి)
-                </p><p>54.  (1920, 1980, 2040, 2100) Raudri రౌద్రి (ప్రజలకు చిన్నపాటి బాధలు ఉంటాయి)
-                </p><p>55.  (1921, 1981, 2041, 2101) Durmati దుర్మతి (వర్షాలు సామాన్యంగా ఉంటాయి)
-                </p><p>56.  (1922, 1982, 2042, 2102) Dundubhi దుందుభి (క్షేమం, ధ్యానం)
-                </p><p>57.  (1923, 1983, 2043, 2103) Rudhirōdgāri రుధిరోద్గారి (ప్రమాదాలు ఎక్కువ)
-                </p><p>58.  (1924, 1984, 2044, 2104) Raktākṣi రక్తాక్షి (అశుభాలు కలుగుతాయి)
-                </p><p>59.  (1925, 1985, 2045, 2105) Krōdhana క్రోధన (విజయాలు సిద్ధిస్తాయి)
-                </p><p>60.  (1926, 1986, 2046, 2106) Akṣaya అక్షయ (తరగని సంపద)
-                </p><p>
-                In ancient days Yogis (saints) interact directly with God, according to that, 
-                they have given information related to our Indian Kalachakra (time-cycle) 
-                in relation to Lord Brahma. Below is the Indian Kalachakra (time-cycle):
-        
-            </p><p>60 years = Shashti Poorthi
-            </p><p>432,000 years = Kali Yuga
-            </p><p>864,000 years = Dvapara Yuga
-            </p><p>1,296,000 years = Treta Yuga
-            </p><p>1,728,000 years = Satya Yuga
-            </p><p>4,320,000 years = Chatur Yuga (Total 4 Yuga)
-            </p><p>71 Chatur Yuga = Manvantara
-            </p><p>1,000 Chatur Yuga = Kalpa a.k.a. Brahma day (= 14 Manvantara + 15 Manvantara-sandhya)
-            </p><p>Kalpa + Pralaya = Brahma Day (day + night)
-            </p><p>30 Brahma Days = Brahma month
-            </p><p>12 Brahma months = Brahma year
-            </p><p>100 Brahma years = Brahma lifespan a.k.a. 
-            </p><p>Maha-kalpa of 311.04 trillion years (followed by Maha-pralaya of equal length)
-            </p>
+
+        <!-- Full list preserved as provided -->
+        <div style="margin-top:12px; white-space:pre-wrap; font-size:0.95rem; color:#222;">
+          <p>1.  (1867, 1927, 1987, 2047) Prabhava ప్రభవ (యజ్ఞములు అధికంగా జరుగుతాయి)</p>
+          <p>2.  (1868, 1928, 1988, 2048) Vibhava విభవ (సుఖంగా జీవిస్తారు)</p>
+          <p>3.  (1869, 1929, 1989, 2049) Śukla శుక్ల (సమృద్దిగా పంటలు pండుతాయి)</p>
+          <p>4.  (1870, 1930, 1990, 2050) Pramōdyuta ప్రమోద్యూత (అందరికి ఆనందాన్ని ఇస్తుంది)</p>
+          <p>5.  (1871, 1931, 1991, 2051) Prajōtpatti ప్రజోత్పత్తి (అన్నింటిలోను అభివృద్ధి ఉంటుంది)</p>
+          <p>6.  (1872, 1932, 1992, 2052) Āṅgīrasa ఆంగీరస (భోగాలు కలుగుతాయి)</p>
+          <p>7.  (1873, 1933, 1993, 2053) Śrīmukha శ్రీముఖ (వనరులు సమృద్దిగా ఉంటాయి)</p>
+          <p>8.  (1874, 1934, 1994, 2054) Bhava భవ (ఉన్నత భావాలు కలిగి ఉంటారు)</p>
+          <p>9.  (1875, 1935, 1995, 2055) Yuva యువ (వర్షాలు కురిపించి పంటలు సమృద్ధిగా చేతికి అందుతాయి)</p>
+          <p>10. (1876, 1936, 1996, 2056) Dhāta ధాత (అనారోగ్య బాధలు తగ్గుతాయి)</p>
+          <p>11. (1877, 1937, 1997, 2057) Īśvara ఈశ్వర (క్షేమం, ఆరోగ్యాన్ని సూచిస్తుంది)</p>
+          <p>12. (1878, 1938, 1998, 2058) Bahudhānya బహుధాన్య (దేశం సుభిక్షంగా, సంతోషంగా ఉండాలని సూచిస్తుంది)</p>
+          <p>13. (1879, 1939, 1999, 2059) Pramādhi ప్రమాధి (వర్షాలు మధ్యస్థంగా ఉంటాయి‌)</p>
+          <p>14. (1880, 1940, 2000, 2060) Vikrama విక్రమ (పంటలు బాగా పండి రైతన్నలు సంతోషిస్తారు, విజయాలు సాధిస్తారు)</p>
+          <p>15. (1881, 1941, 2001, 2061) Vr̥ṣa వృష (వర్షాలు సమృద్ధిగా కురుస్తాయి)</p>
+          <p>16. (1882, 1942, 2002, 2062) Citrabhānu చిత్రభాను (అద్భుతమైన ఫలితాలు పొందుతారు)</p>
+          <p>17. (1883, 1943, 2003, 2063) Svabhānu స్వభాను (క్షేమము, ఆరోగ్యం)</p>
+          <p>18. (1884, 1944, 2004, 2064) Tāraṇa తారణ (మేఘాలు సరైన సమయంలో వర్షించి సమృద్ధిగా వర్షాలు కురుస్తాయి)</p>
+          <p>19. (1885, 1945, 2005, 2065) Pārthiva పార్థివ (ఐశ్వర్యం, సంపద పెరుగుతాయి)</p>
+          <p>20. (1886, 1946, 2006, 2066) Vyaya వ్యయ (అతివృష్టి, అనవసర ఖర్చులు)</p>
+          <p>21. (1887, 1947, 2007, 2067) Sarvajittu సర్వజిత్తు (సంతోషకరంగా చాలా వర్షాలు కురుస్తాయి)</p>
+          <p>22. (1888, 1948, 2008, 2068) Sarvadhāri సర్వధారి (సుభిక్షంగా ఉంటారు)</p>
+          <p>23. (1889, 1949, 2009, 2069) Virōdhi విరోధి (వర్షాలు లేకుండా ఇబ్బందులు పడే సమయం)</p>
+          <p>24. (1890, 1950, 2010, 2070) Vikr̥ti వికృతి (ఈ సమయం భయంకరంగా ఉంటుంది)</p>
+          <p>25. (1891, 1951, 2011, 2071) Khara ఖర (పరిస్థితులు సాధారణంగా ఉంటాయి)</p>
+          <p>26. (1892, 1952, 2012, 2072) Nandana నందన (ప్రజలకు ఆనందం కలుగుతుంది)</p>
+          <p>27. (1893, 1953, 2013, 2073) Vijaya విజయ (శత్రువులను జయిస్తారు)</p>
+          <p>28. (1894, 1954, 2014, 2074) Jaya జయ (లాభాలు, విజయం సాధిస్తారు)</p>
+          <p>29. (1895, 1955, 2015, 2075) Manmadha మన్మధ (జ్వరాది బాధలు తొలగిపోతాయి)</p>
+          <p>30. (1896, 1956, 2016, 2076) Durmukhi దుర్ముఖి (ఇబ్బందులు ఉన్న క్షేమంగానే ఉంటారు)</p>
+          <p>31. (1897, 1957, 2017, 2077) Hēvaḷambi హేవళంబి (ప్రజలు సంతోషంగా ఉంటారు)</p>
+          <p>32. (1898, 1958, 2018, 2078) Viḷambi విళంబి (సుభిక్షంగా ఉంటారు)</p>
+          <p>33. (1899, 1959, 2019, 2079) Vikāri వికారి (అనారోగ్యాన్ని కలిగిస్తుంది, శత్రువులకు చాలా కోపం తీసుకొస్తుంది)</p>
+          <p>34. (1900, 1960, 2020, 2080) Śārvari శార్వరి (చీకటి)</p>
+          <p>35. (1901, 1961, 2021, 2081) Plava ప్లవ (ఒడ్డుకు చేర్చునది)</p>
+          <p>36. (1902, 1962, 2022, 2082) Śubhakr̥ttu శుభకృతు (శుభములు కలిగించేది)</p>
+          <p>37. (1903, 1963, 2023, 2083) Śōbhakr̥ttu శోభకృతు (లాభములు కలిగించేది)</p>
+          <p>38. (1904, 1964, 2024, 2084) Krōdhi క్రోధి (కోపం కలిగించేది)</p>
+          <p>39. (1905, 1965, 2025, 2085) Viśvāvasu విశ్వావసు (ధనం సమృద్ధిగా ఉంటుంది)</p>
+          <p>40. (1906, 1966, 2026, 2086) Parābhava పరాభవ (ప్రజల పరాభవాలకు గురవుతారు)</p>
+          <p>41. (1907, 1967, 2027, 2087) Plavaṅga ప్లవంగ (నీరు సమృద్ధిగా ఉంటుంది)</p>
+          <p>42. (1908, 1968, 2028, 2088) Kīlaka కీలక (పంటలు బాగా పండుతాయి)</p>
+          <p>43. (1909, 1969, 2029, 2089) Saumya సౌమ్య (శుభ ఫలితాలు అధికం)</p>
+          <p>44. (1910, 1970, 2030, 2090) Sādhāraṇa సాధారణ (సాధారణ పరిస్థితులు ఉంటాయి)</p>
+          <p>45. (1911, 1971, 2031, 2091) Virōdhikr̥ttu విరోధికృతు (ప్రజల్లో విరోధం ఏర్పడుతుంది)</p>
+          <p>46. (1912, 1972, 2032, 2092) Paridhāvi పరిధావి (ప్రజల్లో భయం ఎక్కువగా ఉంటుంది)</p>
+          <p>47. (1913, 1973, 2033, 2093) Pramādīca ప్రమాదీచ (ప్రమాదాలు ఎక్కువ)</p>
+          <p>48. (1914, 1974, 2034, 2094) Ānanda ఆనంద (ఆనందంగా ఉంటారు)</p>
+          <p>49. (1915, 1975, 2035, 2095) Rākṣasa రాక్షస (కఠిన హృదయం కలిగి ఉంటారు)</p>
+          <p>50. (1916, 1976, 2036, 2096) Nala నల (పంటలు బాగా పండుతాయి)</p>
+          <p>51. (1917, 1977, 2037, 2097) Piṅgaḷa పింగళ (సామాన్య ఫలితాలు కలుగుతాయి)</p>
+          <p>52. (1918, 1978, 2038, 2098) Kāḷayukti కాళయుక్తి (కాలానికి అనుకూలమైన ఫలితాలు లభిస్తాయి)</p>
+          <p>53. (1919, 1979, 2039, 2099) Siddhārthi సిద్ధార్ది (కార్య సిద్ధి)</p>
+          <p>54. (1920, 1980, 2040, 2100) Raudri రౌద్రి (ప్రజలకు చిన్నపాటి బాధలు ఉంటాయి)</p>
+          <p>55. (1921, 1981, 2041, 2101) Durmati దుర్మతి (వర్షాలు సామాన్యంగా ఉంటాయి)</p>
+          <p>56. (1922, 1982, 2042, 2102) Dundubhi దుందుభి (క్షేమం, ధ్యానం)</p>
+          <p>57. (1923, 1983, 2043, 2103) Rudhirōdgāri రుధిరోద్గారి (ప్రమాదాలు ఎక్కువ)</p>
+          <p>58. (1924, 1984, 2044, 2104) Raktākṣi రక్తాక్షి (అశుభాలు కలుగుతాయి)</p>
+          <p>59. (1925, 1985, 2045, 2105) Krōdhana క్రోధన (విజయాలు సిద్ధిస్తాయి)</p>
+          <p>60. (1926, 1986, 2046, 2106) Akṣaya అక్షయ (తరగని సంపద)</p>
+        </div>
+
+        <div style="margin-top:14px;">
+          <p>In ancient days Yogis (saints) interact directly with God, according to that, they have given information related to our Indian Kalachakra (time-cycle) in relation to Lord Brahma. Below is the Indian Kalachakra (time-cycle):</p>
+          <p>60 years = Shashti Poorthi</p>
+          <p>432,000 years = Kali Yuga</p>
+          <p>864,000 years = Dvapara Yuga</p>
+          <p>1,296,000 years = Treta Yuga</p>
+          <p>1,728,000 years = Satya Yuga</p>
+          <p>4,320,000 years = Chatur Yuga (Total 4 Yuga)</p>
+          <p>71 Chatur Yuga = Manvantara</p>
+          <p>1,000 Chatur Yuga = Kalpa a.k.a. Brahma day (= 14 Manvantara + 15 Manvantara-sandhya)</p>
+          <p>Kalpa + Pralaya = Brahma Day (day + night)</p>
+          <p>30 Brahma Days = Brahma month</p>
+          <p>12 Brahma months = Brahma year</p>
+          <p>100 Brahma years = Brahma lifespan a.k.a. Maha-kalpa of 311.04 trillion years (followed by Maha-pralaya of equal length)</p>
+        </div>
+
       </section>
-
     </article>
-     
-
-
-    </div>
-
   </main>
-
- 
 
   <!-- footer fragment -->
   <div include-html="footer.html"></div>
-
 </body>
 </html>
