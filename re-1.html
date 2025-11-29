@@ -72,7 +72,7 @@
     .flags { font-weight:700; margin-top:12px; display:block; color:#333; }
   </style>
 
-  <!-- include loader for header/footer -->
+  <!-- include loader for header/footer (include.js should populate elements with include-html attribute) -->
   <script src="include.js" defer></script>
 </head>
 
@@ -96,6 +96,9 @@
         <a class="btn-ghost" href="re-1.html">Remedies</a>
       </div>
     </section>
+
+    <article class="content card" id="panchanga-content">
+
       <h1 class="mt-4">Remedies for all Birth Star – Nakshatra (నక్షత్రం)</h1>
 
       <p>
@@ -170,7 +173,7 @@
       <div class="download-links float-right mb-3">
         <h3>DOWNLOAD</h3>
         <a href="VISHNU SAHASRANAMAM.pdf" download>VISHNU SAHASRANAMAM</a><br />
-        <a href="శ్రీ విష్ణু సహస్ర నామ స్తోత్రమ్.pdf" download>శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్</a>
+        <a href="శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్.pdf" download>శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్</a>
       </div>
 
       <div class="row mt-2">
@@ -211,21 +214,13 @@
         </div>
       </div>
 
-    </div>
-  </main>
+    </article>
 
-  <div id="footer"></div>
-
-  <script>
-    // keep header/footer loading consistent with other pages
-    $(function(){
-      $('#header').load('header.html');
-      $('#footer').load('footer.html');
-    });
-  </script>
   </main>
 
   <!-- footer fragment -->
   <div include-html="footer.html"></div>
+
+  <!-- include.js will populate include-html fragments; if include.js not present, fallback to nothing -->
 </body>
 </html>
