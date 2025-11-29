@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nakshatras — Siddha Saraswatha</title>
-
   <link rel="shortcut icon" type="image/png" href="12.png">
 
   <!-- Icons -->
@@ -17,36 +16,92 @@
 
   <!-- small page-specific tweaks -->
   <style>
-    /* keep small thumbnail images circular */
-    .nak-thumb { width: 92px; height: 92px; object-fit:cover; border-radius:12px; display:block; margin:0 auto 10px; }
-    .nak-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
-    @media (max-width:980px){ .nak-grid{grid-template-columns:repeat(2,1fr);} }
-    @media (max-width:640px){ .nak-grid{grid-template-columns:1fr;} }
-    .text-block p { margin: 0 0 12px; line-height:1.6; color:#333; }
-    .flags { font-weight:700; margin-top:12px; }
-    /* Reduce Zodiac Sign image size */
-.img {
-  width: 70px;        /* adjust as needed */
-  height: 70px;
-  border-radius: 35px;
-}
+    :root {
+      --accent: #c06b00;
+      --muted: #6b6b6b;
+      --max-width: 1100px;
+      --gap: 16px;
+    }
 
-@media (max-width:640px) {
-  .img {
-    width: 50px;
-    height: 50px;
-  border-radius: 25px;
-  }
-}
+    body { font-family: system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; color:#222; line-height:1.5; }
 
+    .wrap{ max-width:var(--max-width); margin:22px auto; padding:0 18px; }
+    .page-header { text-align:center; margin-bottom:12px; }
+    .page-header h1 { margin:6px 0 2px; font-size:1.8rem; }
+    .page-sub { color:var(--muted); margin:0 0 8px; }
+
+    .card { background:#fff; border-radius:10px; padding:14px; box-shadow:0 8px 26px rgba(6,10,18,0.04); }
+
+    /* quick links */
+    .quick-links { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    .btn-ghost {
+      display:inline-block; padding:8px 12px; border-radius:8px;
+      text-decoration:none; color:var(--accent); border:1px solid rgba(0,0,0,0.06);
+      background:transparent; font-weight:600;
+    }
+    .btn-ghost:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(192,107,0,0.06); }
+
+    /* grid of zodiac cards */
+    .nak-grid {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:var(--gap);
+      margin-top:14px;
+    }
+    @media (max-width:980px){ .nak-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:640px){ .nak-grid { grid-template-columns: 1fr; } }
+
+    article.z-card {
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px;
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 6px 18px rgba(6,10,18,0.03);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    article.z-card:hover{ transform: translateY(-4px); box-shadow:0 12px 30px rgba(6,10,18,0.06); }
+
+    .z-card-figure {
+      width:92px;
+      min-width:92px;
+      height:92px;
+      border-radius:12px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#fafafa;
+      flex-shrink:0;
+    }
+
+    /* keep small thumbnail images circular/square and consistent */
+    .z-card-figure img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      border-radius:10px;
+    }
+
+    /* alternative smaller icon class (used elsewhere) */
+    .nak-thumb { width:72px; height:72px; object-fit:cover; border-radius:10px; display:block; }
+
+    h4 { margin:0 0 6px; font-size:1.02rem; }
+    .muted.small { color:var(--muted); margin:0; font-size:0.95rem; }
+
+    .download-links { text-align:right; margin-bottom:8px; }
+
+    /* small utility */
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   </style>
 
-  <!-- include loader for header/footer -->
+  <!-- include loader for header/footer (your site provide include.js) -->
   <script src="include.js" defer></script>
 </head>
 
 <body>
-
   <!-- header fragment -->
   <div include-html="header.html"></div>
 
@@ -55,21 +110,24 @@
       <h1>Zodiac Signs (Rasis)</h1>
       <p class="page-sub">Click a sign to learn its traits, strengths, and muhurtha notes.</p>
     </header>
- <!-- quick nav for learning pages -->
-    <section class="card" style="margin-bottom:18px;">
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+
+    <!-- quick nav for learning pages -->
+    <section class="card" aria-label="Quick links" style="margin-bottom:18px;">
+      <nav class="quick-links" aria-label="Site quick links">
         <a class="btn-ghost" href="learn.html">Planets / Graha</a>
         <a class="btn-ghost" href="zs.html">Zodiac / Rasi</a>
         <a class="btn-ghost" href="bs.html">Nakshatra / Birth Star</a>
         <a class="btn-ghost" href="re.html">Smaya</a>
         <a class="btn-ghost" href="tb.html">Tarabalam</a>
         <a class="btn-ghost" href="re-1.html">Remedies</a>
-      </div>
+      </nav>
     </section>
+
     <!-- grid of zodiac cards -->
-    <section aria-label="Zodiac signs" class="grid-3" style="gap:18px;">
+    <section aria-label="Zodiac signs" class="nak-grid">
+
       <!-- Aries -->
-      <article class="card" role="article" aria-labelledby="r-aries">
+      <article class="z-card" role="article" aria-labelledby="r-aries">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/1.jpg" alt="Aries symbol">
         </figure>
@@ -80,7 +138,7 @@
       </article>
 
       <!-- Taurus -->
-      <article class="card" role="article" aria-labelledby="r-taurus">
+      <article class="z-card" role="article" aria-labelledby="r-taurus">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/2.jpg" alt="Taurus symbol">
         </figure>
@@ -91,7 +149,7 @@
       </article>
 
       <!-- Gemini -->
-      <article class="card" role="article" aria-labelledby="r-gemini">
+      <article class="z-card" role="article" aria-labelledby="r-gemini">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/3.jpg" alt="Gemini symbol">
         </figure>
@@ -102,7 +160,7 @@
       </article>
 
       <!-- Cancer -->
-      <article class="card" role="article" aria-labelledby="r-cancer">
+      <article class="z-card" role="article" aria-labelledby="r-cancer">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/4.jpg" alt="Cancer symbol">
         </figure>
@@ -113,7 +171,7 @@
       </article>
 
       <!-- Leo -->
-      <article class="card" role="article" aria-labelledby="r-leo">
+      <article class="z-card" role="article" aria-labelledby="r-leo">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/5.jpg" alt="Leo symbol">
         </figure>
@@ -124,7 +182,7 @@
       </article>
 
       <!-- Virgo -->
-      <article class="card" role="article" aria-labelledby="r-virgo">
+      <article class="z-card" role="article" aria-labelledby="r-virgo">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/6.jpg" alt="Virgo symbol">
         </figure>
@@ -135,7 +193,7 @@
       </article>
 
       <!-- Libra -->
-      <article class="card" role="article" aria-labelledby="r-libra">
+      <article class="z-card" role="article" aria-labelledby="r-libra">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/7.jpg" alt="Libra symbol">
         </figure>
@@ -146,7 +204,7 @@
       </article>
 
       <!-- Scorpio -->
-      <article class="card" role="article" aria-labelledby="r-scorpio">
+      <article class="z-card" role="article" aria-labelledby="r-scorpio">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/8.jpg" alt="Scorpio symbol">
         </figure>
@@ -157,7 +215,7 @@
       </article>
 
       <!-- Sagittarius -->
-      <article class="card" role="article" aria-labelledby="r-sagittarius">
+      <article class="z-card" role="article" aria-labelledby="r-sagittarius">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/9.jpg" alt="Sagittarius symbol">
         </figure>
@@ -168,7 +226,7 @@
       </article>
 
       <!-- Capricorn -->
-      <article class="card" role="article" aria-labelledby="r-capricorn">
+      <article class="z-card" role="article" aria-labelledby="r-capricorn">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/10.jpg" alt="Capricorn symbol">
         </figure>
@@ -179,7 +237,7 @@
       </article>
 
       <!-- Aquarius -->
-      <article class="card" role="article" aria-labelledby="r-aquarius">
+      <article class="z-card" role="article" aria-labelledby="r-aquarius">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/11.jpg" alt="Aquarius symbol">
         </figure>
@@ -190,7 +248,7 @@
       </article>
 
       <!-- Pisces -->
-      <article class="card" role="article" aria-labelledby="r-pisces">
+      <article class="z-card" role="article" aria-labelledby="r-pisces">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="Nakshatras/12/12.jpg" alt="Pisces symbol">
         </figure>
@@ -201,7 +259,7 @@
       </article>
 
       <!-- Extras: combined pages -->
-      <article class="card" role="article" aria-labelledby="r-nakshatra">
+      <article class="z-card" role="article" aria-labelledby="r-nakshatra">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="123.png" alt="Nakshatra & Rashi">
         </figure>
@@ -211,7 +269,7 @@
         </div>
       </article>
 
-      <article class="card" role="article" aria-labelledby="r-shanthi">
+      <article class="z-card" role="article" aria-labelledby="r-shanthi">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="shanti.jpg" alt="Shanthi Nakshatra">
         </figure>
@@ -221,7 +279,7 @@
         </div>
       </article>
 
-      <article class="card" role="article" aria-labelledby="r-yoga">
+      <article class="z-card" role="article" aria-labelledby="r-yoga">
         <figure class="z-card-figure" aria-hidden="true">
           <img loading="lazy" src="yoga.jpg" alt="Yoga in Astrology">
         </figure>
@@ -230,12 +288,11 @@
           <p class="muted small">Important yogas and their practical meanings in charts.</p>
         </div>
       </article>
-    </section>
 
-  
+    </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER fragment -->
   <div include-html="footer.html"></div>
 
 </body>
