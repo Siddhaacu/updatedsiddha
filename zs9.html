@@ -1,76 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Sagittarius / Dhanu Rashi — Siddha Saraswatha</title>
 
-<link rel="shortcut icon" type="image/png" href="12.png">
-<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale-1.0, shrink-to-fit">
-<link rel="stylesheet" href="styles.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-img{
-    border-radius: 50px;
-    width:100px;
-    height: 100px;
-}
+  <link rel="shortcut icon" type="image/png" href="12.png">
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-</style>
+  <style>
+    :root{
+      --max-width:1100px;
+      --accent:#c06b00;
+      --muted:#6b6b6b;
+    }
 
-<body class="background"></body>
-<div class="wrapper">
-<div class="text">
-        <div align="right"><a href="index.html"><img src="12.png" alt="No photo"width="300" /></a></div>
-        <div align="left"> <a href="zs.html"><h2>←Back</h2></a></div>
-             <center><h3><img src="zs9.jpg"><br>Sagittarius / Dhanu Rashi</h3>
-                <h3>Master Planet : Jupiter / Guru</h3>
-                <p>Ye ,Yo, Yho ,Bha ,Bhi, Bhee ,Bhu, Bhoo ,Dha ,Pha, Fa ,Dhaa, Dhha ,Bhe, Bhay</p></center> 
-                <P align="center">
-                    This Rashi sign is made up of full Nakshatras of Moola and Poorvashada and the first charan of Uttarashadha. 
-                    The people under this sign are men of principle, following their religion. They are the nucleus of their families, earning for all. 
-                </P><p>        
-                    They have great potentials, happy and lucky attitude towards life. They are enterprising, logical, leaders, have healthy attitude towards life. 
-                    They gain popularity through their actions and intelligence. They are optimistic, truthful and generous. 
-                    They are loyal, independent, modest, and virtuous. They attain their goals in life. 
-                    They are usually born in rich families and do not acquire riches by their efforts.
-                </p><p>
-                    They have long faces and necks and other parts of body attractive but conspicuous. 
-                    They are soft-spoken and quite popular. They stick to their friendship. They are courageous but tolerant. 
-                    They lose their hair of their head early. They work without thinking of fruits. Even if they are traders they are honest. 
-                    They are quick to anger; are more idealistic and dominating. They attain rise of destiny at the age of 22-23 years.
-                </p>      
-                <style>
-                    img.two {
-                        border-radius: 25px;
-                        width: 50px;
-                        height: 50px;
-                    }
-                    
-                </style>
-                        
-                    <div class="row">
-                      <div class="column5">
-                        <div><a href="zs1.html"><img class="two" src="Nakshatras/12/1.jpg"></div><br>
-                        <div><a href="zs7.html"><img class="two" src="Nakshatras/12/7.jpg"></a></div>
-                      </div>
-                      <div class="column5">
-                        <div><a href="zs2.html"><img class="two" src="Nakshatras/12/2.jpg"></div><br>
-                        <div> <a href="zs8.html"><img class="two" src="Nakshatras/12/8.jpg"></div>
-                      </div>
-                      <div class="column5">
-                        <div> <a href="zs3.html"><img class="two" src="Nakshatras/12/3.jpg"></div><br>
-                        <div> <a href="zs9.html"><img class="two" src="Nakshatras/12/9.jpg"></div>     
-                      </div>      
-                    <div class="column5">
-                       <div><a href="zs4.html"><img class="two" src="Nakshatras/12/4.jpg"></div> <br>
-                       <div><a href="zs10.html"><img class="two" src="Nakshatras/12/10.jpg"></div>
-                    </div>
-                    <div class="column5">
-                        <div> <a href="zs5.html"><img class="two" src="Nakshatras/12/5.jpg"></div> <br>
-                        <div> <a href="zs11.html"><img class="two" src="Nakshatras/12/11.jpg"></div>
-                        </div>
-                    <div class="column5">
-                        <div> <a href="zs6.html"><img class="two" src="Nakshatras/12/6.jpg"></div><br>
-                        <div> <a href="zs12.html"><img class="two" src="Nakshatras/12/12.jpg"></div>
-                    </div>
-                 
-                    </div>
-                </div>
-                </div>
+    /* page basics */
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:#f6f6f6;
+      color:#222;
+      line-height:1.6;
+    }
+
+    .wrapper{
+      max-width:var(--max-width);
+      margin:20px auto;
+      padding:18px;
+    }
+
+    .card{
+      background:#fff;
+      padding:18px;
+      border-radius:10px;
+      box-shadow:0 8px 26px rgba(6,10,18,0.04);
+      position:relative;
+    }
+
+    /* top row: logo left, back button right */
+    .top-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+    }
+    .logo {
+      max-width:160px;
+      height:auto;
+      display:block;
+    }
+    .back-btn{
+      text-decoration:none;
+      color:var(--accent);
+      font-weight:700;
+      padding:6px 10px;
+      border-radius:8px;
+      background:rgba(192,107,0,0.06);
+      border:1px solid rgba(0,0,0,0.06);
+    }
+    .back-btn:hover{ box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+
+    /* center block */
+    .center-block{
+      text-align:center;
+      margin-bottom:18px;
+    }
+    .center-block img.hero{
+      max-width:220px;
+      width:100%;
+      border-radius:12px;
+      margin-bottom:8px;
+      display:block;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    h3 { margin:8px 0; }
+    p { margin:0 0 12px; color:#222; }
+
+    /* thumbnails */
+    .thumb-grid{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+      margin-top:18px;
+      align-items:start;
+    }
+    @media(max-width:980px){ .thumb-grid{grid-template-columns:repeat(4,1fr);} }
+    @media(max-width:640px){ .thumb-grid{grid-template-columns:repeat(3,1fr);} }
+
+    .thumb img.two{
+      width:50px;
+      height:50px;
+      object-fit:cover;
+      border-radius:12px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.06);
+      display:block;
+    }
+
+    .muted { color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+
+      <!-- top row: logo (left) + back (right) -->
+      <div class="top-row">
+        <a href="index.html" aria-label="Home — Siddha Saraswatha">
+          <img class="logo" src="12.png" alt="Siddha Saraswatha logo" loading="lazy">
+        </a>
+
+        <a class="back-btn" href="zs.html" aria-label="Back to Zodiac list">← Back</a>
+      </div>
+
+      <!-- main content (content preserved exactly) -->
+      <div class="center-block" role="region" aria-labelledby="title-sagittarius">
+        <img class="hero" src="zs9.jpg" alt="Sagittarius / Dhanu symbol" loading="lazy">
+        <h3 id="title-sagittarius">Sagittarius / Dhanu Rashi</h3>
+        <h3>Master Planet : Jupiter / Guru</h3>
+        <p>Ye ,Yo, Yho ,Bha ,Bhi, Bhee ,Bhu, Bhoo ,Dha ,Pha, Fa ,Dhaa, Dhha ,Bhe, Bhay</p>
+      </div>
+
+      <p align="center">
+        This Rashi sign is made up of full Nakshatras of Moola and Poorvashada and the first charan of Uttarashadha. 
+        The people under this sign are men of principle, following their religion. They are the nucleus of their families, earning for all.
+      </p>
+
+      <p>
+        They have great potentials, happy and lucky attitude towards life. They are enterprising, logical, leaders, have healthy attitude towards life. 
+        They gain popularity through their actions and intelligence. They are optimistic, truthful and generous. 
+        They are loyal, independent, modest, and virtuous. They attain their goals in life. 
+        They are usually born in rich families and do not acquire riches by their efforts.
+      </p>
+
+      <p>
+        They have long faces and necks and other parts of body attractive but conspicuous. 
+        They are soft-spoken and quite popular. They stick to their friendship. They are courageous but tolerant. 
+        They lose their hair of their head early. They work without thinking of fruits. Even if they are traders they are honest. 
+        They are quick to anger; are more idealistic and dominating. They attain rise of destiny at the age of 22-23 years.
+      </p>
+
+      <!-- thumbnails (unchanged image sources & links) -->
+      <div class="thumb-grid" aria-label="Quick links to other zodiac signs">
+        <div class="thumb"><a href="zs1.html"><img class="two" src="Nakshatras/12/1.jpg" alt="Aries" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs2.html"><img class="two" src="Nakshatras/12/2.jpg" alt="Taurus" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs3.html"><img class="two" src="Nakshatras/12/3.jpg" alt="Gemini" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs4.html"><img class="two" src="Nakshatras/12/4.jpg" alt="Cancer" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs5.html"><img class="two" src="Nakshatras/12/5.jpg" alt="Leo" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs6.html"><img class="two" src="Nakshatras/12/6.jpg" alt="Virgo" loading="lazy"></a></div>
+
+        <div class="thumb"><a href="zs7.html"><img class="two" src="Nakshatras/12/7.jpg" alt="Libra" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs8.html"><img class="two" src="Nakshatras/12/8.jpg" alt="Scorpio" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs9.html"><img class="two" src="Nakshatras/12/9.jpg" alt="Sagittarius" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs10.html"><img class="two" src="Nakshatras/12/10.jpg" alt="Capricorn" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs11.html"><img class="two" src="Nakshatras/12/11.jpg" alt="Aquarius" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs12.html"><img class="two" src="Nakshatras/12/12.jpg" alt="Pisces" loading="lazy"></a></div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
