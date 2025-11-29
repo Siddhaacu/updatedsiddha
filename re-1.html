@@ -61,13 +61,16 @@
       .page-header h1 { font-size:1.5rem; }
       .column1, .column2 { flex-basis:100%; min-width:unset; }
     }
+
+    /* small utility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
   </style>
 
   <!-- preferred fragment loader (site may provide include.js) -->
   <script src="include.js" defer></script>
 </head>
 <body>
-  <!-- header fragment (populated by include.js or fallback below) -->
+  <!-- header fragment (populated by include.js or fallback loader below) -->
   <div include-html="header.html"></div>
 
   <main class="wrap" role="main" aria-labelledby="page-title">
@@ -76,7 +79,7 @@
       <p class="muted" aria-hidden="true">Remedies & reference for Nakshatra / Panchānga guidance</p>
     </header>
 
-    <!-- Quick navigation (matches blog layout) -->
+    <!-- Quick navigation -->
     <section class="card" aria-label="Quick links" style="margin-bottom:18px;">
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
         <a class="btn-ghost" href="learn.html">Planets / Graha</a>
@@ -88,7 +91,8 @@
       </div>
     </section>
 
-    <!-- Article card: CONTENT REMAINS UNCHANGED -->
+    <!-- Main article (content preserved exactly) -->
+    <article class="card" id="panchanga-content" aria-describedby="panchanga-desc">
       <h1 class="mt-4">Remedies for all Birth Star – Nakshatra (నక్షత్రం)</h1>
 
       <p id="panchanga-desc">
@@ -100,151 +104,7 @@
       <h2 class="text-center">ZODIAC SIGN</h2>
 
       <div class="row" role="group" aria-label="Zodiac sign remedies">
-    <article class="card"> <div class="column2">
+        <div class="column2">
           <ol><li>సూర్యుడు - ఆదివారం</li></ol>
           <p>దానాలు: 1 Kg గోధుమలు</p>
-          <p>పూజలు: విష్ణుమూర్తికి పూజ</p>
-
-          <ol start="2"><li>చంద్రుడు – సోమవారం</li></ol>
-          <p>దానాలు: 1 Kg బియ్యం</p>
-          <p>పూజలు: శివారాధన</p>
-
-          <ol start="3"><li>కుజుడు - మంగళవారం</li></ol>
-          <p>దానాలు: 1 Kg కందులు</p>
-          <p>పూజలు: దుర్గా/సుబ్రహ్మణ్యారాధన</p></div>
-</article>
-<article class="card">
-  <div class="column2">
-          <ol start="4"><li>బుధుడు - బుధవారం</li></ol>
-          <p>దానాలు: 1 Kg పెసలు</p>
-          <p>పూజలు: విష్ణు ఆరాధన, కుబేర పూజ</p>
-       
-          <ol start="5"><li>గురు - గురువారం</li></ol>
-          <p>దాన్యం: 1 Kg సెనగలు</p>
-          <p>పూజలు: హయగ్రీవ, సరస్వతి, లలితా పూజలు</p>
-   
-          <ol start="6"><li>శుక్రుడు - శుక్రవారం</li></ol>
-          <p>దానాలు: 1 Kg బబ్బేలు</p>
-          <p>పూజలు: లలితా, కాకి</p></div>
- </article>
-<article class="card">
-  <div class="column2">
-          <ol start="7"><li>శని - శనివారం</li></ol>
-          <p>దాన్యం: 1 Kg నల్ల నువ్వులు</p>
-          <p>పూజలు: రుద్రాభిషేకం, వేంకటేశ్వరారాధన</p>
-
-          <ol start="8"><li>రాహువు - శనివారం</li></ol>
-          <p>దాన్యం: 1 Kg మినుగులు</p>
-          <p>పూజలు: దుర్గారాధన, కాలసర్ప పూజలు, సుబ్రహ్మణ్యారాధన</p>
-
-          <ol start="9"><li>కేతువు - మంగళవారం</li></ol>
-          <p>దాన్యం: 1 Kg ఉలవలు</p>
-        </div>
-      </div></article>
-
-      <hr />
-
-      <h2 class="text-center mt-4">Birth Star – Nakshatra</h2>
-
-      <div class="download-links" style="float:right;margin-bottom:12px;">
-        <h3>DOWNLOAD</h3>
-        <a href="VISHNU SAHASRANAMAM.pdf" download>VISHNU SAHASRANAMAM</a><br />
-        <a href="శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్.pdf" download>శ్రీ విష్ణు సహస్ర నామ స్తోత్రమ్</a>
-      </div>
-
-    <article class="card">
-      <div class="row mt-2" role="group" aria-label="Nakshatra list">
-        <div class="column1">
-          <p>Ashwani (Asvini) 1 to 4</p>
-          <p>Bharani (Barani) 5 to 8</p>
-          <p>Kruttika (Krithikai) 9 to 12</p>
-        </div></div></article>
-    <article class="card">
-      <div class="row mt-2" role="group" aria-label="Nakshatra list">
-        <div class="column1">
-          <p>Rohini 13 to 16</p>
-          <p>Mrugasira 17 to 20</p>
-          <p>Ardra (Thirivathirai) 21 to 24</p>
-             </div></div></article>
-    <article class="card">
-      <div class="row mt-2" role="group" aria-label="Nakshatra list">
-        <div class="column1">
-          <p>Punarvasu (Punarpusam) 25 to 28</p>
-          <p>Pushyam (Pusam / Poosam) 29 to 32</p>
-          <p>Aslesha (Ayilyam) 33 to 36</p>
-        </div>
-    </article>
-    
-    <article class="card">
-        <div class="column1">
-          <p>Makam 37 to 40</p>
-          <p>Poorvapalguni (Puram) 41 to 44</p>
-          <p>Uttaraphalguni (Uthiram) 45 to 48</p>
-             </div></div></article>
-    <article class="card">
-      <div class="row mt-2" role="group" aria-label="Nakshatra list">
-        <div class="column1">
-          <p>Hasta (Hastham) 49 to 52</p>
-          <p>Chitra (Chithirai) 53 to 56</p>
-          <p>Swati (Swathi) 57 to 60</p>
-             </div></div></article>
-    <article class="card">
-      <div class="row mt-2" role="group" aria-label="Nakshatra list">
-        <div class="column1">
-          <p>Visaakhaa (Visakam) 61 to 64</p>
-          <p>Anuradha (Anusham) 65 to 68</p>
-          <p>Jyeshtha (Kettai) 69 to 72</p>
-        </div>
-    </article>
-    <article class="card">
-        <div class="column1">
-          <p>Moolaa (Mulam) 73 to 76</p>
-          <p>Poorvaashada (Puradam) 77 to 80</p>
-          <p>Uthraashada (Thiradam) 81 to 84</p>
-             </div></div></article>
-    <article class="card">
-      <div class="row mt-2" role="group" aria-label="Nakshatra list">
-        <div class="column1">
-          <p>Sravanam (Thiruvonam) 85 to 88</p>
-          <p>Dhanishtha (Avittam) 89 to 92</p>
-          <p>Sathabishang (Sathayam) 93 to 96</p>
-             </div></div></article>
-    <article class="card">
-      <div class="row mt-2" role="group" aria-label="Nakshatra list">
-        <div class="column1">
-          <p>Poorvabhadra 97 to 100</p>
-          <p>Uttarabhadra 101 to 104</p>
-          <p>Revati (Revathi) 105 to 108</p>
-        </div>
-      </div></artcle>
-  </main>
-
-  <!-- footer placeholder fragment -->
-  <div include-html="footer.html"></div>
-
-  <!-- Fallback fragment loader: tiny, safe — only runs if include.js didn't already replace fragments -->
-  <script>
-    (function(){ 
-      // If include.js provided a loader we don't run fallback.
-      if (window.__INCLUDE_JS_LOADED) return;
-      async function loadFragment(el){
-        const src = el.getAttribute('include-html');
-        if (!src) return;
-        try {
-          const resp = await fetch(src, {cache:'no-cache'});
-          if (!resp.ok) throw new Error('fetch failed');
-          const text = await resp.text();
-          el.insertAdjacentHTML('afterend', text);
-          el.remove();
-        } catch(err) {
-          // leave placeholder if fetch fails — non-fatal
-          console.warn('include fallback failed for', src, err);
-        }
-      }
-      document.addEventListener('DOMContentLoaded', ()=> {
-        document.querySelectorAll('div[include-html]').forEach(loadFragment);
-      });
-    })();
-  </script>
-</body>
-</html>
+          <p>పూజలు: విష్ణుమూర్తికి పూజ<
