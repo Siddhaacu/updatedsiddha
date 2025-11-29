@@ -84,4 +84,99 @@
     /* Thumbnail grid */
     .thumb-grid{
       display:grid;
-      grid-template-columns:rep
+      grid-template-columns:repeat(6,1fr);
+      gap:12px;
+      margin-top:18px;
+      align-items:start;
+    }
+    @media (max-width:980px){
+      .thumb-grid{grid-template-columns:repeat(4,1fr)}
+    }
+    @media (max-width:640px){
+      .thumb-grid{grid-template-columns:repeat(3,1fr)}
+    }
+    .thumb{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .thumb a{display:block;text-decoration:none;color:inherit}
+    .thumb img.two{
+      width:50px;height:50px;object-fit:cover;border-radius:12px;
+      box-shadow:0 6px 14px rgba(0,0,0,0.06);display:block;
+    }
+
+    /* keep legacy big rounded images consistent */
+    .big-rounded {
+      border-radius:50px;
+      width:100px;
+      height:100px;
+      object-fit:cover;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">
+
+      <!-- top row: logo left, back to list right -->
+      <div class="top-row">
+        <div>
+          <a href="index.html" aria-label="Home — Siddha Saraswatha">
+            <img class="logo" src="12.png" alt="Siddha Saraswatha logo" loading="lazy">
+          </a>
+        </div>
+        <div>
+          <a class="back-link" href="zs.html" aria-label="Back to Zodiac list">← Back</a>
+        </div>
+      </div>
+
+      <!-- main content (kept unchanged) -->
+      <div class="center-block" role="region" aria-labelledby="title-gemini">
+        <img class="hero" src="zs3.jpg" alt="Gemini / Mithun Rashi">
+        <h1 id="title-gemini">Gemini / Mithun Rashi</h1>
+        <h3>Master Planet : Mercury / Budh</h3>
+        <p class="muted">Ka, Ca ,Ki, Ke ,Ku, Cu, Koo, Coo ,Gha ,Yan ,Cha, Chh ,Kay, Kew ,Ko, co ,Ha</p>
+      </div>
+
+      <p align="center">
+        The persons with Gemini sign have small face, pointing towards chin. They may possess dual nature. 
+        They have effective personality, depicting their intelligence, judicious and humane nature. 
+        Their nature is versatile, imaginative, pleasant, thoughtful and adaptable. 
+        This rashi sign covers the last two charans of Mrigshira; complete Ardra and first three charans of Punarvasu Nakshatras.
+      </p>
+
+      <p>
+        The people of this sign usually have thin physique, are tall in height, medium complexion, dark eyes, thin hair. 
+        They are generally soft-spoken, with good power of oration. They are learned people with good command of language. 
+        They use phrases frequently while talking. They lean while walking. They have pointed nose and long organs of the body.
+      </p>
+
+      <p>
+        They are fast at work. They advance their logic in talk, conversations. They love change and possess foresightedness. 
+        As a rule, they are short tempered but cool down quite easily. They can consistently work without feeling fatigue, 
+        which adversely affects their health. They get help from friends and relatives. They are more passionate towards sex. 
+        They learn quickly the traits of their service or occupation and are usually successful. They usually have big families. 
+        They are prone to addictions. They are comedians by nature. Professions of Engineering, architecture or apparel are of 
+        their taste. They are religious. They rise quite late in their lives. They are prone to cold and eye diseases. 
+        They have poor digestive power.
+      </p>
+
+      <!-- thumbnails (kept same images/links) -->
+      <div class="thumb-grid" aria-label="Quick links to other zodiac signs">
+        <div class="thumb"><a href="zs1.html"><img class="two" src="Nakshatras/12/1.jpg" alt="Aries" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs2.html"><img class="two" src="Nakshatras/12/2.jpg" alt="Taurus" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs3.html"><img class="two" src="Nakshatras/12/3.jpg" alt="Gemini" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs4.html"><img class="two" src="Nakshatras/12/4.jpg" alt="Cancer" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs5.html"><img class="two" src="Nakshatras/12/5.jpg" alt="Leo" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs6.html"><img class="two" src="Nakshatras/12/6.jpg" alt="Virgo" loading="lazy"></a></div>
+
+        <div class="thumb"><a href="zs7.html"><img class="two" src="Nakshatras/12/7.jpg" alt="Libra" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs8.html"><img class="two" src="Nakshatras/12/8.jpg" alt="Scorpio" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs9.html"><img class="two" src="Nakshatras/12/9.jpg" alt="Sagittarius" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs10.html"><img class="two" src="Nakshatras/12/10.jpg" alt="Capricorn" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs11.html"><img class="two" src="Nakshatras/12/11.jpg" alt="Aquarius" loading="lazy"></a></div>
+        <div class="thumb"><a href="zs12.html"><img class="two" src="Nakshatras/12/12.jpg" alt="Pisces" loading="lazy"></a></div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
