@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — Siddha Saraswatha</title>
+
+  <link rel="shortcut icon" type="image/png" href="12.png">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- small page-specific tweaks -->
+  <style>
+    /* keep small thumbnail images circular */
+    .nak-thumb { width: 92px; height: 92px; object-fit:cover; border-radius:12px; display:block; margin:0 auto 10px; }
+    .nak-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+    @media (max-width:980px){ .nak-grid{grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:640px){ .nak-grid{grid-template-columns:1fr;} }
+    .text-block p { margin: 0 0 12px; line-height:1.6; color:#333; }
+    .flags { font-weight:700; margin-top:12px; }
+  </style>
+
+  <!-- include loader for header/footer -->
+  <script src="include.js" defer></script>
+</head>
+
+<body>
+
+  <!-- header fragment -->
+  <div include-html="header.html"></div>
+
+  <main class="wrap" role="main">
+<section id="blogs" class="wrap">
+  <h3>సూక్తాని (sūktāni)</h3> 
+  
+ 
+  
+  <div class="grid-3">
+    <!-- Nitya pārāyaṇa -->
+    <article class="card"> <p>
+        <a href="zb8.html">1. గణపతి అథర్వ శీర్షం (Gaṇapati atharva śīrṣaṁ)</a><br>
+        <a href="zb1.html">2. దుర్గా సూక్తం   (Durgā sūktaṁ)</a><br>
+        <a href="zb2.html">3. శ్రీ సూక్తం (Śrī sūktaṁ)</a><br>
+        <a href="zb3.html">4. మేధా సూక్తం (Mēdhā sūktaṁ)</a><br>
+        <a href="zb12.html">5. మన్యు సూక్తం(Man'yu sūktaṁ)</a><br>
+    </p> </article>
+    <article class="card"> <p>
+        <a href="zb13.html">6. పురుష సూక్తం(Puruṣa sūktaṁ)</a><br>
+        <a href="zb14.html">7. నారాయణ సూక్తం (Nārāyaṇa sūktaṁ)</a><br>
+        <a href="zb16.html">8. రాత్రి సూక్తం(Rātri sūktaṁ)</a><br>
+        <a href="zb19.html">9. సన్యాస సూక్తం(San'yāsa sūktaṁ)</a><br>
+        <a href="zb6.html">10. నక్షత్ర సూక్తం (Nakṣatra sūktaṁ)</a><br><br>
+        <a href="zb7.html">11. నవగ్రహ మంత్రములు (Navagraha Mantras)</a><br><br>
+
+       </p> </article>
+</section>
+</main></body>
+<div include-html="footer.html"></div>
+  </html>

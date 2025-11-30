@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — Siddha Saraswatha</title>
+
+  <link rel="shortcut icon" type="image/png" href="12.png">
+
+  <!-- Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Site CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- small page-specific tweaks -->
+  <style>
+    /* keep small thumbnail images circular */
+    .nak-thumb { width: 92px; height: 92px; object-fit:cover; border-radius:12px; display:block; margin:0 auto 10px; }
+    .nak-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+    @media (max-width:980px){ .nak-grid{grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:640px){ .nak-grid{grid-template-columns:1fr;} }
+    .text-block p { margin: 0 0 12px; line-height:1.6; color:#333; }
+    .flags { font-weight:700; margin-top:12px; }
+  </style>
+
+  <!-- include loader for header/footer -->
+  <script src="include.js" defer></script>
+</head>
+
+<body>
+
+  <!-- header fragment -->
+  <div include-html="header.html"></div>
+
+  <main class="wrap" role="main">
+<section id="blogs" class="wrap">
+  <h3> రుద్రం (Rudram)</h3> 
+  
+ 
+  
+  <div class="grid-3">
+    <!-- Nitya pārāyaṇa -->
+    <article class="card"> <p>
+       
+        <a href="1.KanchiKalpakaVallari.html">1.KanchiKalpakaVallari</a><br>
+        <a href="2.  Dhenuvageshwari.html">2.DhenuvageshwariShatakam </a><br>
+        <a href="3 MahaLakshmiShatakam.html">3.MahaLakshmiShatakam</a><br>
+        <a href="4 SriVijayaDurgaShakatam.html">4.SriVijayaDurgaShakatam</a><br>
+        <a href="5 SriRajarajeswariShatakam.html">5.SriRajarajeswariShatakam</a><br>
+        <a href="1.Navavarna Archana.html">6.Navavarna archana</a><br>
+        <a href="6 Sri Venkateshwara dandakam.html">7.Sri Venkateshwara dandakam</a><br>
+    </p> </article>
+</section>
+</main></body>
+<div include-html="footer.html"></div>
+  </html>
