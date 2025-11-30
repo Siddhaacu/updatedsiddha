@@ -1,27 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit" />
+<title>Nakshatra / Star and Zodiac — Siddha Saraswatha</title>
 <link rel="shortcut icon" type="image/png" href="12.png">
-<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale-1.0, shrink-to-fit">
-<link rel="stylesheet" href="styles.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
 
-.img{
-    border-radius: 50px;
-    width: 100px;
-    height: 100px;
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+/* Preserve user styles and refine header to match Aries page */
+a{ text-decoration:none; }
+
+
+img{ border-radius:50px; width:100px; height:100px; }
+
+
+.text{
+  margin-left:100px;
+  margin-right:100px;
+  padding-left:100px;
+  padding-right:100px;
+}
+.wrapper{ min-height:100%; }
+.background{
+  background:url(1.jpg) no-repeat center center fixed;
+  background-size:cover;
+  background-position:center;
+  position:relative;
 }
 
 
+body,div,table,thead,tbody,tfoot,tr,th,td,p{ font-family:Calibri, Arial, sans-serif; font-size:x-small }
+
+
+/* Aries page header styling (refined) */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 22px;
+  background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  backdrop-filter:blur(6px);
+  border-radius:12px;
+  margin:18px auto 28px;
+  max-width:1200px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.12) inset;
+}
+
+
+.site-logo img{
+  width:92px;
+  height:92px;
+  object-fit:contain;
+  border-radius:14px;
+  box-shadow:0 0 12px rgba(255,255,255,0.25);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.site-logo img:hover{ transform:scale(1.04); box-shadow:0 0 20px rgba(255,255,255,0.35); }
+
+
+.back-btn{
+  text-decoration:none;
+  font-size:18px;
+  font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(4px);
+  transition:transform .18s ease, background .18s ease;
+  color:inherit;
+}
+.back-btn:hover{ background:rgba(255,255,255,0.12); transform:translateX(3px); }
+.back-btn .fa{ font-size:16px }
+
+
+@media(max-width:900px){
+  .text{ margin-left:20px; margin-right:20px; padding-left:20px; padding-right:20px; }
+  .site-logo img{ width:72px; height:72px }
+  .back-btn{ font-size:16px }
+}
+
+
+/* preserve comment indicator rules from user */
+a.comment-indicator:hover + comment{ background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em; }
+a.comment-indicator{ background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em; }
+comment{ display:none; }
+    
+/* keep article avatars */
+img.article-avatar{ border-radius:50px; width:100px; height:100px }
+
+.na img{width:480px; height:240px;}
+
+/* Buttons look */
+.list-buttons{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px }
+.list-buttons button{ background:#ffffff12; border:1px solid rgba(255,255,255,0.08); padding:8px 14px; border-radius:8px; cursor:pointer }
+.list-buttons button a{ color:inherit }
 </style>
 
-<body class="background"></body>
+</head>
+<body class="background">
+<!-- Aries-style header: logo left, back button right (matches Aries page) -->
+<header class="site-header">
+  <div class="site-logo" aria-hidden="false">
+    <a href="index.html" title="Home">
+      <img src="12.png" alt="Siddha Saraswatha logo" />
+    </a>
+  </div>
+  <div>
+    <a class="back-btn" href="bs.html" aria-label="Back to previous">
+      <span>Back</span>
+      <i class="fa fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  </div>
+</header>
+
 <div class="wrapper">
 <div class="text">
 
             <div align="right"><a href="index.html"><img src="12.png" alt="No photo"width="300" /></a></div>
             <div align="left"> <a href="bs.html"><h2>←Back</h2></a></div>
-                <center><h3><img src="Nakshatras/bharini.jpg"><br>Nakshatra Bharani</h3></center>
+                <center><div class "na"><img src="Nakshatras/bharini.jpg"></center>
                 <P align="center"><h3>Bharani Nakshatra</h3>
                   <br>
                   <h4>Characteristics male</h4>
