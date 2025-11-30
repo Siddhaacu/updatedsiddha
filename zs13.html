@@ -1,4 +1,54 @@
-<link rel="shortcut icon" type="image/png" href="12.png">
+<!doctype html>
+}
+.site-logo img:hover{ transform:scale(1.04); box-shadow:0 0 20px rgba(255,255,255,0.35); }
+
+
+.back-btn{
+text-decoration:none;
+font-size:18px;
+font-weight:600;
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:8px 12px;
+border-radius:10px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(4px);
+transition:transform .18s ease, background .18s ease;
+color:inherit;
+}
+.back-btn:hover{ background:rgba(255,255,255,0.12); transform:translateX(3px); }
+.back-btn .fa{ font-size:16px }
+
+
+@media(max-width:900px){
+.text{ margin-left:20px; margin-right:20px; padding-left:20px; padding-right:20px; }
+.site-logo img{ width:72px; height:72px }
+.back-btn{ font-size:16px }
+}
+
+
+/* preserve comment indicator rules from user */
+a.comment-indicator:hover + comment{ background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em; }
+a.comment-indicator{ background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em; }
+comment{ display:none; }
+
+
+/* keep article avatars */
+img.article-avatar{ border-radius:50px; width:100px; height:100px }
+</style>
+</head>
+
+
+
+<!-- Aries-style header: logo left, back button right (matches Aries page) -->
+<header class="site-header">
+<div class="site-logo" aria-hidden="false">
+<a href="index.html" title="Home">
+<img src="12.png" alt="Siddha Saraswatha logo" />
+</a>
+</div>
+
 <style>
     a{
         text-decoration: none;
@@ -36,8 +86,7 @@
     <body  class="background"></body>
     <div class="wrapper">
     <div class="text">
-        <div align="right"><a href="index.html"><img src="12.png" alt="No photo"width="300" /></a></div>
-        <div align="left"> <a href="zs.html"><h2>←Back</h2></a></div>
+        
 
         
             <table cellspacing="0" border="0">
