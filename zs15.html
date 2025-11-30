@@ -13,52 +13,62 @@
 
   <!-- Small header-specific styles to ensure the logo & back link match other pages -->
   <style>
-    /* Avoid changing the article content: only header/back-link/logo styles */
+    /* Header refined to match Aries page visual spacing, alignment & feel */
     .site-header{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:1rem;
-      padding:12px 20px;
+      padding:15px 25px;
+      background:#ffffff10; /* light translucent layer like Aries */
+      backdrop-filter:blur(6px);
+      border-radius:12px;
+      margin:15px auto 25px;
       max-width:1200px;
-      margin:0 auto 20px;
     }
 
-    /* Logo used across pages */
     .site-logo img{
-      width:96px;      /* adjust to match other pages */
-      height:96px;     /* keep aspect square */
-      border-radius:12px; /* subtle rounding to match site theme */
-      object-fit:cover;
-      display:block;
+      width:90px;
+      height:90px;
+      object-fit:contain;
+      border-radius:14px;
+      box-shadow:0 0 12px rgba(255,255,255,0.4); /* soft glow like Aries */
+      transition:0.3s ease;
     }
 
-    /* Back button consistent with other pages */
+    .site-logo img:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 18px rgba(255,255,255,0.6);
+    }
+
     .back-btn{
       text-decoration:none;
-      font-size:18px;
+      font-size:20px;
       font-weight:600;
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      color:inherit;
-      padding:6px 10px;
-      border-radius:8px;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:10px;
+      background:#ffffff15;
+      backdrop-filter:blur(4px);
+      transition:0.3s ease;
     }
 
-    /* Optional: small arrow icon spacing */
+    .back-btn:hover{
+      background:#ffffff30;
+      transform:translateX(3px);
+    }
+
     .back-btn .fa{
-      font-size:16px;
+      font-size:18px;
     }
 
-    /* Make header responsive */
-    @media (max-width:700px){
-      .site-header{padding:10px;}
-      .site-logo img{width:72px;height:72px}
-      .back-btn{font-size:16px}
+    @media(max-width:700px){
+      .site-header{padding:12px 16px;}
+      .site-logo img{width:70px;height:70px;}
+      .back-btn{font-size:18px;}
     }
 
-    /* Keep your existing img rule for round images (article image if any) */
     img.article-avatar{border-radius:50px;width:100px;height:100px}
   </style>
 </head>
