@@ -1,25 +1,104 @@
-<link rel="shortcut icon" type="image/png" href="12.png">
-<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale-1.0, shrink-to-fit">
-<link rel="stylesheet" href="styles.css"/>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-img{
-    border-radius: 50px;
-    width:100px;
-    height: 100px;
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit" />
+  <title>Gandmool Dosha — Siddha Saraswatha</title>
+  <link rel="shortcut icon" type="image/png" href="12.png">
 
-</style>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<body class="background"></body>
-<div class="wrapper">
-<div class="text">
-        <div align="right"><a href="index.html"><img src="12.png" alt="No photo"width="300" /></a></div>
-        <div align="left"> <a href="zs.html"><h2>←Back</h2></a></div>
+  <style>
+    /* Aries page refined header styles */
+    .site-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:15px 25px;
+      background:#ffffff10;
+      backdrop-filter:blur(6px);
+      border-radius:12px;
+      margin:15px auto 25px;
+      max-width:1200px;
+    }
 
-    <h1>Gandmool Dosha </h1>
+    .site-logo img{
+      width:90px;
+      height:90px;
+      object-fit:contain;
+      border-radius:14px;
+      box-shadow:0 0 12px rgba(255,255,255,0.4);
+      transition:0.3s ease;
+    }
+
+    .site-logo img:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 18px rgba(255,255,255,0.6);
+    }
+
+    .back-btn{
+      text-decoration:none;
+      font-size:20px;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:10px;
+      background:#ffffff15;
+      backdrop-filter:blur(4px);
+      transition:0.3s ease;
+      color:inherit;
+    }
+
+    .back-btn:hover{
+      background:#ffffff30;
+      transform:translateX(3px);
+    }
+
+    .back-btn .fa{
+      font-size:18px;
+    }
+
+    @media(max-width:700px){
+      .site-header{padding:12px 16px;}
+      .site-logo img{width:70px;height:70px;}
+      .back-btn{font-size:18px;}
+    }
+
+    /* Keep article avatar rule from original */
+    img.article-avatar{border-radius:50px;width:100px;height:100px}
+
+    /* Preserve any inline img default the user had */
+    .content-img{border-radius:50px;width:100px;height:100px}
+  </style>
+</head>
+
+<body class="background">
+  <div class="wrapper">
+    <!-- Aries-style header: logo on left, back on right -->
+    <header class="site-header">
+      <div class="site-logo" aria-hidden="false">
+        <a href="index.html" title="Home">
+          <img src="12.png" alt="Siddha Saraswatha logo" />
+        </a>
+      </div>
+
+      <div>
+        <a class="back-btn" href="zs.html" aria-label="Back to previous">
+          <span>Back</span>
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+    </header>
+
+    <main class="text">
+      <div align="right"><a href="index.html"><img class="content-img" src="12.png" alt="No photo" width="300"/></a></div>
+      <div align="left"><a href="zs.html"><h2>←Back</h2></a></div>
+
+      <h1>Gandmool Dosha </h1>
     <p>
         If a person is born either in Ashvini, Revati, Magha, Ashlesha, Moola or Jyeshtha nakshatra 
         then the birth chart of the person is said to have Gandmool Dosha in the Jyotisha of so called pandits.
@@ -72,6 +151,9 @@ img{
          It is said by the so called panditas that such a dosha is not auspicious regarding 
          variuos issues of life of a person. But in practical many exceptions are observed to 
          such a concept. Such a Dosha is not part of Indian Vedic Astrology & is a superstition.
-    </p><br><br>
-    </div>
-    </div>
+    </p>
+    <br><br>
+    </main>
+  </div>
+</body>
+</html>
